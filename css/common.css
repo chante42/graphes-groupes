@@ -1,0 +1,20 @@
+
+graphZone {
+  float:left;
+  width:38%;
+  background-color: #EEEEEE;
+  margin-left: 1px;
+}
+
+
+graph {
+  border-color :#FF0000;
+  border-style: solid;
+  border-width: 1px;
+  margin : 1px;
+  padding :5px;
+}
+footer {
+  /* forcer l’affichage sous le contenu et la colonne */
+  clear:both;
+}
