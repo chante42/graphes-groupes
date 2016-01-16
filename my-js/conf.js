@@ -7,9 +7,15 @@
 // graph				: [Obligatoire] Tableau de structure {nom, imageURL, ...} qui permet de définir un graphique
 // nom 					: [Obligatoire] Nom d'un graph qui apparait sur le menu a gauche 
 // nomTitre          	: [facultatif]  Titre du graphique 
-// imageURL 			: [Obligatoire] URL pour afficher l'image. Peux contenir des variables (%%nomvar%%)
-// Reste A faire
-// Remonté le imageURL d'un cran avec gestion des variables %%nom%% pour evité de faire des copier coller de imageURL sur chaque entrée 
+// imageURL 			: [Obligatoire si pas groupeImageURL non définie] URL pour afficher l'image. Peux contenir des variables (%%nomvar%%)
+// groupeImageURL		: [facultatif] URL pour le groupe
+//
+// Les variables :
+//    Pour évolué une variable il faut l'entrourré de '%%'.    ex %%var1%%
+// 
+// Les variables Pres-définie
+//      %%echelle%% : Permet de choisir le zoom actuel : telque définie par "cacti,pnp4nagios, ..."
+// 
 //
 var conf = {
 	"groups" : [  
