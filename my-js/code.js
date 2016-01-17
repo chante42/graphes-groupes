@@ -110,9 +110,9 @@ function configButton_onclick()
 
 
             if (pictureUrl != null) {
-                $("#imgAAA-1").attr('src', pictureUrl);
+                $("#imgAAA1").attr('src', pictureUrl);
             } else {
-                $("#imgAAA-1").attr('src', "../../assets/images/facebook- profile.jpg");
+                $("#imgAAA1").attr('src', "../../assets/images/facebook- profile.jpg");
             }
 
 
