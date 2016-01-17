@@ -51,7 +51,7 @@ function affiche()
 		// Remplacement des variables fixe et interne 
 		var str1 = url.replace("%%echelle%%",echelle);
 		
-		outputGraph += '<img  id=imgAAA'+i+'src="'+str1+'">';
+		outputGraph += '<img  id="imgAAA'+i+'" src="'+str1+'">';
 		outputGraph += '</div></div>';
 
 		if (j%2 == 0) {
