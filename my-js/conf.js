@@ -11,7 +11,7 @@
 // groupeImageURL		: [facultatif] URL pour le groupe
 //
 // Les variables :
-//    Pour évolué une variable il faut l'entrourré de '%%'.    ex %%var1%%
+//    Pour évalué une variable il faut l'entrourré de '%%'.    ex %%var1%%
 // 
 // Les variables Pres-définie
 //      %%echelle%% : Permet de choisir le zoom actuel : telque définie par "cacti,pnp4nagios, ..."
@@ -175,7 +175,7 @@ var conf = {
 		{	"groupeNom" : "test1",     
 	    	"groupeTitre" : "test1 de la structure",
 			"groupeDescription" : "",
-			"groupeImageURL" : "images/debug/0%%echelle%%%%var1%%.png",
+			"groupeImageURL" : "http://www.sylvieolivier.fr/protec/images/0%%echelle%%%%var1%%.png",
 	    	"graph" : [    
 				{"nom" : "img 0"		, "var1" : "0"},  
 				{"nom" : "img 1"		, "var1" : "1"},  

@@ -51,7 +51,7 @@ function affiche()
 		// Remplacement des variables fixe et interne 
 		var str1 = url.replace("%%echelle%%",echelle);
 		
-		outputGraph += '<img  src="'+str1+'">';
+		outputGraph += '<img  id=imgAAA'+i+'src="'+str1+'">';
 		outputGraph += '</div></div>';
 
 		if (j%2 == 0) {
@@ -80,11 +80,49 @@ function chg_groupe(val)
 	groupe = val;
 	affiche();
 }
+
 function chg_echelle(val)
 {
 	console.log("chg_echelle ="+val);
 	echelle = val;
 	affiche();
 };
+
+
+function configButton_onclick()
+{
+	var username="toto";
+	var password="olivier";
+	$.ajax({
+
+        headers: {
+            'Authorization': "Basic " + btoa(username + ":" + password),
+            "Accept": "application/json; odata=verbose"
+        },
+        contentType: "image/png; odata=verbose",
+
+        data1: "{ }",
+        type: "GET",
+        url: "http://www.sylvieolivier.fr/protec/images/101.png",
+        success: function (model) {
+
+
+
+            if (pictureUrl != null) {
+                $("#imgAAA-1").attr('src', pictureUrl);
+            } else {
+                $("#imgAAA-1").attr('src', "../../assets/images/facebook- profile.jpg");
+            }
+
+
+
+        },
+        error: function () {
+            alert("failed");
+        }
+    });
+	
+	$('#configContenue').toggle();
+}
 
 // -->
