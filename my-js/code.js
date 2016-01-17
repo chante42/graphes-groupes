@@ -93,6 +93,7 @@ function configButton_onclick()
 {
 	var username="toto";
 	var password="olivier";
+	var pictureUrl="http://www.sylvieolivier.fr/protec/images/101.png"
 	$.ajax({
 
         headers: {
@@ -103,7 +104,7 @@ function configButton_onclick()
 
         data1: "{ }",
         type: "GET",
-        url: "http://www.sylvieolivier.fr/protec/images/101.png",
+        url: pictureUrl,
         success: function (model) {
 
 
