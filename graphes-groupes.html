@@ -24,12 +24,12 @@
 
 
 			}
-			outputTitle += "</ul>	<p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p>";
+			//outputTitle += "</ul>	<p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p>";
 			console.log(outputTitle);
 			console.log(outputGraph);
 			$("#groupe").html(outputTitle);
 			affiche();
-			
+
 		});
 
 			//authentifie("http://vli5res01/pnp4nagios/", "readonly", "onlyread");
@@ -39,7 +39,7 @@
 
 	<body>
 		<nav role="navigation" class="navbar   navbar-default navbar-fixed-top">
-			<ul class="nav-tabs" 	>
+			<ul class="nav-tabs list-group" 	>
 	      	  	<div class="navbar-header">
 	            	<button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
 		                <span class="sr-only">Toggle navigation</span>
@@ -49,13 +49,14 @@
 		            </button>
 		            <a href="#" class="navbar-brand">Graphes Groupés</a>
 		        </div> 
-
+	      	  	
+	        	
 		        <li onclick="chg_echelle(0);"><button type="button" class="btn btn-primary navbar-btn"><span class="glyphicon glyphicon-time"> Heure</span></button></li>
-				<li onclick="chg_echelle(1);"><button type="button" class="btn btn-primary navbar-btn"><span class="glyphicon glyphicon-time"> 24h</span></button></li> 
-				<li onclick="chg_echelle(2);"><button type="button" class="btn btn-primary navbar-btn"><span class="glyphicon glyphicon-time"> Jours</span></button></li>
+				<li  onclick="chg_echelle(1);"><button type="button" class="btn btn-primary navbar-btn"><span class="glyphicon glyphicon-time"> 24h</span></button></li> 
+				<li  onclick="chg_echelle(2);"><button type="button" class="btn btn-primary navbar-btn"><span class="glyphicon glyphicon-time"> Jours</span></button></li>
 				<li onclick="chg_echelle(3);"><button type="button" class="btn btn-primary navbar-btn"><span class="glyphicon glyphicon-time"> Semaine</span></button></li>
-				<li onclick="chg_echelle(4);"><button type="button" class="btn btn-primary navbar-btn"><span class="glyphicon glyphicon-time"> Mois</span></button></li>
-			
+				<li  onclick="chg_echelle(4);"><button type="button" class="btn btn-primary navbar-btn"><span class="glyphicon glyphicon-time"> Mois</span></button></li>
+				
 
 				<li class="pull-right" onclick="$('#messageHelpcontenue').toggle()"><button type="button" class="btn btn-primary navbar-btn navbar-right"><span class="glyphicon glyphicon-info-sign">Aide </span> </button></li>
 		    	
@@ -79,7 +80,7 @@
 						 	<div class="panel-heading text-center">	
 								Configuration
 							</div>
-							<div class="panel-body">'
+							<div class="panel-body">
 
 							</div>
 						</div>
@@ -87,7 +88,7 @@
 						 	<div class="panel-heading text-center">	
 								Documentation
 							</div>
-							<div class="panel-body">'
+							<div class="panel-body">
 								<PRE>
 DESCRIPTION DES MOTS CLEF :
 ---------------------------

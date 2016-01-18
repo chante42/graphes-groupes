@@ -51,9 +51,29 @@ function affiche()
 		// Remplacement des variables fixe et interne 
 		var str1 = url.replace("%%echelle%%",echelle);
 		
-		outputGraph += '<img  id="imgAAA'+i+'" src="'+str1+'">';
+		//
+		// test pour Savor si IMG (par défaut) ou IFRAME
+		//
+		if ( (typeof(conf.groups[groupe].graph[j].Iframe) != 'undefined'  && conf.groups[groupe].graph[j].Iframe == "true" ) ||
+			  (typeof(conf.groups[groupe].groupeIframe)  != "undefined" && conf.groups[groupe].groupeIframe == "true")) {
+			var taille="";
+
+			// Adapte la taille de l'IFRAME
+			if (typeof(conf.groups[groupe].groupeIframeWidth) != 'undefined'  ) {
+				taille += 'width="'+conf.groups[groupe].groupeIframeWidth+'" ';
+			}
+			if (typeof(conf.groups[groupe].groupeIframeHeight) != 'undefined'  ){
+				taille += 'height="'+conf.groups[groupe].groupeIframeHeight+'" ';
+			}
+
+		    outputGraph += '<iframe  '+taille+'id="iframeAAA'+j+'" src="'+str1+'">Les Iframe ne sont pas supportée</iframe>';
+			
+		}else {
+			outputGraph += '<img  id="imgAAA'+j+'" src="'+str1+'">';
+		}
 		outputGraph += '</div></div>';
 
+		
 		if (j%2 == 0) {
 			outputGraph1 += outputGraph;
 		}else {

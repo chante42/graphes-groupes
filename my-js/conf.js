@@ -9,6 +9,9 @@
 // nomTitre          	: [facultatif]  Titre du graphique 
 // imageURL 			: [Obligatoire si pas groupeImageURL non définie] URL pour afficher l'image. Peux contenir des variables (%%nomvar%%)
 // groupeImageURL		: [facultatif] URL pour le groupe
+// groupeIframe			: [facultatif] si égale a "true"  l'URL est affiché dans un iframe
+// groupeIframeWidth 	: [facultatif] Largeur de l'iframe 
+// groupeIframeHeight 	: [facultatif] Hauteur de l'iframe
 //
 // Les variables :
 //    Pour évalué une variable il faut l'entrourré de '%%'.    ex %%var1%%
@@ -84,6 +87,46 @@ var conf = {
 				{"nom" : "Lien 10Gb/s 2"		, "var1" : "5280"}, 
 			]
 		},
+		{	"groupeNom" : "Lien Site principaux",     
+	    	"groupeTitre" : "débit des sites principaux ",
+			"groupeDescription" : "",
+			"groupeImageURL" : "http://supervisiondc/cacti/graph_image.php?action=view&local_graph_id=%%var1%%&rra_id=%%echelle%%",
+	    	"graph" : [    
+				{"nom" : "A92 MAN1"			, "var1" : "5250"},  
+				{"nom" : "B94 MAN1"			, "var1" : "5252"},  
+				{"nom" : "internet" 		, "var1" : "5182"},
+				{"nom" : "RavRac"			, "var1" : "5163"} ,
+				{"nom" : "Paris Laffite"	, "var1" : "5540"} ,
+				{"nom" : "Angers"			, "var1" : "4949"} ,
+				{"nom" : "Marseille"		, "var1" : "5025"} ,
+				{"nom" : "Nantes"			, "var1" : "5016"} ,
+				{"nom" : "St Jean"			, "var1" : "5160"} ,
+				{"nom" : "Metz"				, "var1" : "5082"} ,
+			]
+		},
+		{	"groupeNom" 			: "T Réel :Lien Site principaux",     
+	    	"groupeTitre" 			: "débit des sites principaux ",
+			"groupeDescription" 	: "",
+			"groupeIframe" 			: "true",
+			"groupeIframeWidth" 	: "700",
+			"groupeIframeHeight" 	: "300",
+			"groupeImageURL" : "http://supervisiondc.si2m.tec/cacti/plugins/realtime/graph_popup_rt.php?local_graph_id=%%var1%%&graph_start=-300&graph_end=0&ds_step=10&count=0",
+	    	"graph" : [    
+				{"nom" : "A92 MAN1"			, "var1" : "5250"},  
+				{"nom" : "B94 MAN1"			, "var1" : "5252"},  
+				{"nom" : "internet" 		, "var1" : "5182"},
+				{"nom" : "RavRac"			, "var1" : "5163"} ,
+				{"nom" : "Paris Laffite"	, "var1" : "5540"} ,
+				{"nom" : "Angers"			, "var1" : "4949"} ,
+				{"nom" : "Marseille"		, "var1" : "5025"} ,
+				{"nom" : "Nantes"			, "var1" : "5016"} ,
+				{"nom" : "St Jean"			, "var1" : "5160"} ,
+				{"nom" : "Metz"				, "var1" : "5082"} ,
+
+
+			]
+		},
+
 		{	"groupeNom" : "C7000 C2 Réseau VC",     
 	    	"groupeTitre" : "Débit  des 2 VC composés de 4 liens 10Gb/s du chassis C2",
 			"groupeDescription" : "",
