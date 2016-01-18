@@ -12,9 +12,17 @@ function affiche()
 	for (var j in conf.groups[groupe].graph) {
 		var outputGraph="";
 		var variable;
+		var description="";
+        var nomTitre= conf.groups[groupe].graph[j].nom;
+		if ( typeof(conf.groups[groupe].graph[j].nomDescription) != "undefined") {
+			description = conf.groups[groupe].graph[j].nomDescription;
+		}
 
-		outputGraph += '<div class=" panel-primary" style="padding-top:4;" >  <div class="panel-heading text-center">';
-		outputGraph += ''+conf.groups[groupe].graph[j].nom+'</div><div class="panel-body" style="padding:0;">';
+		if ( typeof(conf.groups[groupe].graph[j].nomTitre) != "undefined") {
+			nomTitre = conf.groups[groupe].graph[j].nomTitre;
+		}
+		outputGraph += '<div class=" panel-primary" style="padding-top:4;" >  <div data-toggle="tooltip" data-placement="top" title="'+description+'" class="panel-heading text-center">';
+		outputGraph += ''+nomTitre+'</div><div class="panel-body" style="padding:0;">';
 
 		// Si URL pour le nom est definie est plus prioritaire que celle du groupe
 		if (typeof(conf.groups[groupe].graph[j].imageURL) != 'undefined' && conf.groups[groupe].graph[j].imageURL!= "" ) {
@@ -83,7 +91,15 @@ function affiche()
 
 	$("#graphZone1").html(outputGraph1);
 	$("#graphZone2").html(outputGraph2);
-	outputTitre ='<h1 class="text-center">';
+
+	// Affiche le titre ud groupe
+	//
+	var groupeDescription ="";
+	if ( typeof(conf.groups[groupe].groupDescription) != "undefined") {
+			description = conf.groups[groupe].groupDescription;
+		}
+
+	outputTitre ='<h1 data-toggle="tooltip" data-placement="top" title="'+groupeDescription+'"class="text-center">';
 	
 	if ( typeof(conf.groups[groupe].groupeTitre) != 'undefined' && conf.groups[groupe].groupeTitre != "") {
 		outputTitre +=conf.groups[groupe].groupeTitre;
