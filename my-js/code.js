@@ -130,6 +130,16 @@ function configButton_onclick()
 	var username="toto";
 	var password="olivier";
 	var pictureUrl="http://www.sylvieolivier.fr/protec/images/101.png"
+	
+	$.get( "/my-js/conf.js", function( data ) {
+    	$( "#configTxt" ).html( data );
+    });
+    $('#configContenue').toggle();
+
+    return;
+
+
+
 	$.ajax({
 
         headers: {
