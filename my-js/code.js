@@ -77,7 +77,21 @@ function affiche()
 		    outputGraph += '<iframe  '+taille+'id="iframeAAA'+j+'" src="'+str1+'">Les Iframe ne sont pas supportée</iframe>';
 			
 		}else {
-			outputGraph += '<img  id="imgAAA'+j+'" src="'+str1+'">';
+			var href=""
+			// test si l'option clickURL existe
+			if (typeof(conf.groups[groupe].groupeClickURL) != 'undefined'  ){
+				href = conf.groups[groupe].groupeClickURL;
+			}
+			if 	(typeof(conf.groups[groupe].graph[j].clickURL) != 'undefined'  ){
+				href = conf.groups[groupe].graph[j].clickURL;
+			}
+			if (href !="") {
+				outputGraph += '<a href="'+href+'" target="_blanck'+j+'">';
+			}
+			outputGraph += '<img  id="imgAAA'+j+'" src="'+str1+'" alt="Impossible d\'accéder ou vous n\'êtes pas identifié sur l\'url:'+str1+'">';
+			if (href !="") {
+				outputGraph += '</a>';
+			}
 		}
 		outputGraph += '</div></div>';
 

@@ -8,12 +8,15 @@
 // groupeIframe			: [facultatif] si égale a "true"  l'URL est affiché dans un iframe
 // groupeIframeWidth 	: [facultatif] Largeur de l'iframe 
 // groupeIframeHeight 	: [facultatif] Hauteur de l'iframe
+// groupeClickURL       : [facultatif] URL appelé si on click sur une image du groupe
+// 
 //
 // graph				: [Obligatoire] Tableau de structure {nom, imageURL, ...} qui permet de définir un graphique
 // nom 					: [Obligatoire] Nom d'un graph qui apparait sur le menu a gauche 
 // nomTitre          	: [facultatif]  Titre du graphique 
 // nomDescription       : [facultatif] 
 // imageURL 			: [Obligatoire si pas groupeImageURL non définie] URL pour afficher l'image. Peux contenir des variables (%%nomvar%%)
+// clickURL             : [facultatif] URL appelé si on click  l'image
 //
 //
 // Les variables :
@@ -245,12 +248,13 @@ var conf = {
 			  
 			]
 		},
-		{	"groupeNom" : "test2",     
-	    	"groupeTitre" : "test2 de la structure",
+		{	"groupeNom"         : "test2",     
+	    	"groupeTitre" 		: "test2 de la structure",
 			"groupeDescription" : "",
-			"groupeImageURL" : "images/debug/1%%echelle%%%%var1%%.png",
+			"groupeImageURL" 	: "images/debug/1%%echelle%%%%var1%%.png",
+			"groupeClickURL" 	: "http://www.google.fr",
 	    	"graph" : [    
-				{"nom" : "img 0"		, "var1" : "0"},  
+				{"nom" : "img 0"		, "var1" : "0", "clickURL" : "images/debug/100.png"},  
 				{"nom" : "img 1"		, "var1" : "1"},  
 			    {"nom" : "img 2"		, "var1" : "2"},  
 				{"nom" : "img 3"		, "var1" : "3"},  
