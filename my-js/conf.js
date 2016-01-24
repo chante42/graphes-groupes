@@ -33,14 +33,14 @@ var conf = {
 			"groupeDescription" : "groupeDescription groupeDescription groupeDescription groupeDescription groupeDescription",
 			"groupeImageURL" : "http://vli5res01/pnp4nagios/image?host=%%var1%%&srv=HP_blade_enclosure_health&view=%%echelle%%&source=0",
 	    	"graph" : [    
-				{"nom" : "OA1C1B94"		,"var1" : "OA1C1B94", "nomTitre" : "Consomation chassis C1 en Wh", "nomDescription" : " kqsugdfqjkgfgsdfgsquifygsquifiusgfygsqufguisqdgfusdygfusqgfus"},  
-				{"nom" : "OA1C2A92"		,"var1" : "OA1C2A92"},  
-			    {"nom" : "OA1C3B94"		,"var1" : "OA1C3B94"},  
-				{"nom" : "OA1C4A92"		,"var1" : "OA1C4A92"},  
-				{"nom" : "OA1C5B94"		,"var1" : "OA1C5B94"},  
-				{"nom" : "OA1C6A92"		,"var1" : "OA1C6A92"},  
-				{"nom" : "OA1C7B94"		,"var1" : "OA1C7B94"},  
-				{"nom" : "OA1C8A92"		,"var1" : "OA1C8A92"}   
+				{"nom" : "OA1C1B94"		,"var1" : "OA1C1B94", "nomTitre" : "Consomation chassis C1 en B94 (Wh)", "nomDescription" : " kqsugdfqjkgfgsdfgsquifygsquifiusgfygsqufguisqdgfusdygfusqgfus"},  
+				{"nom" : "OA1C2A92"		,"var1" : "OA1C2A92", "nomTitre" : "Consomation chassis C2 en A92 (Wh)"},  
+			    {"nom" : "OA1C3B94"		,"var1" : "OA1C3B94", "nomTitre" : "Consomation chassis C3 en B94 (Wh)"},  
+				{"nom" : "OA1C4A92"		,"var1" : "OA1C4A92", "nomTitre" : "Consomation chassis C4 en A92 (Wh)"},  
+				{"nom" : "OA1C5B94"		,"var1" : "OA1C5B94", "nomTitre" : "Consomation chassis C5 en B94 (Wh)"},  
+				{"nom" : "OA1C6A92"		,"var1" : "OA1C6A92", "nomTitre" : "Consomation chassis C6 en A92 (Wh)"},  
+				{"nom" : "OA1C7B94"		,"var1" : "OA1C7B94", "nomTitre" : "Consomation chassis C7 en B94 (Wh)"},  
+				{"nom" : "OA1C8A92"		,"var1" : "OA1C8A92", "nomTitre" : "Consomation chassis C8 en A92 (Wh)"}   
 			]},   
 		{	"groupeNom" : "temp C7000",
 			"groupeTitre" : "Température d'entrée d'air des chassis HP C7000",

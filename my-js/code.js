@@ -1,7 +1,17 @@
 var echelle = 0;
 var groupe = 0;
 
-<!--
+
+// imageErrorMessage
+//  Message d'erreur qui apparait quand il est impossible de charger une image
+function imageErrorMessage(url) {
+	$(this).parent().append("<h1>TOTOTOOTOTO "+url+" </h1>");
+	console.log("onloadError : "+url);
+}
+//
+//     affiche
+// 
+// fonction qui affiche les image et les contours et traite l'instentiation des variables
 function affiche()
 {
 	
@@ -14,6 +24,16 @@ function affiche()
 		var variable;
 		var description="";
         var nomTitre= conf.groups[groupe].graph[j].nom;
+        var href=""
+
+		// test si l'option clickURL existe
+		if (typeof(conf.groups[groupe].groupeClickURL) != 'undefined'  ){
+			href = conf.groups[groupe].groupeClickURL;
+		}
+		if 	(typeof(conf.groups[groupe].graph[j].clickURL) != 'undefined'  ){
+			href = conf.groups[groupe].graph[j].clickURL;
+		}
+
 		if ( typeof(conf.groups[groupe].graph[j].nomDescription) != "undefined") {
 			description = conf.groups[groupe].graph[j].nomDescription;
 		}
@@ -21,9 +41,7 @@ function affiche()
 		if ( typeof(conf.groups[groupe].graph[j].nomTitre) != "undefined") {
 			nomTitre = conf.groups[groupe].graph[j].nomTitre;
 		}
-		outputGraph += '<div class=" panel-primary" style="padding-top:4;" >  <div data-toggle="tooltip" data-placement="top" title="'+description+'" class="panel-heading text-center">';
-		outputGraph += ''+nomTitre+'</div><div class="panel-body" style="padding:0;">';
-
+		
 		// Si URL pour le nom est definie est plus prioritaire que celle du groupe
 		if (typeof(conf.groups[groupe].graph[j].imageURL) != 'undefined' && conf.groups[groupe].graph[j].imageURL!= "" ) {
 			url = conf.groups[groupe].graph[j].imageURL;
@@ -31,6 +49,7 @@ function affiche()
 			url = conf.groups[groupe].groupeImageURL;
 		}
 
+		//
 		// Remplacement des variables de URL par celle contenue dans le nom
 		variable= url.match(/%%(.*?)%%/ig); // recherche des mot du type  %%var1%%
 		for (var i in variable) {
@@ -59,6 +78,9 @@ function affiche()
 		// Remplacement des variables fixe et interne 
 		var str1 = url.replace("%%echelle%%",echelle);
 		
+		outputGraph += '<div class=" panel-primary" style="padding-top:4;" >  <div data-toggle="tooltip" data-placement="top" title="'+description+'" class="panel-heading text-center">';
+		outputGraph += ''+nomTitre+'</div><div class="panel-body" style="padding:0;">';
+
 		//
 		// test pour Savor si IMG (par défaut) ou IFRAME
 		//
@@ -77,18 +99,10 @@ function affiche()
 		    outputGraph += '<iframe  '+taille+'id="iframeAAA'+j+'" src="'+str1+'">Les Iframe ne sont pas supportée</iframe>';
 			
 		}else {
-			var href=""
-			// test si l'option clickURL existe
-			if (typeof(conf.groups[groupe].groupeClickURL) != 'undefined'  ){
-				href = conf.groups[groupe].groupeClickURL;
-			}
-			if 	(typeof(conf.groups[groupe].graph[j].clickURL) != 'undefined'  ){
-				href = conf.groups[groupe].graph[j].clickURL;
-			}
 			if (href !="") {
 				outputGraph += '<a href="'+href+'" target="_blanck'+j+'">';
 			}
-			outputGraph += '<img  id="imgAAA'+j+'" src="'+str1+'" alt="Impossible d\'accéder ou vous n\'êtes pas identifié sur l\'url:'+str1+'">';
+			outputGraph += '<img  id="imgAAA'+j+'" src="'+str1+'" onerror="imageErrorMessage(\''+url+'\')" alt="Impossible d\'accéder ou vous n\'êtes pas identifié sur l\'url:'+str1+'">';
 			if (href !="") {
 				outputGraph += '</a>';
 			}
