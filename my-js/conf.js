@@ -233,6 +233,18 @@ var conf = {
 				{"nom" : "img 7"		, "var1" : "7"}   
 			]
 		},
+		{	"groupeNom" : "Ping filer nagios",     
+	    	"groupeTitre" : "Temps de ping des vfiler sous nagios",
+			"groupeDescription" : "",
+			"groupeImageURL" : "images/debug/1%%echelle%%%%var1%%.png",
+			
+	    	"graph" : [    
+				{"nom" : "votzfil001"		, "imageURL" : "http://linnagiosap.si2m.tec/centreon/include/views/graphs/generateGraphs/generateImage.php?session_id=rj3men9hda4vi9klm5uctj9gk4&index=14695&end=1453384597&start=1450706197" },
+				{"nom" : "votzfil002"		, "imageURL" : "http://linnagiosap.si2m.tec/centreon/include/views/graphs/generateGraphs/generateImage.php?session_id=rj3men9hda4vi9klm5uctj9gk4&index=14689&end=1453384860&start=1453341660"},
+				{"nom" : "votzfil002"		, "imageURL" : "http://linnagiosap.si2m.tec/centreon/include/views/graphs/generateGraphs/generateImage.php?index=14689&end=1453384860&start=1453341660"},
+			  
+			]
+		},
 		{	"groupeNom" : "test2",     
 	    	"groupeTitre" : "test2 de la structure",
 			"groupeDescription" : "",
