@@ -89,8 +89,8 @@ function affiche()
 		}
 	} // FIN FOR 	"j in conf.groups[groupe].graph"
 
-	$("#graphZone1").html(outputGraph1);
-	$("#graphZone2").html(outputGraph2);
+	$("#sortable1").html(outputGraph1);
+	$("#sortable2").html(outputGraph2);
 
 	// Affiche le titre ud groupe
 	//
