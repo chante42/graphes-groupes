@@ -1,5 +1,7 @@
 TODO :
+ 20160124 :Permettre de changer l'echelle sans bouger les graph lorsque qu'on les a déplacé avec drag and drop
 
 
 SUIVI :
+* 20160124 : Mise ne place du drag and drop avec jquerry-ui en ne respectant pas bootstrap
 * 20160116 : Initialisation du projet GIT

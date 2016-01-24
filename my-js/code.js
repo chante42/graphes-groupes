@@ -127,47 +127,14 @@ function chg_echelle(val)
 
 function configButton_onclick()
 {
-	var username="toto";
-	var password="olivier";
-	var pictureUrl="http://www.sylvieolivier.fr/protec/images/101.png"
-	
-	$.get( "/my-js/conf.js", function( data ) {
-    	$( "#configTxt" ).html( data );
-    });
-    $('#configContenue').toggle();
+	$('#configFrame').html('<iframe src="my-js/conf.js" ><iframe>');
 
-    return;
+	$('#configContenue').toggle();
+}
 
-
-
-	$.ajax({
-
-        headers: {
-            'Authorization': "Basic " + btoa(username + ":" + password),
-            "Accept": "application/json; odata=verbose"
-        },
-        contentType: "image/png; odata=verbose",
-
-        data1: "{ }",
-        type: "GET",
-        url: pictureUrl,
-        success: function (model) {
-
-
-
-            if (pictureUrl != null) {
-                $("#imgAAA1").attr('src', pictureUrl);
-            } else {
-                $("#imgAAA1").attr('src', "../../assets/images/facebook- profile.jpg");
-            }
-
-
-
-        },
-        error: function () {
-            alert("failed");
-        }
-    });
+function helpButton_onclick()
+{
+	$('#configFrame').html('<iframe src="README.MD" ><iframe>');
 	
 	$('#configContenue').toggle();
 }
