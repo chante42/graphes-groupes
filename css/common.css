@@ -6,7 +6,7 @@ footer {
 }
 
 
-#configFrame, #configFrame iframe {
+#configFrame iframe,  #messageHelpFrame iframe {
 	height: 100%;
 	width: 100%; 
 	display: block;

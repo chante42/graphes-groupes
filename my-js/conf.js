@@ -28,6 +28,17 @@
 //
 var conf = {
 	"groups" : [  
+		{	"groupeNom"         : "Ecran initial",     
+	    	"groupeTitre" 		: "Ecran initial",
+			"groupeDescription" : "",
+			"groupeImageURL" 	: "images/debug/1%%echelle%%%%var1%%.png",
+			"groupeClickURL" 	: "http://www.google.fr",
+	    	"graph" : [    
+				{"nom" : "img 0"		, "var1" : "0", "clickURL" : "images/debug/100.png"},  
+				{"nom" : "img 1"		, "var1" : "1"},  
+			    
+			]
+		},
 	    {	"groupeNom" : "conso elec C7000",     
 	    	"groupeTitre" : "Consomation éléctrique des chassis C7000",
 			"groupeDescription" : "groupeDescription groupeDescription groupeDescription groupeDescription groupeDescription",
@@ -144,11 +155,39 @@ var conf = {
 				{"nom" : "Portchanel 309 A92 48"	, "var1" : "5792"}, 		
 			]
 		},
+		{	"groupeNom" : "C7000 C2 Réseau VC RT",     
+	    	"groupeTitre" : "Débit  des 2 VC composés de 4 liens 10Gb/s du chassis C2 temps réel",
+			"groupeDescription" : "",
+			"groupeIframe" 			: "true",
+			"groupeIframeWidth" 	: "700",
+			"groupeIframeHeight" 	: "300",
+			"groupeImageURL" : "http://supervisiondc.si2m.tec/cacti/plugins/realtime/graph_popup_rt.php?local_graph_id=%%var1%%&graph_start=-300&graph_end=0&ds_step=10&count=0",
+	    	"graph" : [    
+				{"nom" : "Portchanel 310 A92 46"	, "var1" : "5737"},  
+				{"nom" : "Portchanel 310 A92 48"	, "var1" : "5793"}, 
+				{"nom" : "Portchanel 309 A92 46"	, "var1" : "5853"}, 
+				{"nom" : "Portchanel 309 A92 48"	, "var1" : "5792"}, 		
+			]
+		},
 		{	"groupeNom" : "C7000 C4 Réseau VC",     
 	    	"groupeTitre" : "Débit  des 2 VC composés de 4 liens 10Gb/s du chassis C4",
 			"groupeDescription" : "",
 			"groupeImageURL" : "http://supervisiondc/cacti/graph_image.php?action=view&local_graph_id=%%var1%%&rra_id=%%echelle%%",
 	    	"graph" : [    
+				{"nom" : "Portchanel 308 A92 46"	, "var1" : "5735"},  
+				{"nom" : "Portchanel 308 A92 48"	, "var1" : "5791"}, 
+				{"nom" : "Portchanel 307 A92 46"	, "var1" : "5734"}, 
+				{"nom" : "Portchanel 307 A92 48"	, "var1" : "5790"}, 		
+			]
+		},
+		{	"groupeNom" : "C7000 C4 Réseau VC RT",     
+	    	"groupeTitre" : "Débit  des 2 VC composés de 4 liens 10Gb/s du chassis C4 temps réel",
+			"groupeDescription" : "",
+			"groupeIframe" 			: "true",
+			"groupeIframeWidth" 	: "700",
+			"groupeIframeHeight" 	: "300",
+			"groupeImageURL" : "http://supervisiondc.si2m.tec/cacti/plugins/realtime/graph_popup_rt.php?local_graph_id=%%var1%%&graph_start=-300&graph_end=0&ds_step=10&count=0",
+			"graph" : [    
 				{"nom" : "Portchanel 308 A92 46"	, "var1" : "5735"},  
 				{"nom" : "Portchanel 308 A92 48"	, "var1" : "5791"}, 
 				{"nom" : "Portchanel 307 A92 46"	, "var1" : "5734"}, 
@@ -166,11 +205,39 @@ var conf = {
 				{"nom" : "Portchanel 306 A92 48"	, "var1" : "5789"}, 		
 			]
 		},
+		{	"groupeNom" : "C7000 C6 Réseau VC RT",     
+	    	"groupeTitre" : "Débit  des 2 VC composés de 4 liens 10Gb/s du chassis C6 temps réel",
+			"groupeDescription" : "",
+			"groupeIframe" 			: "true",
+			"groupeIframeWidth" 	: "700",
+			"groupeIframeHeight" 	: "300",
+			"groupeImageURL" : "http://supervisiondc.si2m.tec/cacti/plugins/realtime/graph_popup_rt.php?local_graph_id=%%var1%%&graph_start=-300&graph_end=0&ds_step=10&count=0",
+	    	"graph" : [    
+				{"nom" : "Portchanel 305 A92 46"	, "var1" : "5732"},  
+				{"nom" : "Portchanel 305 A92 48"	, "var1" : "5788"}, 
+				{"nom" : "Portchanel 306 A92 46"	, "var1" : "5733"}, 
+				{"nom" : "Portchanel 306 A92 48"	, "var1" : "5789"}, 		
+			]
+		},
 		{	"groupeNom" : "C7000 C8 Réseau VC",     
-	    	"groupeTitre" : "Débit  des 2 VC composés de 4 liens 10Gb/s du chassis C6",
+	    	"groupeTitre" : "Débit  des 2 VC composés de 4 liens 10Gb/s du chassis C8",
 			"groupeDescription" : "",
 			"groupeImageURL" : "http://supervisiondc/cacti/graph_image.php?action=view&local_graph_id=%%var1%%&rra_id=%%echelle%%",
 	    	"graph" : [    
+				{"nom" : "Portchanel 319 A92 46"	, "var1" : "5742"},  
+				{"nom" : "Portchanel 319 A92 48"	, "var1" : "5798"}, 
+				{"nom" : "Portchanel 320 A92 46"	, "var1" : "5743"}, 
+				{"nom" : "Portchanel 320 A92 48"	, "var1" : "5799"}, 		
+			]
+		},
+		{	"groupeNom" : "C7000 C8 Réseau VC RT",     
+	    	"groupeTitre" : "Débit  des 2 VC composés de 4 liens 10Gb/s du chassis C8 temps réel",
+			"groupeDescription" : "",
+			"groupeIframe" 			: "true",
+			"groupeIframeWidth" 	: "700",
+			"groupeIframeHeight" 	: "300",
+			"groupeImageURL" : "http://supervisiondc.si2m.tec/cacti/plugins/realtime/graph_popup_rt.php?local_graph_id=%%var1%%&graph_start=-300&graph_end=0&ds_step=10&count=0",
+			"graph" : [    
 				{"nom" : "Portchanel 319 A92 46"	, "var1" : "5742"},  
 				{"nom" : "Portchanel 319 A92 48"	, "var1" : "5798"}, 
 				{"nom" : "Portchanel 320 A92 46"	, "var1" : "5743"}, 
@@ -182,6 +249,20 @@ var conf = {
 			"groupeDescription" : "",
 			"groupeImageURL" : "http://supervisiondc/cacti/graph_image.php?action=view&local_graph_id=%%var1%%&rra_id=%%echelle%%",
 	    	"graph" : [    
+				{"nom" : "Portchanel B94 6"	, "var1" : ""},  
+				{"nom" : "Portchanel B94 8"	, "var1" : ""}, 
+				{"nom" : "Portchanel B94 6"	, "var1" : ""}, 
+				{"nom" : "Portchanel B94 8"	, "var1" : ""}, 		
+			]
+		},
+		{	"groupeNom" : "C7000 C1 Réseau VC RT",     
+	    	"groupeTitre" : "Débit  des 2 VC composés de 2 liens 10Gb/s du chassis C1 temps réel",
+			"groupeDescription" : "",
+				"groupeIframe" 			: "true",
+			"groupeIframeWidth" 	: "700",
+			"groupeIframeHeight" 	: "300",
+			"groupeImageURL" : "http://supervisiondc.si2m.tec/cacti/plugins/realtime/graph_popup_rt.php?local_graph_id=%%var1%%&graph_start=-300&graph_end=0&ds_step=10&count=0",
+			"graph" : [    
 				{"nom" : "Portchanel B94 6"	, "var1" : ""},  
 				{"nom" : "Portchanel B94 8"	, "var1" : ""}, 
 				{"nom" : "Portchanel B94 6"	, "var1" : ""}, 

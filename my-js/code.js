@@ -162,9 +162,9 @@ function configButton_onclick()
 
 function helpButton_onclick()
 {
-	$('#configFrame').html('<iframe src="README.MD" ><iframe>');
+	$('#messageHelpFrame').html('<iframe src="README.MD" ><iframe>');
 	
-	$('#configContenue').toggle();
+	$('#messageHelpContenue').toggle();
 }
 
 // -->
