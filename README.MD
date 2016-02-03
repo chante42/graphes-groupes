@@ -4,6 +4,8 @@ OBJECTIF :
    Ce script, permet de regrouper sur une même page HTML, les graphes venant d'outil différent et de changer d'échelle pour tous les graphes en même temps.
    Caque graphe peut etre déplacé en cliquant dessus pour mettre les graphes les plus intéressent les uns à coté des autres de façon intéractif, mais sans sauvegarde
 
+   Le script ne gére pas l'authentification pour accéder aux image, il est nécéssaire de s'authentifier sur les différents outils avant de utiliser ce scripts.
+
 INSTALLATION:
 -------------
 
