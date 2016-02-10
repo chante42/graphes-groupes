@@ -9,7 +9,7 @@
 // groupeIframeWidth 	: [facultatif] Largeur de l'iframe 
 // groupeIframeHeight 	: [facultatif] Hauteur de l'iframe
 // groupeClickURL       : [facultatif] URL appelé si on click sur une image du groupe
-// 
+// groupeEchelleParam   : [facultatif] Pour le groupe : valuer a passer dans l'URL pour la variable %%echelle%% si pour les 4 période, (0,1,2,3,4)
 //
 // graph				: [Obligatoire] Tableau de structure {nom, imageURL, ...} qui permet de définir un graphique
 // nom 					: [Obligatoire] Nom d'un graph qui apparait sur le menu a gauche 
@@ -17,6 +17,7 @@
 // nomDescription       : [facultatif] 
 // imageURL 			: [Obligatoire si pas groupeImageURL non définie] URL pour afficher l'image. Peux contenir des variables (%%nomvar%%)
 // clickURL             : [facultatif] URL appelé si on click  l'image
+// echelleParam         : [facultatif] Pour le graphe : valuer a passer dans l'URL pour la variable %%echelle%% si pour les 4 période, (0,1,2,3,4)
 //
 //
 // Les variables :
@@ -329,6 +330,30 @@ var conf = {
 			  
 			]
 		},
+		                //
+        // http://vli5res01/smokeping/cache/Besancon/DC_Besancon_last_34560000.png
+        // http://vli5res01/smokeping/cache/Besancon/DC_Besancon_last_864000.png
+        // http://vli5res01/smokeping/cache/Besancon/DC_Besancon_last_108000.png
+        // http://vli5res01/smokeping/cache/Besancon/DC_Besancon_last_10800.png
+        //
+        {   "groupeNom" 			: "incident pst travail",
+            "groupeTitre" 			: "Temps de ping des vers different site",
+            "groupeDescription" 	: "",
+            "groupeImageURL" 		: "http://vli5res01/smokeping/cache/%%var1%%_%%echelle%%.png",
+            "groupeEchelleParam"	: [ {"val" : "10800"},
+            							{"val" : "108000"},
+            							{"val" : "864000"},
+            							{"val" : "34560000"},
+            							{"val" : "34560000"}
+            						],
+            "graph" : [
+                {"nom" : "besancon"         , "var1" : "Besancon/DC_Besancon_last" },
+                {"nom" : "St etienne"       , "var1" : "St_Etienne/DC_St_Etienne_last"},
+                {"nom" : "Tour"             , "var1" : "Tours/DC_TOURS_last"},
+            ]
+        },
+
+
 		{	"groupeNom"         : "test2",     
 	    	"groupeTitre" 		: "test2 de la structure",
 			"groupeDescription" : "",

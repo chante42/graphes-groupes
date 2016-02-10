@@ -55,12 +55,29 @@ function affiche()
 		for (var i in variable) {
 			var varPropre=variable[i].replace(/%%/gi,'');
 
-			// Ignore les variables internes
+			//
+			// Remplacement de la variable echelle 
+			//
 			if (variable[i] == "%%echelle%%") {
 				//console.log('debug('+varPropre+'):'+eval("conf.groups[groupe].graph[j]."+varPropre));
 				if (eval("conf.groups[groupe].graph[j]."+varPropre) != undefined) {
 					console.log('ERROR : la variable '+variable[i]+' est définie alors que c\'est une variable réservé');
 				}
+				else { 
+					var echelleTmp =echelle;
+					// test si une gestion particuliere de echelle
+					//
+					if (eval("conf.groups[groupe].groupeEchelleParam") != undefined) {
+						echelleTmp = conf.groups[groupe].groupeEchelleParam[echelle].val;
+					}
+					if (eval("conf.groups[groupe].graph[j].echelleParam") != undefined) {
+						echelleTmp = conf.groups[groupe].graph[j].echelleParam[echelle].val;
+					}
+
+					var str1 = url.replace("%%echelle%%",echelleTmp);
+					url = str1;
+				}
+
 			}else {
 				var varEval = eval("conf.groups[groupe].graph[j]."+varPropre)
 
@@ -75,9 +92,9 @@ function affiche()
 			}
 		} // FIN FOR "var i in variable"
 		
-		// Remplacement des variables fixe et interne 
-		var str1 = url.replace("%%echelle%%",echelle);
-		
+		str1=url;
+
+
 		outputGraph += '<div class=" panel-primary" style="padding-top:4;" >  <div data-toggle="tooltip" data-placement="top" title="'+description+'" class="panel-heading text-center">';
 		outputGraph += ''+nomTitre+'</div><div class="panel-body" style="padding:0;">';
 
