@@ -347,9 +347,12 @@ var conf = {
             							{"val" : "34560000"}
             						],
             "graph" : [
-                {"nom" : "besancon"         , "var1" : "Besancon/DC_Besancon_last" },
-                {"nom" : "St etienne"       , "var1" : "St_Etienne/DC_St_Etienne_last"},
-                {"nom" : "Tour"             , "var1" : "Tours/DC_TOURS_last"},
+                {"nom" : "besancon"         , "var1" : "Besancon/DC_Besancon_last", 
+                	"clickURL" : "http://vli5res01/cgi-bin/smokeping.fcgi?target=Besancon.DC_Besancon"},
+                {"nom" : "St etienne"       , "var1" : "St_Etienne/DC_St_Etienne_last",
+            		"clickURL" : "http://vli5res01/cgi-bin/smokeping.fcgi?target=St_Etienne.DC_St_Etienne"},
+                {"nom" : "Tour"             , "var1" : "Tours/DC_TOURS_last",
+                	"clickURL" : "http://vli5res01/cgi-bin/smokeping.fcgi?target=Tours.DC_TOURS"},
             ]
         },
 
