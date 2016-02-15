@@ -68,10 +68,11 @@ var conf = {
 				{"nom" : "OA1C7B94"		, "var1" : "OA1C7B94"},  
 				{"nom" : "OA1C8A92"		, "var1" : "OA1C8A92"}   
 			]},
-		{	"groupeNom" : "dns response time",
-			"groupeTitre" : "",
+		{	"groupeNom" 		: "dns response time",
+			"groupeTitre" 		: "",
 			"groupeDescription" : "",
-			"groupeImageURL" : "http://vli5res01/pnp4nagios/image?host=dnshost&srv=%%var1%%&source=0&view=%%echelle%%",
+			"groupeImageURL" 	: "http://vli5res01/pnp4nagios/image?host=dnshost&srv=%%var1%%&source=0&view=%%echelle%%",
+			"groupeClickURL" 	: "http://vli5res01/pnp4nagios/graph?host=dnshost&srv=%%var1%%",
 			"graph" : [
 				{"nom" : "ad.si2m.tec 10.80"			, "var1" : "DNS_ad.si2m.tec_10.80.32.32"				},  
 				{"nom" : "ad.si2m.tec 10.83"			, "var1" : "DNS_ad.si2m.tec__10.83.32.32"				},  
@@ -347,12 +348,21 @@ var conf = {
             							{"val" : "34560000"}
             						],
             "graph" : [
-                {"nom" : "besancon"         , "var1" : "Besancon/DC_Besancon_last", 
-                	"clickURL" : "http://vli5res01/cgi-bin/smokeping.fcgi?target=Besancon.DC_Besancon"},
-                {"nom" : "St etienne"       , "var1" : "St_Etienne/DC_St_Etienne_last",
-            		"clickURL" : "http://vli5res01/cgi-bin/smokeping.fcgi?target=St_Etienne.DC_St_Etienne"},
-                {"nom" : "Tour"             , "var1" : "Tours/DC_TOURS_last",
-                	"clickURL" : "http://vli5res01/cgi-bin/smokeping.fcgi?target=Tours.DC_TOURS"},
+                {"nom" : "ping latency besancon"         , "var1" : "Besancon/DC_Besancon_last", 
+                	"clickURL" : "http://vli5res01/cgi-bin/smokeping.fcgi?target=Besancon.DC_Besancon"
+                },
+                {"nom" : "debit besancon",
+            		"clickURL" : "http://supervisiondc/cacti/graph.php?rra_id=all&local_graph_id=4965",
+            		"echelleParam" : [ {"val" : "0"},  {"val" : "1"}, {"val" : "2"}, {"val" : "3"},  {"val" : "4"}],
+            		"imageURL" : "http://supervisiondc/cacti/graph_image.php?action=view&local_graph_id=4965&rra_id=%%echelle%%",
+   
+            	},  
+                {"nom" : "ping latency St etienne"       , "var1" : "St_Etienne/DC_St_Etienne_last",
+            		"clickURL" : "http://vli5res01/cgi-bin/smokeping.fcgi?target=St_Etienne.DC_St_Etienne"
+            	},
+                {"nom" : "ping latency Tour"             , "var1" : "Tours/DC_TOURS_last",
+                	"clickURL" : "http://vli5res01/cgi-bin/smokeping.fcgi?target=Tours.DC_TOURS"
+                },
             ]
         },
 
