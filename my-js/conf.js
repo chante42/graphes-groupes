@@ -90,6 +90,7 @@ var conf = {
 	    	"groupeTitre" : "débit des 4 liens MAN Datacenter ",
 			"groupeDescription" : "",
 			"groupeImageURL" : "http://supervisiondc/cacti/graph_image.php?action=view&local_graph_id=%%var1%%&rra_id=%%echelle%%",
+			"groupeClickURL" 	:  "http://supervisiondc/cacti/graph.php?rra_id=all&local_graph_id=%%var1%%",
 	    	"graph" : [    
 				{"nom" : "A92 MAN1"		, "var1" : "5250"},  
 				{"nom" : "A92 MAN2"		, "var1" : "5251"},  
@@ -97,19 +98,44 @@ var conf = {
 				{"nom" : "B94 MAN2"		, "var1" : "5253"} 
 			]
 		},
-		{	"groupeNom" : "Lien 10 Gb entre DC",     
-	    	"groupeTitre" : "débit des 4 liens MAN Datacenter ",
+		{	"groupeNom" 		: "Liens DC MAN 10Gb Internet",     
+	    	"groupeTitre" 		: "débit des lien Datacenter MAN 10Gb/s Internet   ",
 			"groupeDescription" : "",
-			"groupeImageURL" : "http://supervisiondc/cacti/graph_image.php?action=view&local_graph_id=%%var1%%&rra_id=%%echelle%%",
+			"groupeImageURL" 	: "http://supervisiondc/cacti/graph_image.php?action=view&local_graph_id=%%var1%%&rra_id=%%echelle%%",
+			"groupeClickURL" 	:  "http://supervisiondc/cacti/graph.php?rra_id=all&local_graph_id=%%var1%%",
 	    	"graph" : [    
 				{"nom" : "Lien 10Gb/s 1"		, "var1" : "5281"},  
 				{"nom" : "Lien 10Gb/s 2"		, "var1" : "5280"}, 
+				{"nom" : "MAN1 Rueil"			, "var1" : "5250"}, 
+				{"nom" : "MAN 1 Chevilly"		, "var1" : "5252"}, 
+				{"nom" : "Lien inter DC DMZ"	, "var1" : "5572"}, 
+				{"nom" : "Internet Rueil"		, "var1" : "5182"}, 
+				{"nom" : "Internet Chevilly"	, "var1" : "5178"}, 
+			]
+		},
+		{	"groupeNom" 		: "T Réél DC MAN 10Gb Internet",     
+	    	"groupeTitre" 		: "débit des lien Datacenter MAN 10Gb/s Internet   ",
+			"groupeDescription" : "",
+			"groupeIframe" 			: "true",
+			"groupeIframeWidth" 	: "700",
+			"groupeIframeHeight" 	: "300",
+			"groupeImageURL" 	: "http://supervisiondc.si2m.tec/cacti/plugins/realtime/graph_popup_rt.php?local_graph_id=%%var1%%&graph_start=-300&graph_end=0&ds_step=10&count=0",
+			"groupeClickURL" 	:  "http://supervisiondc/cacti/graph.php?rra_id=all&local_graph_id=%%var1%%",
+	    	"graph" : [    
+				{"nom" : "Lien 10Gb/s 1"		, "var1" : "5281"},  
+				{"nom" : "Lien 10Gb/s 2"		, "var1" : "5280"}, 
+				{"nom" : "MAN1 Rueil"			, "var1" : "5250"}, 
+				{"nom" : "MAN 1 Chevilly"		, "var1" : "5252"}, 
+				{"nom" : "Lien inter DC DMZ"	, "var1" : "5572"}, 
+				{"nom" : "Internet Rueil"		, "var1" : "5182"}, 
+				{"nom" : "Internet Chevilly"	, "var1" : "5178"}, 
 			]
 		},
 		{	"groupeNom" : "Lien Site principaux",     
 	    	"groupeTitre" : "débit des sites principaux ",
 			"groupeDescription" : "",
 			"groupeImageURL" : "http://supervisiondc/cacti/graph_image.php?action=view&local_graph_id=%%var1%%&rra_id=%%echelle%%",
+			"groupeClickURL" 	:  "http://supervisiondc/cacti/graph.php?rra_id=all&local_graph_id=%%var1%%",
 	    	"graph" : [    
 				{"nom" : "A92 MAN1"			, "var1" : "5250"},  
 				{"nom" : "B94 MAN1"			, "var1" : "5252"},  
@@ -150,6 +176,7 @@ var conf = {
 	    	"groupeTitre" : "Débit  des 2 VC composés de 4 liens 10Gb/s du chassis C2",
 			"groupeDescription" : "",
 			"groupeImageURL" : "http://supervisiondc/cacti/graph_image.php?action=view&local_graph_id=%%var1%%&rra_id=%%echelle%%",
+			"groupeClickURL" 	:  "http://supervisiondc/cacti/graph.php?rra_id=all&local_graph_id=%%var1%%",
 	    	"graph" : [    
 				{"nom" : "Portchanel 310 A92 46"	, "var1" : "5737"},  
 				{"nom" : "Portchanel 310 A92 48"	, "var1" : "5793"}, 
@@ -164,6 +191,7 @@ var conf = {
 			"groupeIframeWidth" 	: "700",
 			"groupeIframeHeight" 	: "300",
 			"groupeImageURL" : "http://supervisiondc.si2m.tec/cacti/plugins/realtime/graph_popup_rt.php?local_graph_id=%%var1%%&graph_start=-300&graph_end=0&ds_step=10&count=0",
+			"groupeClickURL" 	:  "http://supervisiondc/cacti/graph.php?rra_id=all&local_graph_id=%%var1%%",
 	    	"graph" : [    
 				{"nom" : "Portchanel 310 A92 46"	, "var1" : "5737"},  
 				{"nom" : "Portchanel 310 A92 48"	, "var1" : "5793"}, 
@@ -175,6 +203,7 @@ var conf = {
 	    	"groupeTitre" : "Débit  des 2 VC composés de 4 liens 10Gb/s du chassis C4",
 			"groupeDescription" : "",
 			"groupeImageURL" : "http://supervisiondc/cacti/graph_image.php?action=view&local_graph_id=%%var1%%&rra_id=%%echelle%%",
+			"groupeClickURL" 	:  "http://supervisiondc/cacti/graph.php?rra_id=all&local_graph_id=%%var1%%",
 	    	"graph" : [    
 				{"nom" : "Portchanel 308 A92 46"	, "var1" : "5735"},  
 				{"nom" : "Portchanel 308 A92 48"	, "var1" : "5791"}, 
@@ -189,6 +218,7 @@ var conf = {
 			"groupeIframeWidth" 	: "700",
 			"groupeIframeHeight" 	: "300",
 			"groupeImageURL" : "http://supervisiondc.si2m.tec/cacti/plugins/realtime/graph_popup_rt.php?local_graph_id=%%var1%%&graph_start=-300&graph_end=0&ds_step=10&count=0",
+			"groupeClickURL" 	:  "http://supervisiondc/cacti/graph.php?rra_id=all&local_graph_id=%%var1%%",
 			"graph" : [    
 				{"nom" : "Portchanel 308 A92 46"	, "var1" : "5735"},  
 				{"nom" : "Portchanel 308 A92 48"	, "var1" : "5791"}, 
@@ -200,6 +230,7 @@ var conf = {
 	    	"groupeTitre" : "Débit  des 2 VC composés de 4 liens 10Gb/s du chassis C6",
 			"groupeDescription" : "",
 			"groupeImageURL" : "http://supervisiondc/cacti/graph_image.php?action=view&local_graph_id=%%var1%%&rra_id=%%echelle%%",
+			"groupeClickURL" 	:  "http://supervisiondc/cacti/graph.php?rra_id=all&local_graph_id=%%var1%%",
 	    	"graph" : [    
 				{"nom" : "Portchanel 305 A92 46"	, "var1" : "5732"},  
 				{"nom" : "Portchanel 305 A92 48"	, "var1" : "5788"}, 
@@ -214,6 +245,7 @@ var conf = {
 			"groupeIframeWidth" 	: "700",
 			"groupeIframeHeight" 	: "300",
 			"groupeImageURL" : "http://supervisiondc.si2m.tec/cacti/plugins/realtime/graph_popup_rt.php?local_graph_id=%%var1%%&graph_start=-300&graph_end=0&ds_step=10&count=0",
+			"groupeClickURL" 	:  "http://supervisiondc/cacti/graph.php?rra_id=all&local_graph_id=%%var1%%",
 	    	"graph" : [    
 				{"nom" : "Portchanel 305 A92 46"	, "var1" : "5732"},  
 				{"nom" : "Portchanel 305 A92 48"	, "var1" : "5788"}, 
@@ -225,6 +257,7 @@ var conf = {
 	    	"groupeTitre" : "Débit  des 2 VC composés de 4 liens 10Gb/s du chassis C8",
 			"groupeDescription" : "",
 			"groupeImageURL" : "http://supervisiondc/cacti/graph_image.php?action=view&local_graph_id=%%var1%%&rra_id=%%echelle%%",
+			"groupeClickURL" 	:  "http://supervisiondc/cacti/graph.php?rra_id=all&local_graph_id=%%var1%%",
 	    	"graph" : [    
 				{"nom" : "Portchanel 319 A92 46"	, "var1" : "5742"},  
 				{"nom" : "Portchanel 319 A92 48"	, "var1" : "5798"}, 
@@ -239,6 +272,7 @@ var conf = {
 			"groupeIframeWidth" 	: "700",
 			"groupeIframeHeight" 	: "300",
 			"groupeImageURL" : "http://supervisiondc.si2m.tec/cacti/plugins/realtime/graph_popup_rt.php?local_graph_id=%%var1%%&graph_start=-300&graph_end=0&ds_step=10&count=0",
+			"groupeClickURL" 	:  "http://supervisiondc/cacti/graph.php?rra_id=all&local_graph_id=%%var1%%",
 			"graph" : [    
 				{"nom" : "Portchanel 319 A92 46"	, "var1" : "5742"},  
 				{"nom" : "Portchanel 319 A92 48"	, "var1" : "5798"}, 
@@ -250,6 +284,7 @@ var conf = {
 	    	"groupeTitre" : "Débit  des 2 VC composés de 2 liens 10Gb/s du chassis C1",
 			"groupeDescription" : "",
 			"groupeImageURL" : "http://supervisiondc/cacti/graph_image.php?action=view&local_graph_id=%%var1%%&rra_id=%%echelle%%",
+			"groupeClickURL" 	:  "http://supervisiondc/cacti/graph.php?rra_id=all&local_graph_id=%%var1%%",
 	    	"graph" : [    
 				{"nom" : "Portchanel B94 6"	, "var1" : ""},  
 				{"nom" : "Portchanel B94 8"	, "var1" : ""}, 
@@ -340,7 +375,7 @@ var conf = {
         {   "groupeNom" 			: "incident pst travail",
             "groupeTitre" 			: "Temps de ping des vers different site",
             "groupeDescription" 	: "",
-            "groupeImageURL" 		: "http://vli5res01/smokeping/cache/%%var1%%_%%echelle%%.png",
+            "groupeImageURL" 		: "http://vli5res01/cgi-bin/smokeping.fcgi?displaymode=a;start=now-%%echelle%%;end=now;target=%%var1%%;hierarchy=",
             "groupeEchelleParam"	: [ {"val" : "10800"},
             							{"val" : "108000"},
             							{"val" : "864000"},
@@ -348,7 +383,7 @@ var conf = {
             							{"val" : "34560000"}
             						],
             "graph" : [
-                {"nom" : "ping latency besancon"         , "var1" : "Besancon/DC_Besancon_last", 
+                {"nom" : "ping latency besancon"         , "var1" : "Besancon.DC_Besancon", 
                 	"clickURL" : "http://vli5res01/cgi-bin/smokeping.fcgi?target=Besancon.DC_Besancon"
                 },
                 {"nom" : "debit besancon",
@@ -357,10 +392,10 @@ var conf = {
             		"imageURL" : "http://supervisiondc/cacti/graph_image.php?action=view&local_graph_id=4965&rra_id=%%echelle%%",
    
             	},  
-                {"nom" : "ping latency St etienne"       , "var1" : "St_Etienne/DC_St_Etienne_last",
+                {"nom" : "ping latency St etienne"       , "var1" : "St_Etienne.DC_St_Etienne",
             		"clickURL" : "http://vli5res01/cgi-bin/smokeping.fcgi?target=St_Etienne.DC_St_Etienne"
             	},
-                {"nom" : "ping latency Tour"             , "var1" : "Tours/DC_TOURS_last",
+                {"nom" : "ping latency Tour"             , "var1" : "Tours.DC_TOURS",
                 	"clickURL" : "http://vli5res01/cgi-bin/smokeping.fcgi?target=Tours.DC_TOURS"
                 },
             ]
