@@ -238,7 +238,7 @@ function replaceVariable(chaine) {
 
 function onmouseovergroupename(i) {
 
-	var htmlTooltip = '<div class="panel-success"> <div class="panel-heading text-center">'+conf.groups[i].groupeNom+'</div><div class="underline">'+conf.groups[i].groupeTitre+':</div><div class="panel-body">'+conf.groups[i].groupeDescription+'</div></div></div>'
+	var htmlTooltip = '<div class="panel-info"> <div class="panel-heading text-center">'+conf.groups[i].groupeNom+'</div><div class="underline">'+conf.groups[i].groupeTitre+':</div><div class="panel-body">'+conf.groups[i].groupeDescription+'</div></div></div>'
 	console.log(conf.groups[i].groupeNom);
 	console.log(htmlTooltip);
 
