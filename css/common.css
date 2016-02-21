@@ -36,3 +36,20 @@ footer {
 .panel-primary div img:hover{
 	cursor: initial;
 }
+
+
+
+.tooltip{
+	position:absolute;
+	left:-2000px;
+	background-color:#020202;
+	padding:5px;
+	border:1px solid #fff;
+	width:550px;
+	height:250px;
+}
+
+.underline {
+	font-weight		: bold;
+	text-decoration	: underline;
+}

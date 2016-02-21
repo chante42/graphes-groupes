@@ -28,7 +28,7 @@ function affiche()
 
 		// test si l'option clickURL existe
 		if (typeof(conf.groups[groupe].groupeClickURL) != 'undefined'  ){
-			href = conf.groups[groupe].groupeClickURL;
+			href = replaceVariable(conf.groups[groupe].groupeClickURL);
 		}
 		if 	(typeof(conf.groups[groupe].graph[j].clickURL) != 'undefined'  ){
 			href = conf.groups[groupe].graph[j].clickURL;
@@ -184,4 +184,97 @@ function helpButton_onclick()
 	$('#messageHelpContenue').toggle();
 }
 
+//
+//    Replace Variable
+//
+function replaceVariable(chaine) {
+	console.log('Replacevariable IN=|'+chaine+'|');
+	//
+	// Remplacement des variables de URL par celle contenue dans le nom
+	variable= chaine.match(/%%(.*?)%%/ig); // recherche des mot du type  %%var1%%
+	for (var i in variable) {
+		var varPropre=variable[i].replace(/%%/gi,'');
+
+		//
+		// Remplacement de la variable echelle 
+		//
+		if (variable[i] == "%%echelle%%") {
+			//console.log('debug('+varPropre+'):'+eval("conf.groups[groupe].graph[j]."+varPropre));
+			if (eval("conf.groups[groupe].graph[j]."+varPropre) != undefined) {
+				console.log('ERROR : la variable '+variable[i]+' est définie alors que c\'est une variable réservé');
+			}
+			else { 
+				var echelleTmp =echelle;
+				// test si une gestion particuliere de echelle
+				//
+				if (eval("conf.groups[groupe].groupeEchelleParam") != undefined) {
+					echelleTmp = conf.groups[groupe].groupeEchelleParam[echelle].val;
+				}
+				if (eval("conf.groups[groupe].graph[j].echelleParam") != undefined) {
+					echelleTmp = conf.groups[groupe].graph[j].echelleParam[echelle].val;
+				}
+
+				var str1 = chaine.replace("%%echelle%%",echelleTmp);
+				chaine = str1;
+			}
+
+		}else {
+			var varEval = eval("conf.groups[groupe].graph[j]."+varPropre)
+
+			if (varEval == undefined){
+				console.log('ERROR : la variable '+variable[i]+' n\'est pas definie dans les attributs de "'+conf.groups[groupe].graph[j].nom+'".');
+			}
+			else {
+				var str = chaine.replace(variable[i], varEval);
+				console.log('url('+varPropre+') = |'+str+'|');
+				chaine = str;
+			}
+		}
+	} // FIN FOR "var i in variable"
+	
+	console.log('Replacevariable OUT=|'+chaine+'|');
+	return(chaine);
+}
+
+function onmouseovergroupename(i) {
+
+	var htmlTooltip = '<div class="panel-success"> <div class="panel-heading text-center">'+conf.groups[i].groupeNom+'</div><div class="underline">'+conf.groups[i].groupeTitre+':</div><div class="panel-body">'+conf.groups[i].groupeDescription+'</div></div></div>'
+	console.log(conf.groups[i].groupeNom);
+	console.log(htmlTooltip);
+
+	$("#mytooltip").html(htmlTooltip);
+	$("#mytooltip").css({opacity:1, display:"none"}).fadeIn(400);
+}
+//
+// affiche la bulle d aide au dessus du nom du groupe
+function onmousemovegroupename(kmouse) {
+    
+	
+    
+	var my_tooltip = $("#mytooltip");    
+    var border_top = $(window).scrollTop(); 
+	var border_right = $(window).width();
+	var left_pos;
+	var top_pos;
+	var offset = 20;
+	if(border_right - (offset *2) >= my_tooltip.width() + kmouse.pageX){
+		left_pos = kmouse.pageX+offset;
+		} else{
+		left_pos = border_right-my_tooltip.width()-offset;
+		}
+		
+	if(border_top + (offset *2)>= kmouse.pageY - my_tooltip.height()){
+		top_pos = border_top +offset;
+		} else{
+		top_pos = kmouse.pageY-my_tooltip.height()-offset;
+		}	
+			
+				
+	my_tooltip.css({left:left_pos, top:top_pos});
+	console.log("move"+left_pos+","+top_pos);
+ };
+
+function onmouseoutgroupename() {
+	$("#mytooltip").css({left:"-9999px"});	
+}
 // -->

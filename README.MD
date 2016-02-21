@@ -16,6 +16,7 @@ CONFIGURATION:
 DESCRIPTION DES MOTS CLEF :
 ---------------------------
 // groupeNom 			: [Obligatoire] Nom du groupe qui apparait dans le menu sur la gauche
+//                         si contient [separateur] affiche une ligne horizontale
 // groupeTitre 			: [facultatif] 
 // groupeDescription 	: [facultatif] Description du nom du graphe (apparait en hover)
 // groupeImageURL		: [facultatif] URL pour le groupe
@@ -23,6 +24,8 @@ DESCRIPTION DES MOTS CLEF :
 // groupeIframeWidth 	: [facultatif] Largeur de l'iframe 
 // groupeIframeHeight 	: [facultatif] Hauteur de l'iframe
 // groupeClickURL       : [facultatif] URL appelé si on click sur une image du groupe
+// groupeEchelleParam   : [facultatif] contient un tableau qui représente la valeur de la variable %%echelles%% 
+//                         ex : [ {"val" : "10800"},{"val" : "108000"},	{"val" : "864000"},{"val" : "34560000"},{"val" : "34560000"}],
 // 
 //
 // graph				: [Obligatoire] Tableau de structure {nom, imageURL, ...} qui permet de définir un graphique
@@ -34,43 +37,19 @@ DESCRIPTION DES MOTS CLEF :
 //
 //
 // Les variables :
-//    Pour évalué une variable il faut l'entrourré de '%%'.    ex %%var1%%
+//    Pour évaluer une variable il faut l'entrourrer de '%%'.    ex %%var1%%
 // 
 // Les variables Pres-définie
 //      %%echelle%% : Permet de choisir le zoom actuel : telque définie par "cacti,pnp4nagios, ..."
 // 
-//// groupeNom 			: [Obligatoire] Nom du groupe qui apparait dans le menu sur la gauche
-// groupeTitre 			: [facultatif] 
-// groupeDescription 	: [facultatif] Description du nom du graphe (apparait en hover)
-// groupeImageURL		: [facultatif] URL pour le groupe
-// groupeIframe			: [facultatif] si égale a "true"  l'URL est affiché dans un iframe
-// groupeIframeWidth 	: [facultatif] Largeur de l'iframe 
-// groupeIframeHeight 	: [facultatif] Hauteur de l'iframe
-// groupeClickURL       : [facultatif] URL appelé si on click sur une image du groupe
-// 
-//
-// graph				: [Obligatoire] Tableau de structure {nom, imageURL, ...} qui permet de définir un graphique
-// nom 					: [Obligatoire] Nom d'un graph qui apparait sur le menu a gauche 
-// nomTitre          	: [facultatif]  Titre du graphique 
-// nomDescription       : [facultatif] 
-// imageURL 			: [Obligatoire si pas groupeImageURL non définie] URL pour afficher l'image. Peux contenir des variables (%%nomvar%%)
-// clickURL             : [facultatif] URL appelé si on click  l'image
-//
-//
-// Les variables :
-//    Pour évalué une variable il faut l'entrourré de '%%'.    ex %%var1%%
-// 
-// Les variables Pres-définie
-//      %%echelle%% : Permet de choisir le zoom actuel : telque définie par "cacti,pnp4nagios, ..."
-// 
-//
+
 
 EXEMPLE DE FICHIER DE CONFIG
 ----------------------------
 var conf = { 
 	"groups" : [  
 	    {	"groupeNom" : "conso elec C7000",     
-	    	"groupeTitre" : "Consomation éléctrique des chassis C7000",
+	    	"groupeTitre" : "Consommation éléctrique des chassis C7000",
 			"groupeDescription" : "",
 			"groupeImageURL" : "http://vli5res01/pnp4nagios/image?host=%%var1%%&srv=HP_blade_enclosure_health&view=%%echelle%%&source=0",
 	    	"graph" : [    

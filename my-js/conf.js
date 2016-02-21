@@ -1,7 +1,7 @@
-//
-//   Fichier de configuration de graphe Groupé
-//
+//DESCRIPTION DES MOTS CLEF :
+//---------------------------
 // groupeNom 			: [Obligatoire] Nom du groupe qui apparait dans le menu sur la gauche
+//                         si contient [separateur] affiche une ligne horizontale
 // groupeTitre 			: [facultatif] 
 // groupeDescription 	: [facultatif] Description du nom du graphe (apparait en hover)
 // groupeImageURL		: [facultatif] URL pour le groupe
@@ -9,7 +9,9 @@
 // groupeIframeWidth 	: [facultatif] Largeur de l'iframe 
 // groupeIframeHeight 	: [facultatif] Hauteur de l'iframe
 // groupeClickURL       : [facultatif] URL appelé si on click sur une image du groupe
-// groupeEchelleParam   : [facultatif] Pour le groupe : valuer a passer dans l'URL pour la variable %%echelle%% si pour les 4 période, (0,1,2,3,4)
+// groupeEchelleParam   : [facultatif] contient un tableau qui représente la valeur de la variable %%echelles%% 
+//                         ex : [ {"val" : "10800"},{"val" : "108000"},	{"val" : "864000"},{"val" : "34560000"},{"val" : "34560000"}],
+// 
 //
 // graph				: [Obligatoire] Tableau de structure {nom, imageURL, ...} qui permet de définir un graphique
 // nom 					: [Obligatoire] Nom d'un graph qui apparait sur le menu a gauche 
@@ -17,11 +19,10 @@
 // nomDescription       : [facultatif] 
 // imageURL 			: [Obligatoire si pas groupeImageURL non définie] URL pour afficher l'image. Peux contenir des variables (%%nomvar%%)
 // clickURL             : [facultatif] URL appelé si on click  l'image
-// echelleParam         : [facultatif] Pour le graphe : valuer a passer dans l'URL pour la variable %%echelle%% si pour les 4 période, (0,1,2,3,4)
 //
 //
 // Les variables :
-//    Pour évalué une variable il faut l'entrourré de '%%'.    ex %%var1%%
+//    Pour évaluer une variable il faut l'entrourrer de '%%'.    ex %%var1%%
 // 
 // Les variables Pres-définie
 //      %%echelle%% : Permet de choisir le zoom actuel : telque définie par "cacti,pnp4nagios, ..."
@@ -85,6 +86,7 @@ var conf = {
 				{"nom" : "mederic.malmed.tec 10.83"		, "var1" : "DNS_mederic.malmed.tec__10.83.32.32"}
 			]
 		},
+		{   "groupeNom" : "[separateur]"	}, 
 		{	"groupeNom" : "Lien MAN DC",     
 	    	"groupeTitre" : "débit des 4 liens MAN Datacenter ",
 			"groupeDescription" : "",
@@ -144,7 +146,7 @@ var conf = {
 
 			]
 		},
-
+		{   "groupeNom" : "[separateur]"	}, 
 		{	"groupeNom" : "C7000 C2 Réseau VC",     
 	    	"groupeTitre" : "Débit  des 2 VC composés de 4 liens 10Gb/s du chassis C2",
 			"groupeDescription" : "",
@@ -303,6 +305,7 @@ var conf = {
 				{"nom" : "Portchanel  B94 8"	, "var1" : ""}, 		
 			]
 		},
+		{   "groupeNom" : "[separateur]"	}, 
 		{	"groupeNom" : "test1",     
 	    	"groupeTitre" : "test1 de la structure",
 			"groupeDescription" : "",
@@ -330,13 +333,7 @@ var conf = {
 			  
 			]
 		},
-		                //
-        // http://vli5res01/smokeping/cache/Besancon/DC_Besancon_last_34560000.png
-        // http://vli5res01/smokeping/cache/Besancon/DC_Besancon_last_864000.png
-        // http://vli5res01/smokeping/cache/Besancon/DC_Besancon_last_108000.png
-        // http://vli5res01/smokeping/cache/Besancon/DC_Besancon_last_10800.png
-        //
-        {   "groupeNom" 			: "incident pst travail",
+        {   "groupeNom" : "incident pst travail",
             "groupeTitre" 			: "Temps de ping des vers different site",
             "groupeDescription" 	: "",
             "groupeImageURL" 		: "http://vli5res01/smokeping/cache/%%var1%%_%%echelle%%.png",
@@ -352,11 +349,9 @@ var conf = {
                 {"nom" : "Tour"             , "var1" : "Tours/DC_TOURS_last"},
             ]
         },
-
-
-		{	"groupeNom"         : "test2",     
+		{	"groupeNom" : "test2",     
 	    	"groupeTitre" 		: "test2 de la structure",
-			"groupeDescription" : "",
+			"groupeDescription" : "ceci est la description de test2",
 			"groupeImageURL" 	: "images/debug/1%%echelle%%%%var1%%.png",
 			"groupeClickURL" 	: "http://www.google.fr",
 	    	"graph" : [    

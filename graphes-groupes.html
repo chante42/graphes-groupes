@@ -6,39 +6,64 @@
 		<title>Graphique Groupés</title>
   		<script src="my-js/jquery.min.js"></script>
   		<script src="my-js/bootstrap.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="css/common.css" >
 		<script type="text/javascript" src="my-js/conf.js" id="scriptConfJS"></script>
 		<script type="text/javascript" src="my-js/code.js"></script>
 		<meta nom="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="css/bootstrap.min.css"> 
 		<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-
+		<link rel="stylesheet" type="text/css" href="css/common.css" >
 		<script>
+		
+
 	    $(document).ready(function() {
-			var outputTitle='<span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Groupe :<ul>';
-			var outputGraph ="";
+			var outputTitle='<form class="navbar-form  input-append">';
+			outputTitle += '   <div class="form-group" >';
+            outputTitle += ' 	<input id="searchField"  type="search" class="input-sm form-control" placeholder="Filtre">';	
+            outputTitle += '	</div>';
+			outputTitle += '</form>';
+			outputTitle += '<ul id="groupe-ul" class="nav nav-pills nav-stacked">';
+                                
 			for (var i in conf.groups) {
-				outputTitle+= "<li onclick=\"chg_groupe("+i+");\">"+conf.groups[i].groupeNom + "</li> ";
-
-
+				if (conf.groups[i].groupeNom.match(/\[separateur\]/gi)) {
+					outputTitle += ' <li class="nav-divider"></li>';
+				}
+				else {
+					outputTitle+= '<li> <a onclick="chg_groupe('+i+');" style="padding:0px; padding-left:5px;" onmouseover="onmouseovergroupename('+i+')"   onmousemove="onmousemovegroupename(event)" onmouseout="onmouseoutgroupename()">'+conf.groups[i].groupeNom + '</a></li> ';
+				}
 			}
-			//outputTitle += "</ul>	<p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p>";
+			outputTitle+= '</ul>'
 			console.log(outputTitle);
-			console.log(outputGraph);
 			$("#groupe").html(outputTitle);
+
+			$("#searchField").keyup(
+            	function (event) {
+		            var test = $("#searchField").val();
+	 		 				
+	 				$("#groupe-ul").find('li').each(function() {
+	 					var name = $(this).text(); 
+	 					
+	 					var re = new RegExp(test.replace(/(\W)/g, "\\$1"), "gi");
+
+	 					if (name.match(re)) {
+	 						$(this).show();
+	 					}
+	 					else {
+	 						$(this).hide();
+	 					}
+	 					
+		     				       				
+	  				});
+
+
+            	}
+        	);
+    
 			affiche();
 
 		});
 
-			//authentifie("http://vli5res01/pnp4nagios/", "readonly", "onlyread");
 		</script>	
-		<script>
-			$(function() {
-			$( "#sortable1, #sortable2" ).sortable({
-			  connectWith: ".connectedSortable"
-			}).disableSelection();
-			});
-		</script>
+		
 	</head>
 
 	<body>
@@ -73,14 +98,13 @@
      		 <div class="page-header" id="banner">
 
 				<div class="row" >
-					<ul  class="col-md-2 list-group">
-						<li id="groupe" class="list-group-item">
-
-				    	</li>
+					<ul  class="col-md-2 list-group" >
+						<div id="groupe" class="bs-example">
+						</div>
 				    </ul>
 					
 					<div  class="col-md-10">
-						<div class=" panel-success"hidden="hidden" id="configContenue">
+						<div class="panel-success" hidden="hidden" id="configContenue">
 						 	<div class="panel-heading text-center">	
 								Configuration
 							</div>
@@ -90,7 +114,7 @@
                                  </div>
 							</div>
 						</div>
-						 <div class=" panel-info "hidden="hidden" id="messageHelpContenue">
+						 <div class="panel-info" hidden="hidden" id="messageHelpContenue">
 						 	<div class="panel-heading text-center">	
 								Documentation
 							</div>
@@ -116,13 +140,12 @@
 				</div>
 			</div>
 			<footer>
-	  	     <div >O Chanteloup 2016 v0.4 </div>
-	    </footer>
+				<hr>
+	  	    	<div >O Chanteloup 2016 v0.5 (21/02/16)</div>
+	    	</footer>
 	  
 		</div>	 
-			    
-	    
-
-
+		<div class="tooltip" id="mytooltip">
+		</div>
 	</body>
 </html> 
