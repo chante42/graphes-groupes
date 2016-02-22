@@ -172,14 +172,14 @@ function chg_echelle(val)
 
 function configButton_onclick()
 {
-	$('#configFrame').html('<iframe src="my-js/conf.js" ><iframe>');
+	$('#configFrame').html('<iframe src="my-js/conf.js"  type="text/plain utf8"><iframe>');
 
 	$('#configContenue').toggle();
 }
 
 function helpButton_onclick()
 {
-	$('#messageHelpFrame').html('<iframe src="README.MD" ><iframe>');
+	$('#messageHelpFrame').html('<iframe src="README.MD"  type="text/plain utf8" ><iframe>');
 	
 	$('#messageHelpContenue').toggle();
 }
