@@ -148,7 +148,7 @@ function helpButton_onclick()
 // chaine : chaine a remplacer
 // j index de parchous de la structure de config j= no du groupe
 function replaceVariable(chaine,j) {
-	console.log('Replacevariable IN=|'+chaine+'|');
+//	console.log('Replacevariable IN=|'+chaine+'|');
 	//
 	// Remplacement des variables de URL par celle contenue dans le nom
 	variable= chaine.match(/%%(.*?)%%/ig); // recherche des mot du type  %%var1%%
@@ -191,21 +191,23 @@ function replaceVariable(chaine,j) {
 		}
 	} // FIN FOR "var i in variable"
 	
-	console.log('Replacevariable OUT=|'+chaine+'|');
+//	console.log('Replacevariable OUT=|'+chaine+'|');
 	return(chaine);
 }
 
 function onmouseovergroupename(i) {
 
 	var htmlTooltip = '<div class="panel-info"> <div class="panel-heading text-center">'+conf.groups[i].groupeNom+'</div><div class="underline">'+conf.groups[i].groupeTitre+':</div><div class="panel-body">'+conf.groups[i].groupeDescription+'</div></div></div>'
-	console.log(conf.groups[i].groupeNom);
-	console.log(htmlTooltip);
+//	console.log(conf.groups[i].groupeNom);
+//	console.log(htmlTooltip);
 
 	$("#mytooltip").html(htmlTooltip);
 	$("#mytooltip").css({opacity:1, display:"none"}).fadeIn(400);
 }
+
 //
 // affiche la bulle d aide au dessus du nom du groupe
+//
 function onmousemovegroupename(kmouse) {
     
 	
@@ -230,8 +232,7 @@ function onmousemovegroupename(kmouse) {
 			
 				
 	my_tooltip.css({left:left_pos, top:top_pos});
-	console.log("move"+left_pos+","+top_pos);
- };
+}
 
 function onmouseoutgroupename() {
 	$("#mytooltip").css({left:"-9999px"});	
