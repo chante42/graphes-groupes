@@ -28,11 +28,7 @@ function affiche()
 
 		// test si l'option clickURL existe
 		if (typeof(conf.groups[groupe].groupeClickURL) != 'undefined'  ){
-<<<<<<< HEAD
-			href = replaceVariable(conf.groups[groupe].groupeClickURL);
-=======
 			href = replaceVariable(conf.groups[groupe].groupeClickURL, j);
->>>>>>> bd4f531329ce2ae4fb7850f0143db6b051fcae73
 		}
 		if 	(typeof(conf.groups[groupe].graph[j].clickURL) != 'undefined'  ){
 			href = conf.groups[groupe].graph[j].clickURL;
@@ -149,13 +145,9 @@ function helpButton_onclick()
 //
 //    Replace Variable
 //
-<<<<<<< HEAD
-function replaceVariable(chaine) {
-=======
 // chaine : chaine a remplacer
 // j index de parchous de la structure de config j= no du groupe
 function replaceVariable(chaine,j) {
->>>>>>> bd4f531329ce2ae4fb7850f0143db6b051fcae73
 	console.log('Replacevariable IN=|'+chaine+'|');
 	//
 	// Remplacement des variables de URL par celle contenue dans le nom
@@ -194,10 +186,6 @@ function replaceVariable(chaine,j) {
 			}
 			else {
 				var str = chaine.replace(variable[i], varEval);
-<<<<<<< HEAD
-				console.log('url('+varPropre+') = |'+str+'|');
-=======
->>>>>>> bd4f531329ce2ae4fb7850f0143db6b051fcae73
 				chaine = str;
 			}
 		}
@@ -206,7 +194,6 @@ function replaceVariable(chaine,j) {
 	console.log('Replacevariable OUT=|'+chaine+'|');
 	return(chaine);
 }
-<<<<<<< HEAD
 
 function onmouseovergroupename(i) {
 
@@ -249,6 +236,4 @@ function onmousemovegroupename(kmouse) {
 function onmouseoutgroupename() {
 	$("#mytooltip").css({left:"-9999px"});	
 }
-=======
->>>>>>> bd4f531329ce2ae4fb7850f0143db6b051fcae73
 // -->
