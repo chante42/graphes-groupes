@@ -28,7 +28,11 @@ function affiche()
 
 		// test si l'option clickURL existe
 		if (typeof(conf.groups[groupe].groupeClickURL) != 'undefined'  ){
+<<<<<<< HEAD
 			href = replaceVariable(conf.groups[groupe].groupeClickURL);
+=======
+			href = replaceVariable(conf.groups[groupe].groupeClickURL, j);
+>>>>>>> bd4f531329ce2ae4fb7850f0143db6b051fcae73
 		}
 		if 	(typeof(conf.groups[groupe].graph[j].clickURL) != 'undefined'  ){
 			href = conf.groups[groupe].graph[j].clickURL;
@@ -49,50 +53,8 @@ function affiche()
 			url = conf.groups[groupe].groupeImageURL;
 		}
 
-		//
-		// Remplacement des variables de URL par celle contenue dans le nom
-		variable= url.match(/%%(.*?)%%/ig); // recherche des mot du type  %%var1%%
-		for (var i in variable) {
-			var varPropre=variable[i].replace(/%%/gi,'');
-
-			//
-			// Remplacement de la variable echelle 
-			//
-			if (variable[i] == "%%echelle%%") {
-				//console.log('debug('+varPropre+'):'+eval("conf.groups[groupe].graph[j]."+varPropre));
-				if (eval("conf.groups[groupe].graph[j]."+varPropre) != undefined) {
-					console.log('ERROR : la variable '+variable[i]+' est définie alors que c\'est une variable réservé');
-				}
-				else { 
-					var echelleTmp =echelle;
-					// test si une gestion particuliere de echelle
-					//
-					if (eval("conf.groups[groupe].groupeEchelleParam") != undefined) {
-						echelleTmp = conf.groups[groupe].groupeEchelleParam[echelle].val;
-					}
-					if (eval("conf.groups[groupe].graph[j].echelleParam") != undefined) {
-						echelleTmp = conf.groups[groupe].graph[j].echelleParam[echelle].val;
-					}
-
-					var str1 = url.replace("%%echelle%%",echelleTmp);
-					url = str1;
-				}
-
-			}else {
-				var varEval = eval("conf.groups[groupe].graph[j]."+varPropre)
-
-				if (varEval == undefined){
-					console.log('ERROR : la variable '+variable[i]+' n\'est pas definie dans les attributs de "'+conf.groups[groupe].graph[j].nom+'".');
-				}
-				else {
-					var str = url.replace(variable[i], varEval);
-					console.log('url('+varPropre+') = |'+str+'|');
-					url = str;
-				}
-			}
-		} // FIN FOR "var i in variable"
 		
-		str1=url;
+		str1=replaceVariable(url, j);
 
 
 		outputGraph += '<div class=" panel-primary" style="padding-top:4;" >  <div data-toggle="tooltip" data-placement="top" title="'+description+'" class="panel-heading text-center">';
@@ -187,7 +149,13 @@ function helpButton_onclick()
 //
 //    Replace Variable
 //
+<<<<<<< HEAD
 function replaceVariable(chaine) {
+=======
+// chaine : chaine a remplacer
+// j index de parchous de la structure de config j= no du groupe
+function replaceVariable(chaine,j) {
+>>>>>>> bd4f531329ce2ae4fb7850f0143db6b051fcae73
 	console.log('Replacevariable IN=|'+chaine+'|');
 	//
 	// Remplacement des variables de URL par celle contenue dans le nom
@@ -226,7 +194,10 @@ function replaceVariable(chaine) {
 			}
 			else {
 				var str = chaine.replace(variable[i], varEval);
+<<<<<<< HEAD
 				console.log('url('+varPropre+') = |'+str+'|');
+=======
+>>>>>>> bd4f531329ce2ae4fb7850f0143db6b051fcae73
 				chaine = str;
 			}
 		}
@@ -235,6 +206,7 @@ function replaceVariable(chaine) {
 	console.log('Replacevariable OUT=|'+chaine+'|');
 	return(chaine);
 }
+<<<<<<< HEAD
 
 function onmouseovergroupename(i) {
 
@@ -277,4 +249,6 @@ function onmousemovegroupename(kmouse) {
 function onmouseoutgroupename() {
 	$("#mytooltip").css({left:"-9999px"});	
 }
+=======
+>>>>>>> bd4f531329ce2ae4fb7850f0143db6b051fcae73
 // -->
