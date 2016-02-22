@@ -102,7 +102,7 @@ var conf = {
 		},
 		{	"groupeNom" 		: "Liens DC MAN 10Gb Internet",     
 	    	"groupeTitre" 		: "débit des lien Datacenter MAN 10Gb/s Internet   ",
-			"groupeDescription" : "",
+			"groupeDescription" : " graphe issue de CACTI <br> 2  Liens 10Gb/s <br> MAN1  de Rueil et chevilly <br> Lien inter DC DMZ <br>Internet Rueil <br>Internet Chevilly",
 			"groupeImageURL" 	: "http://supervisiondc/cacti/graph_image.php?action=view&local_graph_id=%%var1%%&rra_id=%%echelle%%",
 			"groupeClickURL" 	:  "http://supervisiondc/cacti/graph.php?rra_id=all&local_graph_id=%%var1%%",
 	    	"graph" : [    
@@ -116,8 +116,8 @@ var conf = {
 			]
 		},
 		{	"groupeNom" 		: "T Réél DC MAN 10Gb Internet",     
-	    	"groupeTitre" 		: "débit des lien Datacenter MAN 10Gb/s Internet   ",
-			"groupeDescription" : "",
+	    	"groupeTitre" 		: "débit des lien Datacenter MAN 10Gb/s Internet en temps réel  ",
+			"groupeDescription" : " graphe <i>'temps réel'</i> issue de CACTI <br> 2  Liens 10Gb/s <br> MAN1  de Rueil et chevilly <br> Lien inter DC DMZ <br>Internet Rueil <br>Internet Chevilly",
 			"groupeIframe" 			: "true",
 			"groupeIframeWidth" 	: "700",
 			"groupeIframeHeight" 	: "300",

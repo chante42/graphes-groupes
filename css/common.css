@@ -21,36 +21,38 @@ footer {
 *
 */
 #sortable1, #sortable2 {
-	border: 1px solid #ccc;
-	list-style-type: none;
-	margin: 0;
-	padding: 5px 0 0 0;
-	margin-right: 1px;
-	float : left;
-	width: 49%;
+	border 			: 1px solid #ccc;
+	list-style-type	: none;
+	margin 			: 0;
+	padding 		: 5px 0 0 0;
+	margin-right 	: 1px;
+	float 			: left;
+	width 			: 49%;
 }
 
 .panel-primary:hover{
-	cursor: move;
+	cursor : move;
 }
 .panel-primary div img:hover{
-	cursor: initial;
+	cursor : initial;
 }
 
 
-#group{
-	background-color:#F2F2F2;
-
+#groupe{
+	background-color 	: #020202;
+	border 				: 1px solid #e0e0e0;
+	border-radius		: 10px;
 }
 
 .tooltip{
-	position:absolute;
-	left:-2000px;
-	background-color:#020202;
-	padding:5px;
-	border:1px solid #fff;
-	min-width:100px;
-	min-height:50px;
+	position 			: absolute;
+	left				: -2000px;
+	background-color	: #020202;
+	padding 			: 5px;
+	border 				: 1px solid #fff;
+	min-width			: 100px;
+	min-height			: 50px;
+	border-radius		: 10px;
 }
 
 .underline {

@@ -30,18 +30,19 @@
 				else {
 					outputTitle+= '<li> <a onclick="chg_groupe('+i+');" style="padding:0px; padding-left:5px;" onmouseover="onmouseovergroupename('+i+')"   onmousemove="onmousemovegroupename(event)" onmouseout="onmouseoutgroupename()">'+conf.groups[i].groupeNom + '</a></li> ';
 				}
-			}
+			} // FIN boucle for i
+
 			outputTitle+= '</ul>'
 			//console.log(outputTitle);
 			$("#groupe").html(outputTitle);
 
+			// evènement de gestion de clavier dans la zone text
 			$("#searchField").keyup(
             	function (event) {
 		            var test = $("#searchField").val();
 	 		 				
 	 				$("#groupe-ul").find('li').each(function() {
 	 					var name = $(this).text(); 
-	 					
 	 					var re = new RegExp(test.replace(/(\W)/g, "\\$1"), "gi");
 
 	 					if (name.match(re)) {
@@ -50,17 +51,12 @@
 	 					else {
 	 						$(this).hide();
 	 					}
-	 					
-		     				       				
-	  				});
-
-
-            	}
-        	);
+	  				}); // FIN parcours des != <li>
+            	} // FIN function anonymous
+        	); // FIN évènement KEYUP
     
 			affiche();
-
-		});
+		}); // FIN docuement.ready
 
 		</script>	
 		
@@ -150,7 +146,7 @@
 			</div>
 			<footer>
 				<hr>
-	  	    	<div >O Chanteloup 2016 v0.5 (21/02/16)</div>
+	  	    	<div >O Chanteloup 2016 v0.5.1 (22/02/16)</div>
 	    	</footer>
 	  
 		</div>	 
