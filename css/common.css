@@ -24,10 +24,11 @@ footer {
 	border 			: 1px solid #ccc;
 	list-style-type	: none;
 	margin 			: 0;
-	padding 		: 5px 0 0 0;
+	padding 		: 2px 0 4px 0;
 	margin-right 	: 1px;
 	float 			: left;
 	width 			: 49%;
+	border-radius	: 7px;
 }
 
 .panel-primary:hover{

@@ -115,7 +115,7 @@ var conf = {
 				{"nom" : "Internet Chevilly"	, "var1" : "5178"}, 
 			]
 		},
-		{	"groupeNom" 		: "T Réél DC MAN 10Gb Internet",     
+		{	"groupeNom" 		: "DC MAN 10Gb Internet RT",     
 	    	"groupeTitre" 		: "débit des lien Datacenter MAN 10Gb/s Internet en temps réel  ",
 			"groupeDescription" : " graphe <i>'temps réel'</i> issue de CACTI <br> 2  Liens 10Gb/s <br> MAN1  de Rueil et chevilly <br> Lien inter DC DMZ <br>Internet Rueil <br>Internet Chevilly",
 			"groupeIframe" 			: "true",
@@ -151,7 +151,7 @@ var conf = {
 				{"nom" : "Metz"				, "var1" : "5082"} ,
 			]
 		},
-		{	"groupeNom" 			: "T Réel :Lien Site principaux",     
+		{	"groupeNom" 			: "Lien Site principaux RT",     
 	    	"groupeTitre" 			: "débit temps réel des sites principaux ",
 			"groupeDescription" 	: "",
 			"groupeIframe" 			: "true",
