@@ -200,7 +200,21 @@ function onmouseovergroupename(i) {
 	var htmlTooltip = '<div><div  class="panel-info">';
 	htmlTooltip 	+=' <div id="bulle-panel" class="panel-heading text-center">'+conf.groups[i].groupeNom+'</div>';
 	htmlTooltip 	+= '<div class="underline bulle-margin">'+conf.groups[i].groupeTitre+':</div>';
-	htmlTooltip 	+= '<div class="panel-body bulle-margin">'+conf.groups[i].groupeDescription+'</div></div>';
+	htmlTooltip 	+= '<div class="panel-body bulle-margin">'+conf.groups[i].groupeDescription+'<hr>';
+	htmlTooltip 	+= 'Les graphes inclus sont : <span>'
+	for (var j in conf.groups[i].graph) {
+		if (j%3 == 0) {
+			htmlTooltip += '<br>';
+		}
+		
+		htmlTooltip 	+= '<span style="margin-left:10px;">'+conf.groups[i].graph[j].nom+'</span>';
+		if (j < conf.groups[i].graph) {
+			htmlTooltip 	+= ',';
+		}
+		
+	}
+	htmlTooltip += '</span></div></div>';
+
 	htmlTooltip 	+= '<span id="bulle-arrow_border"></span><span id="bulle-arrow_inner"></span></div>';
 
 //	console.log(conf.groups[i].groupeNom);
@@ -222,9 +236,9 @@ function onmousemovegroupename(kmouse) {
 	var border_right = $(window).width();
 	var left_pos;
 	var top_pos;
-	var offset = 120;
+	var offset = -69;
 		
-	top_pos = kmouse.pageY-my_tooltip.height()+offset;
+	top_pos = kmouse.pageY +offset;
 			
 	left_pos =  $("#groupe").width() + 20;
 	my_tooltip.css({left:left_pos, top:top_pos});

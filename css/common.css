@@ -51,6 +51,7 @@ footer {
 	border-top-left-radius		: 80px 40px;
 	border-bottom-right-radius	: 0px;
 	border-bottom-left-radius	: 0px;
+	margin 					: -2px;
 }
 
 
