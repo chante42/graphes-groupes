@@ -197,7 +197,12 @@ function replaceVariable(chaine,j) {
 
 function onmouseovergroupename(i) {
 
-	var htmlTooltip = '<div class="panel-info"> <div class="panel-heading text-center">'+conf.groups[i].groupeNom+'</div><div class="underline">'+conf.groups[i].groupeTitre+':</div><div class="panel-body">'+conf.groups[i].groupeDescription+'</div></div></div>'
+	var htmlTooltip = '<div><div  class="panel-info">';
+	htmlTooltip 	+=' <div id="bulle-panel" class="panel-heading text-center">'+conf.groups[i].groupeNom+'</div>';
+	htmlTooltip 	+= '<div class="underline bulle-margin">'+conf.groups[i].groupeTitre+':</div>';
+	htmlTooltip 	+= '<div class="panel-body bulle-margin">'+conf.groups[i].groupeDescription+'</div></div>';
+	htmlTooltip 	+= '<span id="bulle-arrow_border"></span><span id="bulle-arrow_inner"></span></div>';
+
 //	console.log(conf.groups[i].groupeNom);
 //	console.log(htmlTooltip);
 
@@ -217,24 +222,15 @@ function onmousemovegroupename(kmouse) {
 	var border_right = $(window).width();
 	var left_pos;
 	var top_pos;
-	var offset = 20;
-	if(border_right - (offset *2) >= my_tooltip.width() + kmouse.pageX){
-		left_pos = kmouse.pageX+offset;
-		} else{
-		left_pos = border_right-my_tooltip.width()-offset;
-		}
+	var offset = 120;
 		
-	if(border_top + (offset *2)>= kmouse.pageY - my_tooltip.height()){
-		top_pos = border_top +offset;
-		} else{
-		top_pos = kmouse.pageY-my_tooltip.height()-offset;
-		}	
+	top_pos = kmouse.pageY-my_tooltip.height()+offset;
 			
-				
+	left_pos =  $("#groupe").width() + 20;
 	my_tooltip.css({left:left_pos, top:top_pos});
 }
 
 function onmouseoutgroupename() {
-	$("#mytooltip").css({left:"-9999px"});	
+ 	$("#mytooltip").css({left:"-9999px"});	
 }
 // -->
