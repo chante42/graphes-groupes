@@ -78,6 +78,7 @@ footer {
 	left 			:-26px;
 }	
 
+
 .bulle-margin {
 	margin-right	:1em;
 	margin-left		:1em; 
@@ -100,6 +101,7 @@ footer {
 
 
 .underline {
+	margin-top		: 5px;  
 	font-weight		: bold;
 	text-decoration	: underline;
 }
