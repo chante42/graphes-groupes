@@ -72,31 +72,27 @@
 	</head>
 
 	<body>
-		<nav role="navigation" class="navbar   navbar-default navbar-fixed-top">
-			<ul class="nav-tabs list-group" 	>
-	      	  	<div class="navbar-header">
-	            	<button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
-		                <span class="sr-only">Toggle navigation</span>
-		                <span class="icon-bar"></span>
-		                <span class="icon-bar"></span>
-		                <span class="icon-bar"></span>
-		            </button>
-		            <a href="#" class="navbar-brand">Graphes Groupés</a>
-		        </div> 
-	      	  	
-	        	
-		        <li onclick="chg_echelle(0);"><button type="button" class="btn btn-primary navbar-btn"><span class="glyphicon glyphicon-time"> Heure</span></button></li>
-				<li  onclick="chg_echelle(1);"><button type="button" class="btn btn-primary navbar-btn"><span class="glyphicon glyphicon-time"> Jour</span></button></li> 
-				<li  onclick="chg_echelle(2);"><button type="button" class="btn btn-primary navbar-btn"><span class="glyphicon glyphicon-time"> Semaine</span></button></li>
-				<li onclick="chg_echelle(3);"><button type="button" class="btn btn-primary navbar-btn"><span class="glyphicon glyphicon-time"> Mois</span></button></li>
-				<li  onclick="chg_echelle(4);"><button type="button" class="btn btn-primary navbar-btn"><span class="glyphicon glyphicon-time"> Année</span></button></li>
-				
+		<nav role="navigation" class="navbar  navbar-default navbar-fixed-top">
+			
+	      	
+				<ul class="nav-tabs list-group" 	>	      	  	
 
-				<li class="pull-right" onclick="helpButton_onclick();"><button type="button" class="btn btn-primary navbar-btn navbar-right"><span class="glyphicon glyphicon-info-sign">Aide </span> </button></li>
-		    	
-		    	<li class="pull-right" onclick="configButton_onclick();"><button type="button" class="btn btn-primary navbar-btn navbar-right"><span class="glyphicon glyphicon-cog"> Configuration </span></button></li>
-		            
-		    </ul>
+					<li class="pull-right" onclick="helpButton_onclick();"><button type="button" class="btn btn-primary navbar-btn "><span class="glyphicon glyphicon-info-sign"> Aide </span> </button></li>
+			    	
+			    	<li class="pull-right" onclick="configButton_onclick();"><button type="button" class="btn btn-primary navbar-btn"><span class="glyphicon glyphicon-cog"> Configuration </span></button></li>
+			        
+					<li><button type="button" class="btn btn-primary navbar-btn"><span> Graphes Groupés</span></button></li>
+		        	<ul class="nav-tabs list-group" style="border : 3px;padding: 0px;margin:0px">
+				        <li onclick="chg_echelle(0);"><button type="button" class="btn btn-primary navbar-btn"><span class="glyphicon glyphicon-time"> Heure</span></button></li>
+						<li  onclick="chg_echelle(1);"><button type="button" class="btn btn-primary navbar-btn"><span class="glyphicon glyphicon-time"> Jour</span></button></li> 
+						<li  onclick="chg_echelle(2);"><button type="button" class="btn btn-primary navbar-btn"><span class="glyphicon glyphicon-time"> Semaine</span></button></li>
+						<li onclick="chg_echelle(3);"><button type="button" class="btn btn-primary navbar-btn"><span class="glyphicon glyphicon-time"> Mois</span></button></li>
+						<li  onclick="chg_echelle(4);"><button type="button" class="btn btn-primary navbar-btn"><span class="glyphicon glyphicon-time"> Année</span></button></li>
+					</ul>
+
+					    
+			    </ul>
+		    
 		</nav>    
 	    <div class="container-fluid" >
 
