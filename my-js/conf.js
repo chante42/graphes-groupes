@@ -14,11 +14,12 @@
 // 
 //
 // graph				: [Obligatoire] Tableau de structure {nom, imageURL, ...} qui permet de définir un graphique
-// nom 					: [Obligatoire] Nom d'un graph qui apparait sur le menu a gauche 
-// nomTitre          	: [facultatif]  Titre du graphique 
-// nomDescription       : [facultatif] 
-// imageURL 			: [Obligatoire si pas groupeImageURL non définie] URL pour afficher l'image. Peux contenir des variables (%%nomvar%%)
-// clickURL             : [facultatif] URL appelé si on click  l'image
+//
+// 		nom 					: [Obligatoire] Nom d'un graph qui apparait sur le menu a gauche 
+// 		nomTitre          		: [facultatif]  Titre du graphique 
+// 		nomDescription       	: [facultatif] 
+// 		imageURL 				: [Obligatoire si pas groupeImageURL non définie] URL pour afficher l'image. Peux contenir des variables (%%nomvar%%)
+// 		clickURL             	: [facultatif] URL appelé si on click  l'image
 //
 //
 // Les variables :
@@ -413,8 +414,184 @@ var conf = {
 				{"nom" : "img 7"		, "var1" : "7"}   
 			]
 		},
+	],
+
+// -----------------------------------------------------------------------------------------------
+// ***********************************************************************************************
+// -----------------------------------------------------------------------------------------------
+//
+//
+//
+//   C O N F   S Y N T A X E 
+//
+//
+//
+// -----------------------------------------------------------------------------------------------
+// ***********************************************************************************************
+// ------------------------------------------------------------------------------------------------
+
+	"syntaxe" : [
+		{
+			"nom"			: "groupeNom",
+		 	"label"			: "Nom du groupe", 
+			"obligatoire" 	: "true",
+			"description"	: "Nom du groupe qui apparait dans le menu sur la gauche si contient [separateur] affiche une ligne horizontale",
+			"type"			: "string",
+		},
+// groupeTitre 			: [facultatif] 
+		{
+			"nom"			: "groupeTitre",
+			"obligatoire" 	: "false",
+			"label"			: "groupeTitre",
+			"description"	: "",
+			"type"			: "string",
+		},
+// groupeDescription 	: [facultatif] Description du nom du graphe (apparait en hover)
+		{
+			"nom"			: "groupeDescription",
+			"obligatoire" 	: "false",
+			"label"			: "groupeDescription",
+			"description"	: "",
+			"type"			: "string",
+		},
+// groupeImageURL		: [facultatif] URL pour le groupe
+		{
+			"nom"			: "groupeImageURL",
+			"obligatoire" 	: "false",
+			"label"			: "groupeImageURL",
+			"description"	: "",
+			"type"			: "url",
+		},
+// groupeIframe			: [facultatif] si égale a "true"  l'URL est affiché dans un iframe
+		{
+			"nom"			: "groupeIframe",
+			"obligatoire" 	: "false",
+			"label"			: "",
+			"description"	: "",
+			"type"			: "boolean",
+		},
+// groupeIframeWidth 	: [facultatif] Largeur de l'iframe 
+		{
+			"nom"			: "groupeIframeWidth",
+			"obligatoire" 	: "false",
+			"label"			: "groupeIframeWidth",
+			"description"	: "",
+			"type"			: "integer",
+		},
+// groupeIframeHeight 	: [facultatif] Hauteur de l'iframe
+		{
+			"nom"			: "groupeIframeHeight",
+			"obligatoire" 	: "false",
+			"label"			: "groupeIframeHeight",
+			"description"	: "",
+			"type"			: "integer",
+		},
+// groupeClickURL       : [facultatif] URL appelé si on click sur une image du groupe
+		{
+			"nom"			: "groupeClickURL",
+			"obligatoire" 	: "false",
+			"label"			: "groupeClickURL",
+			"description"	: "",
+			"type"			: "url",
+		},
+// groupeEchelleParam   : [facultatif] contient un tableau qui représente la valeur de la variable %%echelles%% 
+//                         ex : [ {"val" : "10800"},{"val" : "108000"},	{"val" : "864000"},{"val" : "34560000"},{"val" : "34560000"}],
+		{
+			"nom"			: "groupeEchelleParam",
+			"obligatoire" 	: "false",
+			"label"			: "",
+			"description"	: 'contient un tableau qui représente la valeur de la variable %%echelles%% ex : [ {"val" : "10800"},{"val" : "108000"},	{"val" : "864000"},{"val" : "34560000"},{"val" : "34560000"}],"',
+			"type"			: "array",
+			"array"			: [
+				{
+					"nom"			: "val",
+					"obligatoire" 	: "true",
+					"label"			: "valeur Echelle (Heure)",
+					"description"	: "",
+					"type"			: "intger",				
+				},
+				{
+					"nom"			: "val",
+					"obligatoire" 	: "true",
+					"label"			: "valeur Echelle (Jours)",
+					"description"	: "",
+					"type"			: "intger",				
+				},
+				{
+					"nom"			: "val",
+					"obligatoire" 	: "true",
+					"label"			: "valeur Echelle (Semaine)",
+					"description"	: "",
+					"type"			: "intger",				
+				},
+				{
+					"nom"			: "val",
+					"obligatoire" 	: "true",
+					"label"			: "valeur Echelle (Mois)",
+					"description"	: "",
+					"type"			: "intger",				
+				},
+				{
+					"nom"			: "val",
+					"obligatoire" 	: "true",
+					"label"			: "valeur Echelle (Année)",
+					"description"	: "",
+					"type"			: "intger",				
+				},
+			]
+		},
+// 
+//
+// graph				: [Obligatoire] Tableau de structure {nom, imageURL, ...} qui permet de définir un graphique
+		{
+			"nom"			: "graph",
+			"obligatoire" 	: "true",
+			"label"			: "",
+			"description"	: "",
+			"type"			: "array",
+			"array"			: [
+		//
+		// 		nom 					: [Obligatoire] Nom d'un graph qui apparait sur le menu a gauche 
+				{
+					"nom"			: "nom",
+					"obligatoire" 	: "true",
+					"label"			: "Nom Graphe",
+					"description"	: "Nom d'un graph qui apparait sur le menu a gauche ",
+					"type"			: "",
+				},
+		// 		nomTitre          		: [facultatif]  Titre du graphique 
+				{
+					"nom"			: "nomTitre",
+					"obligatoire" 	: "false",
+					"label"			: "Titre du graphique",
+					"description"	: "",
+					"type"			: "",
+				},
+		// 		nomDescription       	: [facultatif] 
+				{
+					"nom"			: "nomDescription",
+					"obligatoire" 	: "false",
+					"label"			: "nomDescription",
+					"description"	: "",
+					"type"			: "",
+				},
+		// 		imageURL 				: [Obligatoire si pas groupeImageURL non définie] URL pour afficher l'image. Peux contenir des variables (%%nomvar%%)
+				{
+					"nom"			: "imageURL",
+					"obligatoire" 	: "heritage",
+					"label"			: "imageURL",
+					"description"	: "",
+					"type"			: "",},
+		// 		clickURL             	: [facultatif] URL appelé si on click  l'image
+				{
+					"nom"			: "clickURL",
+					"obligatoire" 	: "false",
+					"label"			: "clickURL",
+					"description"	: "URL appelé si on click  l'image",
+					"type"			: "",
+				},
+			],
+		},
+//
 	]
 };
-
-
-

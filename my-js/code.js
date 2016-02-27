@@ -9,6 +9,7 @@ function imageErrorMessage(url) {
 	$(this).parent().append("<h1>TOTOTOOTOTO "+url+" </h1>");
 	console.log("onloadError : "+url);
 }
+
 //
 //     affiche
 // 
@@ -114,6 +115,10 @@ function affiche()
 	$("#graphTitre").html(outputTitre);
 
 }
+
+//
+// chg_groupe
+//
 function chg_groupe(val)
 {
 	console.log("chg_Groupe ="+val);
@@ -121,6 +126,9 @@ function chg_groupe(val)
 	affiche();
 }
 
+//
+// chg_echelles
+//
 function chg_echelle(val)
 {
 	console.log("chg_Echelle ="+val);
@@ -129,6 +137,9 @@ function chg_echelle(val)
 };
 
 
+//
+// configButton_onclick
+//
 function configButton_onclick()
 {
 	$('#configFrame').html('<iframe src="my-js/conf.js"  type="text/plain utf8"><iframe>');
@@ -136,6 +147,9 @@ function configButton_onclick()
 	$('#configContenue').toggle();
 }
 
+//
+// helpButton_onclick
+//
 function helpButton_onclick()
 {
 	$('#messageHelpFrame').html('<iframe src="README.MD"  type="text/plain utf8" ><iframe>');
@@ -196,14 +210,16 @@ function replaceVariable(chaine,j) {
 	return(chaine);
 }
 
+//
+// onMouseOversGroupeName
+//
+//
 function onMouseOverGroupeName(i) {
-
 	var htmlTooltip = '<div><div  class="panel-info">';
 	htmlTooltip 	+=' <div id="bulle-panel" class="panel-heading text-center">'+conf.groups[i].groupeNom+'</div>';
 	htmlTooltip 	+= '<div class="underline bulle-margin">'+conf.groups[i].groupeTitre+':</div>';
 	htmlTooltip 	+= '<div class="panel-body bulle-margin">'+conf.groups[i].groupeDescription+'<hr>';
 	htmlTooltip 	+= 'Les graphes inclus sont : <span>';
-
 
 	for (var j in conf.groups[i].graph) {
 		if (j%3 == 0) {
@@ -232,9 +248,6 @@ function onMouseOverGroupeName(i) {
 // affiche la bulle d aide au dessus du nom du Groupe
 //
 function onMouseMoveGroupeName(kmouse) {
-    
-	
-    
 	var my_tooltip = $("#mytooltip");    
     var border_top = $(window).scrollTop(); 
 	var border_right = $(window).width();
@@ -248,7 +261,118 @@ function onMouseMoveGroupeName(kmouse) {
 	my_tooltip.css({left:left_pos, top:top_pos});
 }
 
+//
+// onMouseOutGroupeName
+//
 function onMouseOutGroupeName() {
  	$("#mytooltip").css({left:"-9999px"});	
 }
+
+
+//
+//     affiche
+// 
+// fonction qui affiche le fichier de config en mode edition
+function afficheConfig()
+{
+	var outputGraph1="";
+	var outputGraph2="";
+	var outputTitre = "";
+	var urlTmp;
+	
+	for (var j in conf.groups[Groupe].graph) {
+		var outputGraph="";
+		var variable;
+		var description="";
+        var nomTitre= conf.groups[Groupe].graph[j].nom;
+        var href=""
+
+		// test si l'option clickURL existe
+		if (typeof(conf.groups[Groupe].groupeClickURL) != 'undefined'  ){
+			href = replaceVariable(conf.groups[Groupe].groupeClickURL, j);
+		}
+		if 	(typeof(conf.groups[Groupe].graph[j].clickURL) != 'undefined'  ){
+			href = conf.groups[Groupe].graph[j].clickURL;
+		}
+
+		if ( typeof(conf.groups[Groupe].graph[j].nomDescription) != "undefined") {
+			description = conf.groups[Groupe].graph[j].nomDescription;
+		}
+
+		if ( typeof(conf.groups[Groupe].graph[j].nomTitre) != "undefined") {
+			nomTitre = conf.groups[Groupe].graph[j].nomTitre;
+		}
+		
+		// Si URL pour le nom est definie est plus prioritaire que celle du Groupe
+		if (typeof(conf.groups[Groupe].graph[j].imageURL) != 'undefined' && conf.groups[Groupe].graph[j].imageURL!= "" ) {
+			url = conf.groups[Groupe].graph[j].imageURL;
+		}else {
+			url = conf.groups[Groupe].groupeImageURL;
+		}
+
+		
+		str1=replaceVariable(url, j);
+
+
+		outputGraph += '<div class=" panel-primary" style="padding-top:4;" >  <div data-toggle="tooltip" data-placement="top" title="'+description+'" class="panel-heading text-center">';
+		outputGraph += ''+nomTitre+'</div><div class="panel-body" style="padding:0;">';
+
+		//
+		// test pour Savor si IMG (par défaut) ou IFRAME
+		//
+		if ( (typeof(conf.groups[Groupe].graph[j].Iframe) != 'undefined'  && conf.groups[Groupe].graph[j].Iframe == "true" ) ||
+			  (typeof(conf.groups[Groupe].groupeIframe)  != "undefined" && conf.groups[Groupe].groupeIframe == "true")) {
+			var taille="";
+
+			// Adapte la taille de l'IFRAME
+			if (typeof(conf.groups[Groupe].groupeIframeWidth) != 'undefined'  ) {
+				taille += 'width="'+conf.groups[Groupe].groupeIframeWidth+'" ';
+			}
+			if (typeof(conf.groups[Groupe].groupeIframeHeight) != 'undefined'  ){
+				taille += 'height="'+conf.groups[Groupe].groupeIframeHeight+'" ';
+			}
+
+		    outputGraph += '<iframe  '+taille+'id="iframeAAA'+j+'" src="'+str1+'">Les Iframe ne sont pas supportée</iframe>';
+			
+		}else {
+			if (href !="") {
+				outputGraph += '<a href="'+href+'" target="_blanck'+j+'">';
+			}
+			outputGraph += '<img  id="imgAAA'+j+'" src="'+str1+'" onerror="imageErrorMessage(\''+url+'\')" alt="Impossible d\'accéder ou vous n\'êtes pas identifié sur l\'url:'+str1+'">';
+			if (href !="") {
+				outputGraph += '</a>';
+			}
+		}
+		outputGraph += '</div></div>';
+
+		
+		if (j%2 == 0) {
+			outputGraph1 += outputGraph;
+		}else {
+			outputGraph2 += outputGraph;
+		}
+	} // FIN FOR 	"j in conf.groups[Groupe].graph"
+
+	$("#sortable1").html(outputGraph1);
+	$("#sortable2").html(outputGraph2);
+
+	// Affiche le titre ud Groupe
+	//
+	var GroupeDescription ="";
+	if ( typeof(conf.groups[Groupe].groupDescription) != "undefined") {
+			description = conf.groups[Groupe].groupDescription;
+		}
+
+	outputTitre ='<h1 data-toggle="tooltip" data-placement="top" title="'+GroupeDescription+'"class="text-center">';
+	
+	if ( typeof(conf.groups[Groupe].groupeTitre) != 'undefined' && conf.groups[Groupe].groupeTitre != "") {
+		outputTitre +=conf.groups[Groupe].groupeTitre;
+	}else {
+		outputTitre +=conf.groups[Groupe].groupeNom;
+	}
+	outputTitre += "</h1>";
+	$("#graphTitre").html(outputTitre);
+
+}
+
 // -->
