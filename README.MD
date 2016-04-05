@@ -53,14 +53,14 @@ var conf = {
 			"groupeDescription" : "",
 			"groupeImageURL" : "http://vli5res01/pnp4nagios/image?host=%%var1%%&srv=HP_blade_enclosure_health&view=%%echelle%%&source=0",
 	    	"graph" : [    
-				{"nom" : "OA1C1B94"		,"var1" : "OA1C1B94"},  
-				{"nom" : "OA1C2A92"		,"var1" : "OA1C2A92"},  
-			    {"nom" : "OA1C3B94"		,"var1" : "OA1C3B94"},  
-				{"nom" : "OA1C4A92"		,"var1" : "OA1C4A92"},  
-				{"nom" : "OA1C5B94"		,"var1" : "OA1C5B94"},  
-				{"nom" : "OA1C6A92"		,"var1" : "OA1C6A92"},  
-				{"nom" : "OA1C7B94"		,"var1" : "OA1C7B94"},  
-				{"nom" : "OA1C8A92"		,"var1" : "OA1C8A92"}   
+				{"nom" : "chassis1"		,"var1" : "chassis1tec"},  
+				{"nom" : "chassis2"		,"var1" : "chassis2tec"},  
+			    {"nom" : "chassis3"		,"var1" : "chassis3tec"},  
+				{"nom" : "chassis3"		,"var1" : "chassis4tec"},  
+				{"nom" : "chassis4"		,"var1" : "chassis5tec"},  
+				{"nom" : "chassis5"		,"var1" : "chassis6tec"},  
+				{"nom" : "chassis6"		,"var1" : "chassis7tec"},  
+				{"nom" : "chassis7"		,"var1" : "chassis8tec"}   
 			]},   
 		{	"groupeNom" : "C7000 C2 Réseau VC",     
 	    	"groupeTitre" : "Débit  des 2 VC composés de 4 liens 10Gb/s du chassis C2",
