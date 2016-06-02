@@ -53,8 +53,16 @@ function affiche()
 		str1=replaceVariable(url, j);
 
 
-		outputGraph += '<div class=" panel-primary" style="padding-top:4;" >  <div data-toggle="tooltip" data-placement="top" title="'+description+'" class="panel-heading text-center">';
-		outputGraph += ''+nomTitre+'</div><div class="panel-body" style="padding:0;">';
+		outputGraph += '<div class=" panel-primary" style="padding-top:4;" >';  
+		outputGraph += '   <div data-toggle="tooltip" data-placement="top" title="'+description+'" class="panel-heading text-center">';
+		outputGraph += '      <ul class="nav-tabs list-group list-unstyled"  style="border-bottom: 0px" 	>';
+		outputGraph += '          <li class="text-center">'+nomTitre+'</li>';
+		outputGraph += '          <li class="pull-right"> <a href="'+str1+'" target="_blank"><span class="glyphicon glyphicon-cog"></span></a></li>';
+		outputGraph += '      </ul></div>';
+		outputGraph += '      <div class="panel-body" style="padding:0;">';
+		
+		
+		outputGraph += '   ';
 
 		//
 		// test pour Savor si IMG (par défaut) ou IFRAME
