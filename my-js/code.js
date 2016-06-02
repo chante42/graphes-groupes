@@ -159,14 +159,15 @@ function replaceVariable(chaine,j) {
 		// Remplacement de la variable echelle 
 		//
 		if (variable[i] == "%%echelle%%") {
-			//console.log('debug('+varPropre+'):'+eval("conf.groups[groupe].graph[j]."+varPropre));
+			console.log('debug('+varPropre+'):'+eval("conf.groups[groupe].graph[j]."+varPropre));
 			if (eval("conf.groups[groupe].graph[j]."+varPropre) != undefined) {
 				console.log('ERROR : la variable '+variable[i]+' est définie alors que c\'est une variable réservé');
 			}
 			else { 
-				var echelleTmp =echelle;
+				var echelleTmp = echelle;
 				// test si une gestion particuliere de echelle
 				//
+				console.log("groupeEchelleParam");
 				if (eval("conf.groups[groupe].groupeEchelleParam") != undefined) {
 					echelleTmp = conf.groups[groupe].groupeEchelleParam[echelle].val;
 				}
@@ -174,6 +175,22 @@ function replaceVariable(chaine,j) {
 					echelleTmp = conf.groups[groupe].graph[j].echelleParam[echelle].val;
 				}
 
+				// test si une fonction dans la chaine echelleTmp
+				//
+				var regex = /\w*\(\)/g;
+				var fctName = String(echelleTmp).match(regex);
+				console.log("OO echelleTmp = "+echelleTmp+"\n");
+				if (eval(fctName) != undefined ) {
+					console.log("fct :"+fctName+"\n");
+					if ( fctName == "now()") {
+						var d = new Date();
+						var seconds = d.getTime() / 1000;
+						echelleTmp = echelleTmp.replace("now()", String(seconds));
+						echelleTmp = eval(echelleTmp);
+						console.log("now() : "+ echelleTmp);
+					}
+					
+				}
 				var str1 = chaine.replace("%%echelle%%",echelleTmp);
 				chaine = str1;
 			}
