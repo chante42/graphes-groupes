@@ -1,0 +1,162 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta charset="utf-8">
+  		<meta nom="viewport" content="width=device-width, initial-scale=1">
+
+		<title>Graphique Groupés</title>
+  		<script src="my-js/jquery.min.js"></script>
+  		<script src="my-js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="my-js/conf-sto.js" id="scriptConfJS"></script>
+		<script type="text/javascript" src="my-js/code.js"></script>
+		<meta nom="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="css/bootstrap.min.css"> 
+		<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/common.css" >
+		<script>
+		
+
+	    $(document).ready(function() {
+			var outputTitle='<form class="navbar-form  input-append">';
+			outputTitle += '   <div class="form-group" >';
+            outputTitle += ' 	<input id="searchField"  type="search" class="input-sm form-control" placeholder="Filtre">';	
+            outputTitle += '	</div>';
+			outputTitle += '</form>';
+			outputTitle += '<ul id="groupe-ul" class="nav nav-pills nav-stacked">';
+                                
+			for (var i in conf.groups) {
+				if (conf.groups[i].groupeNom.match(/\[separateur\]/gi)) {
+					outputTitle += ' <li class="nav-divider"></li>';
+				}
+				else {
+					outputTitle+= '<li> <a onclick="chg_groupe('+i+');" style="padding:0px; padding-left:5px;" onmouseover="onmouseovergroupename('+i+')"   onmousemove="onmousemovegroupename(event)" onmouseout="onmouseoutgroupename()">'+conf.groups[i].groupeNom + '</a></li> ';
+				}
+			} // FIN boucle for i
+
+			outputTitle+= '</ul>'
+
+			
+
+			//console.log(outputTitle);
+			$("#groupe").html(outputTitle);
+			
+
+			// evènement de gestion de clavier dans la zone text
+			$("#searchField").keyup(
+            	function (event) {
+		            var test = $("#searchField").val();
+	 		 				
+	 				$("#groupe-ul").find('li').each(function() {
+	 					var name = $(this).text(); 
+	 					var re = new RegExp(test.replace(/(\W)/g, "\\$1"), "gi");
+
+	 					if (name.match(re)) {
+	 						$(this).show();
+	 					}
+	 					else {
+	 						$(this).hide();
+	 					}
+	  				}); // FIN parcours des != <li>
+            	} // FIN function anonymous
+        	); // FIN évènement KEYUP
+    
+			affiche();
+		}); // FIN docuement.ready
+
+		</script>	
+		
+		<script>
+// Gestion du déplacement des graphe
+// 
+ 			$(function() {
+ 				$( "#sortable1, #sortable2" ).sortable({
+ 				  connectWith: ".connectedSortable"
+ 				}).disableSelection();
+ 			});
+ 		</script>
+	</head>
+
+	<body>
+		<nav role="navigation" class="navbar   navbar-default navbar-fixed-top">
+			<ul class="nav-tabs list-group" 	>
+	      	  	<div class="navbar-header">
+	            	<button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+		                <span class="sr-only">Toggle navigation</span>
+		                <span class="icon-bar"></span>
+		                <span class="icon-bar"></span>
+		                <span class="icon-bar"></span>
+		            </button>
+		            <a href="#" class="navbar-brand">Graphes Groupés</a>
+		        </div> 
+	      	  	
+	        	
+		        <li onclick="chg_echelle(0);"><button type="button" class="btn btn-primary navbar-btn"><span class="glyphicon glyphicon-time"> Heure</span></button></li>
+				<li  onclick="chg_echelle(1);"><button type="button" class="btn btn-primary navbar-btn"><span class="glyphicon glyphicon-time"> Jour</span></button></li> 
+				<li  onclick="chg_echelle(2);"><button type="button" class="btn btn-primary navbar-btn"><span class="glyphicon glyphicon-time"> Semaine</span></button></li>
+				<li onclick="chg_echelle(3);"><button type="button" class="btn btn-primary navbar-btn"><span class="glyphicon glyphicon-time"> Mois</span></button></li>
+				<li  onclick="chg_echelle(4);"><button type="button" class="btn btn-primary navbar-btn"><span class="glyphicon glyphicon-time"> Année</span></button></li>
+				
+
+				<li class="pull-right" onclick="helpButton_onclick();"><button type="button" class="btn btn-primary navbar-btn navbar-right"><span class="glyphicon glyphicon-info-sign">Aide </span> </button></li>
+		    	
+		    	<li class="pull-right" onclick="configButton_onclick();"><button type="button" class="btn btn-primary navbar-btn navbar-right"><span class="glyphicon glyphicon-cog"> Configuration </span></button></li>
+		            
+		    </ul>
+		</nav>    
+	    <div class="container-fluid" >
+
+     		 <div class="page-header" id="banner">
+
+				<div class="row row-centered" >
+					<ul  class="col-md-2 list-group" >
+						<div id="groupe" class="bs-example">
+						</div>
+				    </ul>
+				    
+					
+					<div  class="col-md-10">
+						<div class="panel-success" hidden="hidden" id="configContenue">
+						 	<div class="panel-heading text-center">	
+								Configuration
+							</div>
+							 <div class="panel-body">
+							 	 <div id="configFrame">
+                                 
+                                 </div>
+							</div>
+						</div>
+						 <div class="panel-info" hidden="hidden" id="messageHelpContenue">
+						 	<div class="panel-heading text-center">	
+								Documentation
+							</div>
+							<div class="panel-body">
+								<div id="messageHelpFrame">
+                                 
+                                 </div>				
+								
+							</div>
+
+						 </div>
+						<div class="row" >
+							<p id="graphTitre">Title Groupe</p>
+						</div>
+						
+						<div class="row">						
+						    <ul id="sortable1" class="connectedSortable " >
+							</ul>
+							<ul id="sortable2" class="connectedSortable ">
+							</ul>
+						</div>
+					</div>	
+				</div>
+			</div>
+			<footer>
+				<hr>
+				<div ><p>O Chanteloup 2016 v0.5.1 (22/02/16)<p></div>
+
+	    	</footer>
+	  
+		</div>	 
+		<div class="tooltip" id="mytooltip">
+		</div>
+	</body>
+</html> 
