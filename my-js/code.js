@@ -162,20 +162,20 @@ function replaceVariable(chaine,j) {
 	variable= chaine.match(/%%(.*?)%%/ig); // recherche des mot du type  %%var1%%
 	for (var i in variable) {
 		var varPropre=variable[i].replace(/%%/gi,'');
-
+        //console.log('variable|'+ varPropre+'|\n');
 		//
 		// Remplacement de la variable echelle 
 		//
 		if (variable[i] == "%%echelle%%") {
-			console.log('debug('+varPropre+'):'+eval("conf.groups[groupe].graph[j]."+varPropre));
+			//console.log('debug('+varPropre+'):'+eval("conf.groups[groupe].graph[j]."+varPropre));
 			if (eval("conf.groups[groupe].graph[j]."+varPropre) != undefined) {
-				console.log('ERROR : la variable '+variable[i]+' est définie alors que c\'est une variable réservé');
+				console.log('WARNING : la variable '+variable[i]+' est définie alors que c\'est une variable réservé');
 			}
 			else { 
 				var echelleTmp = echelle;
 				// test si une gestion particuliere de echelle
 				//
-				console.log("groupeEchelleParam");
+				//nsole.log("groupeEchelleParam");
 				if (eval("conf.groups[groupe].groupeEchelleParam") != undefined) {
 					echelleTmp = conf.groups[groupe].groupeEchelleParam[echelle].val;
 				}
@@ -187,7 +187,7 @@ function replaceVariable(chaine,j) {
 				//
 				var regex = /\w*\(\)/g;
 				var fctName = String(echelleTmp).match(regex);
-				console.log("OO echelleTmp = "+echelleTmp+"\n");
+				
 				if (eval(fctName) != undefined ) {
 					console.log("fct :"+fctName+"\n");
 					if ( fctName == "now()") {
@@ -207,12 +207,37 @@ function replaceVariable(chaine,j) {
 			var varEval = eval("conf.groups[groupe].graph[j]."+varPropre)
 
 			if (varEval == undefined){
-				console.log('ERROR : la variable '+variable[i]+' n\'est pas definie dans les attributs de "'+conf.groups[groupe].graph[j].nom+'".');
+				console.log('WARning : la variable '+variable[i]+' n\'est pas definie dans les attributs de "'+conf.groups[groupe].graph[j].nom+'".');
 			}
 			else {
 				var str = chaine.replace(variable[i], varEval);
 				chaine = str;
 			}
+
+			// traitement des variables dans EchelleParam ou groupeEchelleParam
+			var echelleTmp;
+			if (eval("conf.groups[groupe].groupeEchelleParam") != undefined) {
+			 	echelleTmp = conf.groups[groupe].groupeEchelleParam[echelle];
+			}
+			 if (eval("conf.groups[groupe].graph[j].echelleParam") != undefined) {
+			 	echelleTmp = conf.groups[groupe].graph[j].echelleParam[echelle];
+			}
+
+			//console.log("echelleTmp:"+JSON.stringify(echelleTmp, null, 4));
+			var varEvalEchelle;
+			if (eval("echelleTmp") != undefined) { 	
+				
+			 	varEvalEchelle = eval("echelleTmp."+varPropre);
+			}
+			 
+			if (varEvalEchelle == undefined){
+			 	console.log('ERROR : la variable '+variable[i]+' n\'est pas definie dans les attributs de "'+conf.groups[groupe].graph[j].nom+'".echelleParam .');
+			}
+			else {
+				var str = chaine.replace(variable[i], varEvalEchelle);
+			 	chaine = str;
+			}
+
 		}
 	} // FIN FOR "var i in variable"
 	
