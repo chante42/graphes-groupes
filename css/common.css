@@ -38,6 +38,9 @@ footer {
 	cursor : initial;
 }
 
+.buildWithSubMenu {
+	color 	: #0000FF;
+}
 
 #groupe{
 	background-color 	: #020202;

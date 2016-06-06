@@ -177,10 +177,10 @@ function replaceVariable(chaine,j) {
 				//
 				//nsole.log("groupeEchelleParam");
 				if (eval("conf.groups[groupe].groupeEchelleParam") != undefined) {
-					echelleTmp = conf.groups[groupe].groupeEchelleParam[echelle].val;
+					echelleTmp = conf.groups[groupe].groupeEchelleParam[echelle].echelle;
 				}
 				if (eval("conf.groups[groupe].graph[j].echelleParam") != undefined) {
-					echelleTmp = conf.groups[groupe].graph[j].echelleParam[echelle].val;
+					echelleTmp = conf.groups[groupe].graph[j].echelleParam[echelle].echelle;
 				}
 
 				// test si une fonction dans la chaine echelleTmp
@@ -286,5 +286,47 @@ function onmousemovegroupename(kmouse) {
 
 function onmouseoutgroupename() {
 	$("#mytooltip").css({left:"-9999px"});	
+
 }
+
+//
+// buildWithSubMenu() 
+//
+function buildWithSubMenu(noGroupe) {
+    var str="";
+
+
+	str += ' <li class="nav-divider"></li>';	
+	str += '<li class="buildWithSubMenu"> <a onclick="chg_groupe('+noGroupe+');" style="padding:0px; padding-left:5px;"';
+	str += ' onmouseover="onmouseovergroupename('+noGroupe+')"   onmousemove="onmousemovegroupename(event)" ';
+	str += ' onmouseout="onmouseoutgroupename()">'+conf.groups[noGroupe].groupeNom + '</a>';
+	str += '<select class="selectpicker" id="buildWithSubMenu'+noGroupe+'" data-live-search="true" data-style="btn-info" show-menu-arrow>';
+
+
+	console.log('->'+conf.groups[noGroupe].groupeNom+':url :'+conf.groups[noGroupe].groupeSubMenuUrl)
+	$.get( conf.groups[noGroupe].groupeSubMenuUrl, 
+		function(data){
+			    var perLine=data.split('\n');
+			    var myVars=[];
+
+			    $('#buildWithSubMenu'+noGroupe).append(new Option('','',false,false));
+
+			    for(i=0;i<perLine.length;i++) {
+				    var line=perLine[i].split(' ');
+				    
+				    $('#buildWithSubMenu'+noGroupe).append(new Option(line[0],line[0],false,false));
+				    //console.log(line[0]);
+				}   // fin FOR
+			 
+			
+		}
+	);
+	
+	str += '</select>';
+	str += '</li> ';	
+	str += ' <li class="nav-divider"></li>';	
+
+	return (str);
+}
+
 // -->
