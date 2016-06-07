@@ -328,7 +328,7 @@ function buildWithSubMenu(noGroupe) {
 			    for(i=0;i<perLine.length;i++) {
 				    var line=perLine[i].split(' ');
 				    
-				    $('#buildWithSubMenu'+noGroupe).append(new Option(line[0],line[0]+'"',false,false));
+				    $('#buildWithSubMenu'+noGroupe).append(new Option(line[0],line[0],false,false));
 				    //console.log(line[0]);
 				}   // fin FOR
 			 
