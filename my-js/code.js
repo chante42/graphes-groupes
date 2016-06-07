@@ -168,7 +168,7 @@ function replaceVariable(chaine,j) {
 		//
 		if (variable[i] == "%%echelle%%") {
 			//console.log('debug('+varPropre+'):'+eval("conf.groups[groupe].graph[j]."+varPropre));
-			if (eval("conf.groups[groupe].graph[j]."+varPropre) != undefined) {
+			if (j>= 0 && eval("conf.groups[groupe].graph[j]."+varPropre) != undefined) {
 				console.log('WARNING : la variable '+variable[i]+' est définie alors que c\'est une variable réservé');
 			}
 			else { 
@@ -179,7 +179,7 @@ function replaceVariable(chaine,j) {
 				if (eval("conf.groups[groupe].groupeEchelleParam") != undefined) {
 					echelleTmp = conf.groups[groupe].groupeEchelleParam[echelle].echelle;
 				}
-				if (eval("conf.groups[groupe].graph[j].echelleParam") != undefined) {
+				if (j>= 0 &&  eval("conf.groups[groupe].graph[j].echelleParam") != undefined) {
 					echelleTmp = conf.groups[groupe].graph[j].echelleParam[echelle].echelle;
 				}
 
@@ -204,22 +204,25 @@ function replaceVariable(chaine,j) {
 			}
 
 		}else {
-			var varEval = eval("conf.groups[groupe].graph[j]."+varPropre)
+			if (j>= 0) {
+				var varEval = eval("conf.groups[groupe].graph[j]."+varPropre)
 
-			if (varEval == undefined){
-				console.log('WARning : la variable '+variable[i]+' n\'est pas definie dans les attributs de "'+conf.groups[groupe].graph[j].nom+'".');
-			}
-			else {
-				var str = chaine.replace(variable[i], varEval);
-				chaine = str;
+				if (varEval == undefined){
+					console.log('WARning : la variable '+variable[i]+' n\'est pas definie dans les attributs de "'+conf.groups[groupe].graph[j].nom+'".');
+				}
+				else {
+					var str = chaine.replace(variable[i], varEval);
+					chaine = str;
+				}
 			}
 
+			//
 			// traitement des variables dans EchelleParam ou groupeEchelleParam
 			var echelleTmp;
 			if (eval("conf.groups[groupe].groupeEchelleParam") != undefined) {
 			 	echelleTmp = conf.groups[groupe].groupeEchelleParam[echelle];
 			}
-			 if (eval("conf.groups[groupe].graph[j].echelleParam") != undefined) {
+			 if (j >= 0 && eval("conf.groups[groupe].graph[j].echelleParam") != undefined) {
 			 	echelleTmp = conf.groups[groupe].graph[j].echelleParam[echelle];
 			}
 
@@ -231,13 +234,24 @@ function replaceVariable(chaine,j) {
 			}
 			 
 			if (varEvalEchelle == undefined){
-			 	console.log('ERROR : la variable '+variable[i]+' n\'est pas definie dans les attributs de "'+conf.groups[groupe].graph[j].nom+'".echelleParam .');
+			 	console.log('ERROR : la variable '+variable[i]+' n\'est pas definie dans les attributs de "'+conf.groups[groupe].groupeNom+'".echelleParam .');
 			}
 			else {
 				var str = chaine.replace(variable[i], varEvalEchelle);
 			 	chaine = str;
 			}
 
+			//
+			// traitement de la variable contenu grouoeSubMenuVariable
+			var varStr = "conf.groups[groupe].grouoeSubMenuVariable";
+
+			if ( eval(varStr) == undefined || eval(varStr+"."+varPropre) == undefined){
+				console.log('WARning : la variable '+variable[i]+' n\'est pas definie dans les attributs de "'+conf.groups[groupe].groupeNom+'.grouoeSubMenuVariable".');
+			}
+			else {
+				var str = chaine.replace(variable[i], eval(varStr+"."+varPropre));
+				chaine = str;
+			}
 		}
 	} // FIN FOR "var i in variable"
 	
@@ -295,12 +309,12 @@ function onmouseoutgroupename() {
 function buildWithSubMenu(noGroupe) {
     var str="";
 
-
 	str += ' <li class="nav-divider"></li>';	
-	str += '<li class="buildWithSubMenu"> <a onclick="chg_groupe('+noGroupe+');" style="padding:0px; padding-left:5px;"';
+	str += '<li class="buildWithSubMenu"> <div style="padding:0px; padding-left:5px;"';
 	str += ' onmouseover="onmouseovergroupename('+noGroupe+')"   onmousemove="onmousemovegroupename(event)" ';
-	str += ' onmouseout="onmouseoutgroupename()">'+conf.groups[noGroupe].groupeNom + '</a>';
-	str += '<select class="selectpicker" id="buildWithSubMenu'+noGroupe+'" data-live-search="true" data-style="btn-info" show-menu-arrow>';
+	str += ' onmouseout="onmouseoutgroupename()">'+conf.groups[noGroupe].groupeNom + '</div>';
+	str += '<div style="padding:0px; padding-left:5px;">';
+	str += '<select class="selectpicker" id="buildWithSubMenu'+noGroupe+'" data-live-search="true" onchange="buildWithSubMenuEvent('+noGroupe+')" >';
 
 
 	console.log('->'+conf.groups[noGroupe].groupeNom+':url :'+conf.groups[noGroupe].groupeSubMenuUrl)
@@ -314,7 +328,7 @@ function buildWithSubMenu(noGroupe) {
 			    for(i=0;i<perLine.length;i++) {
 				    var line=perLine[i].split(' ');
 				    
-				    $('#buildWithSubMenu'+noGroupe).append(new Option(line[0],line[0],false,false));
+				    $('#buildWithSubMenu'+noGroupe).append(new Option(line[0],line[0]+'"',false,false));
 				    //console.log(line[0]);
 				}   // fin FOR
 			 
@@ -322,11 +336,106 @@ function buildWithSubMenu(noGroupe) {
 		}
 	);
 	
-	str += '</select>';
+	str += '</select></div>';
 	str += '</li> ';	
 	str += ' <li class="nav-divider"></li>';	
 
 	return (str);
 }
 
+
+function buildWithSubMenuEvent(val){
+	var x = document.getElementById("buildWithSubMenu3").value;
+    console.log(x);
+  	console.log("chg_groupe ="+val);
+	groupe = val;
+
+    buildWithSubMenuAffiche(x);
+}
+
+//
+//     buildWithSubMenuAffiche
+// 
+// fonction qui affiche les image et les contours et traite l'instentiation des variables
+function buildWithSubMenuAffiche(name)
+{
+	
+	var outputGraph1="";
+	
+	var outputTitre = "";
+	var urlTmp;
+	
+	var outputGraph="";
+	var variable;
+	var description="";
+    var nomTitre= name;
+    var href=""
+
+	
+	url = conf.groups[groupe].groupeImageURL;
+	console.log(url);
+	
+	str1=replaceVariable(url, -1);
+	console.log(str1);
+
+	outputGraph += '<div class=" panel-primary" style="padding-top:4;" >';  
+	outputGraph += '   <div data-toggle="tooltip" data-placement="top" title="'+description+'" class="panel-heading text-center">';
+	outputGraph += '      <ul class="nav-tabs list-group list-unstyled"  style="border-bottom: 0px" 	>';
+	outputGraph += '          <li class="text-center">'+nomTitre+'</li>';
+	outputGraph += '          <li class="pull-right"> <a href="'+str1+'" target="_blank"><span class="glyphicon glyphicon-cog"></span></a></li>';
+	outputGraph += '      </ul></div>';
+	outputGraph += '      <div class="panel-body" style="padding:0;">';
+	outputGraph += '   ';
+
+	//
+	// test pour Savor si IMG (par défaut) ou IFRAME
+	//
+	if (typeof(conf.groups[groupe].groupeIframe)  != "undefined" && conf.groups[groupe].groupeIframe == "true") {
+		var taille="";
+
+		// Adapte la taille de l'IFRAME
+		if (typeof(conf.groups[groupe].groupeIframeWidth) != 'undefined'  ) {
+			taille += 'width="'+conf.groups[groupe].groupeIframeWidth+'" ';
+		}
+		if (typeof(conf.groups[groupe].groupeIframeHeight) != 'undefined'  ){
+			taille += 'height="'+conf.groups[groupe].groupeIframeHeight+'" ';
+		}
+
+	    outputGraph += '<iframe  '+taille+'id="iframeAAA'+name+'" src="'+str1+'">Les Iframe ne sont pas supportée</iframe>';
+		
+	}else {
+		if (href !="") {
+			outputGraph += '<a href="'+href+'" target="_blanck'+name+'">';
+		}
+		outputGraph += '<img  id="imgAAA'+name+'" src="'+str1+'" onerror="imageErrorMessage(\''+str1+'\')" alt="Impossible d\'accéder ou vous n\'êtes pas identifié sur l\'url:'+str1+'">';
+		if (href !="") {
+			outputGraph += '</a>';
+		}
+	}
+	outputGraph += '</div></div>';
+
+	
+	
+	$("#sortable1").html(outputGraph);
+	$("#sortable2").html(outputGraph);
+	
+
+	// Affiche le titre ud groupe
+	//
+	var groupeDescription ="";
+	if ( typeof(conf.groups[groupe].groupDescription) != "undefined") {
+			description = conf.groups[groupe].groupDescription;
+		}
+
+	outputTitre ='<h1 data-toggle="tooltip" data-placement="top" title="'+groupeDescription+'"class="text-center">';
+	
+	if ( typeof(conf.groups[groupe].groupeTitre) != 'undefined' && conf.groups[groupe].groupeTitre != "") {
+		outputTitre +=conf.groups[groupe].groupeTitre;
+	}else {
+		outputTitre +=conf.groups[groupe].groupeNom;
+	}
+	outputTitre += "</h1>";
+	$("#graphTitre").html(outputTitre);
+
+}
 // -->

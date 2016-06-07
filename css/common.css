@@ -38,8 +38,9 @@ footer {
 	cursor : initial;
 }
 
-.buildWithSubMenu {
-	color 	: #0000FF;
+.buildWithSubMenu select {
+	color 			: #0000FF;
+	
 }
 
 #groupe{
