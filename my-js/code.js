@@ -345,11 +345,30 @@ function buildWithSubMenu(noGroupe) {
 
 
 function buildWithSubMenuEvent(val){
-	var x = document.getElementById("buildWithSubMenu3").value;
+	var x = document.getElementById("buildWithSubMenu"+val).value;
+
     console.log(x);
   	console.log("chg_groupe ="+val);
 	groupe = val;
 
+	// force les autre groupe a rien avoir de selectionne
+	for(i=0;i<NbWithSubMenu;i++) {
+		if (i != val) {
+			  console.log("reset de "+val);
+			 //document.getElementById("buildWithSubMenu"+i).value="";
+		}
+
+	}
+
+
+	// recuperation du nom de la variable
+	var variable = "host";
+
+	// modificaton du contenue de la variable contenue dans grouoeSubMenuVariable
+	conf.groups[groupe].grouoeSubMenuVariable.host=x;
+	//var pt = eval("conf.groups[groupe].grouoeSubMenuVariable."+variable);
+	//pt = x;
+	//console.log("submenu SetVariable |"+eval(pt)+"| val=|"+pt+"|\n");
     buildWithSubMenuAffiche(x);
 }
 
@@ -417,7 +436,7 @@ function buildWithSubMenuAffiche(name)
 	
 	
 	$("#sortable1").html(outputGraph);
-	$("#sortable2").html(outputGraph);
+	$("#sortable2").html("");
 	
 
 	// Affiche le titre ud groupe
