@@ -28,7 +28,7 @@
 					outputTitle += ' <li class="nav-divider"></li>';
 				}
 				else {
-					outputTitle+= '<li> <a onclick="chg_groupe('+i+');" style="padding:0px; padding-left:5px;" onmouseover="onmouseovergroupename('+i+')"   onmousemove="onmousemovegroupename(event)" onmouseout="onmouseoutgroupename()">'+conf.groups[i].groupeNom + '</a></li> ';
+					outputTitle+= '<li> <a onclick="chg_groupe('+i+');" style="padding:0px; padding-left:5px;" onmouseover="onMouseOverGroupeName('+i+')"   onmousemove="onMouseMoveGroupeName(event)" onmouseout="onMouseOutGroupeName()">'+conf.groups[i].groupeNom + '</a></li> ';
 				}
 			} // FIN boucle for i
 
@@ -72,6 +72,7 @@
 	</head>
 
 	<body>
+<<<<<<< HEAD
 		<nav role="navigation" class="navbar   navbar-default navbar-fixed-top">
 			<ul class="nav-tabs list-group list-unstyled" 	>
 	      	  	<div class="navbar-header">
@@ -91,12 +92,29 @@
 				<li onclick="chg_echelle(3);"><button type="button" class="btn btn-primary navbar-btn"><span class="glyphicon glyphicon-time"> Mois</span></button></li>
 				<li  onclick="chg_echelle(4);"><button type="button" class="btn btn-primary navbar-btn"><span class="glyphicon glyphicon-time"> Année</span></button></li>
 				
+=======
+		<nav role="navigation" class="navbar  navbar-default navbar-fixed-top">
+			
+	      	
+				<ul class="nav-tabs list-group" style="border : 1px;padding: 1px;margin:1px">	      	  	
+>>>>>>> c010df5329eee16401abaf4456278e89e2767a43
 
-				<li class="pull-right" onclick="helpButton_onclick();"><button type="button" class="btn btn-primary navbar-btn navbar-right"><span class="glyphicon glyphicon-info-sign">Aide </span> </button></li>
-		    	
-		    	<li class="pull-right" onclick="configButton_onclick();"><button type="button" class="btn btn-primary navbar-btn navbar-right"><span class="glyphicon glyphicon-cog"> Configuration </span></button></li>
-		            
-		    </ul>
+					<li class="pull-right" onclick="helpButton_onclick();"><button type="button" class="btn btn-primary navbar-btn "><span class="glyphicon glyphicon-info-sign"> Aide </span> </button></li>
+			    	
+			    	<li class="pull-right" onclick="configButton_onclick();"><button type="button" class="btn btn-primary navbar-btn"><span class="glyphicon glyphicon-cog"> Configuration </span></button></li>
+			        
+					<li><button type="button" class="btn btn-primary navbar-btn"><span> Graphes Groupés</span></button></li>
+		        	<ul class="nav-tabs list-group" style="border : 1px;padding: 1px;margin:1px">
+				        <li onclick="chg_echelle(0);"><button type="button" class="btn btn-primary navbar-btn"><span class="glyphicon glyphicon-time"> Heure</span></button></li>
+						<li  onclick="chg_echelle(1);"><button type="button" class="btn btn-primary navbar-btn"><span class="glyphicon glyphicon-time"> Jour</span></button></li> 
+						<li  onclick="chg_echelle(2);"><button type="button" class="btn btn-primary navbar-btn"><span class="glyphicon glyphicon-time"> Semaine</span></button></li>
+						<li onclick="chg_echelle(3);"><button type="button" class="btn btn-primary navbar-btn"><span class="glyphicon glyphicon-time"> Mois</span></button></li>
+						<li  onclick="chg_echelle(4);"><button type="button" class="btn btn-primary navbar-btn"><span class="glyphicon glyphicon-time"> Année</span></button></li>
+					</ul>
+
+					    
+			    </ul>
+		    
 		</nav>    
 	    <div class="container-fluid" >
 
