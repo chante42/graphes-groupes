@@ -220,10 +220,10 @@ function replaceVariable(chaine,j) {
 			// traitement des variables dans EchelleParam ou groupeEchelleParam
 			var echelleTmp;
 			if (eval("conf.groups[Groupe].groupeEchelleParam") != undefined) {
-			 	echelleTmp = conf.groups[Groupe].groupeEchelleParam[echelle];
+			 	echelleTmp = conf.groups[Groupe].groupeEchelleParam[Echelle];
 			}
 			 if (j >= 0 && eval("conf.groups[Groupe].graph[j].echelleParam") != undefined) {
-			 	echelleTmp = conf.groups[Groupe].graph[j].echelleParam[echelle];
+			 	echelleTmp = conf.groups[Groupe].graph[j].echelleParam[Echelle];
 			}
 
 			//console.log("echelleTmp:"+JSON.stringify(echelleTmp, null, 4));
@@ -331,6 +331,7 @@ function buildWithSubMenu(noGroupe) {
 				    $('#buildWithSubMenu'+noGroupe).append(new Option(line[0],line[0],false,false));
 				    //console.log(line[0]);
 				}   // fin FOR
+				
 			 
 			
 		}
@@ -347,15 +348,18 @@ function buildWithSubMenu(noGroupe) {
 function buildWithSubMenuEvent(val){
 	var x = document.getElementById("buildWithSubMenu"+val).value;
 
+	console.log("Sub MENU EVENT [" +conf.NoSubMenu+"]" );
     console.log(x);
   	console.log("chg_groupe ="+val);
 	Groupe= val;
 
 	// force les autre groupe a rien avoir de selectionne
-	for(i=0;i<NbWithSubMenu;i++) {
-		if (i != val) {
-			  console.log("reset de "+val);
-			 //document.getElementById("buildWithSubMenu"+i).value="";
+	for(i =0; i < conf.NoSubMenu.length; i++) {
+		if (conf.NoSubMenu[i] != val) {
+			  console.log("Sub MENU EVENT boucle [" +conf.NoSubMenu[i]+"]" );
+			 //$("#buildWithSubMenu"+conf.NoSubMenu[i]).value="";
+			 // -=- 
+			 $('#buildWithSubMenu'+conf.NoSubMenu[i]).prop('selectedIndex',0);
 		}
 
 	}

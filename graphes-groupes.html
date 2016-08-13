@@ -22,16 +22,24 @@
             outputTitle += '	</div>';
 			outputTitle += '</form>';
 			outputTitle += '<ul id="groupe-ul" class="nav nav-pills nav-stacked">';
-                                
+            conf.NoSubMenu = [];    
+            nbSubMenu = 0;        
 			for (var i in conf.groups) {
+				console.log("groupeName : "+conf.groups[i].groupeNom );
 				if (conf.groups[i].groupeNom.match(/\[separateur\]/gi)) {
 					outputTitle += ' <li class="nav-divider"></li>';
 				}
+				else if (conf.groups[i].groupeType == "WithSubMenu") {
+					outputTitle += buildWithSubMenu(i);
+					conf.NoSubMenu[nbSubMenu++]=i;
+					console.log("HTML:["+conf.NoSubMenu+"]");
+				}
 				else {
+
 					outputTitle+= '<li> <a onclick="chg_groupe('+i+');" style="padding:0px; padding-left:5px;" onmouseover="onmouseovergroupename('+i+')"   onmousemove="onmousemovegroupename(event)" onmouseout="onmouseoutgroupename()">'+conf.groups[i].groupeNom + '</a></li> ';
 				}
-			} // FIN boucle for i
-
+			} // FIN boucle for i                    
+			
 			outputTitle+= '</ul>'
 			//console.log(outputTitle);
 			$("#groupe").html(outputTitle);

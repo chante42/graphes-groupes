@@ -23,7 +23,8 @@
             outputTitle += '	</div>';
 			outputTitle += '</form>';
 			outputTitle += '<ul id="groupe-ul" class="nav nav-pills nav-stacked">';
-                                
+            conf.NoSubMenu = [];    
+            nbSubMenu = 0;        
 			for (var i in conf.groups) {
 				console.log("groupeName : "+conf.groups[i].groupeNom );
 				if (conf.groups[i].groupeNom.match(/\[separateur\]/gi)) {
@@ -31,6 +32,8 @@
 				}
 				else if (conf.groups[i].groupeType == "WithSubMenu") {
 					outputTitle += buildWithSubMenu(i);
+					conf.NoSubMenu[nbSubMenu++]=i;
+					console.log("HTML:["+conf.NoSubMenu+"]");
 				}
 				else {
 
@@ -95,7 +98,7 @@
 		        </div> 
 	      	  	
 	        	
-		        <li onclick="chg_echelle(0);"><button type="button" class="btn btn-primary navbar-btn"><span class="glyphicon glyphicon-time"> Heure</span></button></li>
+		        <li onclick="chg_echelle(0);"><button type="button" class="btn btn-primary navbar-btn active"><span class="glyphicon glyphicon-time"> Heure</span></button></li>
 				<li  onclick="chg_echelle(1);"><button type="button" class="btn btn-primary navbar-btn"><span class="glyphicon glyphicon-time"> Jour</span></button></li> 
 				<li  onclick="chg_echelle(2);"><button type="button" class="btn btn-primary navbar-btn"><span class="glyphicon glyphicon-time"> Semaine</span></button></li>
 				<li onclick="chg_echelle(3);"><button type="button" class="btn btn-primary navbar-btn"><span class="glyphicon glyphicon-time"> Mois</span></button></li>
