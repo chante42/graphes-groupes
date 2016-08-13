@@ -125,6 +125,8 @@ function chg_groupe(val)
 {
 	console.log("chg_groupe ="+val);
 	Groupe= val;
+	resetSubMenu(val);
+
 	affiche();
 }
 
@@ -132,6 +134,15 @@ function chg_echelle(val)
 {
 	console.log("chg_echelle ="+val);
 	Echelle = val;
+
+	$('#btnEchelle0').removeClass("active");
+	$('#btnEchelle1').removeClass("active");
+	$('#btnEchelle2').removeClass("active");
+	$('#btnEchelle3').removeClass("active");
+	$('#btnEchelle4').removeClass("active");
+
+	$('#btnEchelle'+val).addClass("active");
+		
 	affiche();
 };
 
@@ -177,10 +188,10 @@ function replaceVariable(chaine,j) {
 				//
 				//nsole.log("groupeEchelleParam");
 				if (eval("conf.groups[Groupe].groupeEchelleParam") != undefined) {
-					echelleTmp = conf.groups[Groupe].groupeEchelleParam[echelle].echelle;
+					echelleTmp = conf.groups[Groupe].groupeEchelleParam[Echelle].echelle;
 				}
 				if (j>= 0 &&  eval("conf.groups[Groupe].graph[j].echelleParam") != undefined) {
-					echelleTmp = conf.groups[Groupe].graph[j].echelleParam[echelle].echelle;
+					echelleTmp = conf.groups[Groupe].graph[j].echelleParam[Echelle].echelle;
 				}
 
 				// test si une fonction dans la chaine echelleTmp
@@ -346,13 +357,25 @@ function buildWithSubMenu(noGroupe) {
 
 
 function buildWithSubMenuEvent(val){
-	var x = document.getElementById("buildWithSubMenu"+val).value;
-
 	console.log("Sub MENU EVENT [" +conf.NoSubMenu+"]" );
-    console.log(x);
   	console.log("chg_groupe ="+val);
 	Groupe= val;
 
+
+	resetSubMenu(val);	
+	// recuperation du nom de la variable
+	var variable = "host";
+
+	var x = document.getElementById("buildWithSubMenu"+val).value;
+	// modificaton du contenue de la variable contenue dans grouoeSubMenuVariable
+	conf.groups[Groupe].grouoeSubMenuVariable.host=x;
+	//var pt = eval("conf.groups[Groupe].grouoeSubMenuVariable."+variable);
+	//pt = x;
+	//console.log("submenu SetVariable |"+eval(pt)+"| val=|"+pt+"|\n");
+    buildWithSubMenuAffiche(x);
+}
+
+function resetSubMenu(val) {
 	// force les autre groupe a rien avoir de selectionne
 	for(i =0; i < conf.NoSubMenu.length; i++) {
 		if (conf.NoSubMenu[i] != val) {
@@ -364,18 +387,7 @@ function buildWithSubMenuEvent(val){
 
 	}
 
-
-	// recuperation du nom de la variable
-	var variable = "host";
-
-	// modificaton du contenue de la variable contenue dans grouoeSubMenuVariable
-	conf.groups[Groupe].grouoeSubMenuVariable.host=x;
-	//var pt = eval("conf.groups[Groupe].grouoeSubMenuVariable."+variable);
-	//pt = x;
-	//console.log("submenu SetVariable |"+eval(pt)+"| val=|"+pt+"|\n");
-    buildWithSubMenuAffiche(x);
 }
-
 //
 //     buildWithSubMenuAffiche
 // 
