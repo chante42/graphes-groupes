@@ -69,9 +69,10 @@ footer {
 * Gestion du déplacement de la zone de graphe
 */
 .nav-switch {
-  border-left	: 20px red solid;
-  
+  border-left		: 20px red solid;
+  border-image		: linear-gradient(to right,  #3b679e 0%,#2b88d9 50%,#207cca 51%,#7db9e8 100%) 1 100%; 
 }
+
 .nav-switch-pointer {
   border: 0px dotted yellow;
   width: 10px!important;
