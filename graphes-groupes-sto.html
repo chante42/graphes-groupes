@@ -70,6 +70,25 @@
         	); // FIN évènement KEYUP
     
 			affiche();
+
+			//
+			// gestion du déplacement de la zone de selection et graphe
+			//
+			$(".nav-switch").on("click", function() {
+				  console.log("CLIVK...... barre")
+				  var $t = $(this),
+				    v = !!$t.data("visible");
+				  $t.data("visible", !v);
+				  $("ul.nav-col").toggleClass("hidden");
+				  if (v) {
+				    /*currently showing nav*/
+				    $("div.main-col").removeClass("col-md-10").addClass("col-md-12");
+				  } else {
+				    $("div.main-col").removeClass("col-md-12").addClass("col-md-10");
+				  }
+			});
+
+
 		}); // FIN docuement.ready
 
 		</script>	
@@ -82,6 +101,8 @@
  				  connectWith: ".connectedSortable"
  				}).disableSelection();
  			});
+
+
  		</script>
 	</head>
 
@@ -117,13 +138,16 @@
      		 <div class="page-header" id="banner">
 
 				<div class="row row-centered" >
-					<ul  class="col-md-2 list-group" >
+					<ul  id="nav-menu" class="col-md-2 list-group nav-col" >
+
 						<div id="groupe" class="bs-example">
 						</div>
 				    </ul>
 				    
 					
-					<div  class="col-md-10">
+					<div  class="col-md-10 main-col">
+						<div class="row fl-rt nav-switch" data-visible="1">
+
 						<div class="panel-success" hidden="hidden" id="configContenue">
 						 	<div class="panel-heading text-center">	
 								Configuration

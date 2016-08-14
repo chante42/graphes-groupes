@@ -473,4 +473,6 @@ function buildWithSubMenuAffiche(name)
 	$("#graphTitre").html(outputTitre);
 
 }
+
+
 // -->
