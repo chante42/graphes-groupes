@@ -14,15 +14,16 @@
 		
 		<link rel="stylesheet" href="css/bootstrap.min.css"> 
 		<link rel="stylesheet" type="text/css" href="css/common.css" >
-
+		
 		<title>Graphique Groupés</title>
 
 		<script>
+		
 
 	    $(document).ready(function() {
 			var outputTitle='<form class="navbar-form  input-append">';
 			outputTitle += '   <div class="form-group" >';
-            outputTitle += ' 	<input id="searchField"  type="search" class="input-sm form-control" placeholder="Filtre">';	
+            outputTitle += ' 	<input id="searchField"  type="search" class="input-sm form-control" placeholder="Item Filtre">';	
             outputTitle += '	</div>';
 			outputTitle += '</form>';
 			outputTitle += '<ul id="groupe-ul" class="nav nav-pills nav-stacked">';
@@ -36,17 +37,20 @@
 				else if (conf.groups[i].groupeType == "WithSubMenu") {
 					outputTitle += buildWithSubMenu(i);
 					conf.NoSubMenu[nbSubMenu++]=i;
-					console.log("HTML:["+conf.NoSubMenu+"]");
 				}
 				else {
 
 					outputTitle+= '<li> <a onclick="chg_groupe('+i+');" style="padding:0px; padding-left:5px;" onmouseover="onmouseovergroupename('+i+')"   onmousemove="onmousemovegroupename(event)" onmouseout="onmouseoutgroupename()">'+conf.groups[i].groupeNom + '</a></li> ';
 				}
-			} // FIN boucle for i                    
-			
+			} // FIN boucle for i
+
 			outputTitle+= '</ul>'
+
+			
+
 			//console.log(outputTitle);
 			$("#groupe").html(outputTitle);
+			
 
 			// evènement de gestion de clavier dans la zone text
 			$("#searchField").keyup(
@@ -69,12 +73,11 @@
     
 			affiche();
 
-						//
+			//
 			// gestion du déplacement de la zone de selection et graphe
 			//
-			$(".nav-switch").on("click", function() {
-				  console.log("CLIVK...... barre")
-				  var $t = $(this),
+			$(".nav-switch-icon").on("click", function() {
+				  var $t = $(".nav-switch"),
 				    v = !!$t.data("visible");
 				  $t.data("visible", !v);
 				  $("ul.nav-col").toggleClass("hidden");
@@ -85,6 +88,7 @@
 				    $("div.main-col").removeClass("col-md-12").addClass("col-md-10");
 				  }
 			});
+
 
 		}); // FIN docuement.ready
 
@@ -98,6 +102,8 @@
  				  connectWith: ".connectedSortable"
  				}).disableSelection();
  			});
+
+
  		</script>
 	</head>
 
@@ -106,7 +112,6 @@
 			<ul class="nav-tabs list-group list-unstyled" 	>
 				<li><img src="images/GG-Bleu.jpg" height="66" width="66" /img></li>
 	      	  	<div class="navbar-header">
-
 		            <a href="#" class="navbar-brand">Graphes Groupés</a>
 		        </div> 
 	      	  	
@@ -116,7 +121,6 @@
 				<li onclick="chg_echelle(2);"><button id="btnEchelle2" type="button" class="btn btn-primary navbar-btn"><span class="glyphicon glyphicon-time"> Semaine</span></button></li>
 				<li onclick="chg_echelle(3);"><button id="btnEchelle3"type="button" class="btn btn-primary navbar-btn"><span class="glyphicon glyphicon-time"> Mois</span></button></li>
 				<li onclick="chg_echelle(4);"><button  id="btnEchelle4" type="button" class="btn btn-primary navbar-btn"><span class="glyphicon glyphicon-time"> Année</span></button></li>
-				
 				
 
 				<li class="pull-right" onclick="helpButton_onclick();"><button type="button" class="btn btn-primary navbar-btn navbar-right"><span class="glyphicon glyphicon-info-sign">Aide </span> </button></li>
@@ -129,46 +133,51 @@
 
      		 <div class="page-header" id="banner">
 
-				<div class="row" >
-					<ul  class="col-md-2 list-group nav-col" >
+				<div class="row row-centered" >
+					<ul  id="nav-menu" class="col-md-2 list-group nav-col" >
+
 						<div id="groupe" class="bs-example">
 						</div>
 				    </ul>
+				    
 					
 					<div  class="col-md-10 main-col">
 						<div class="row fl-rt nav-switch" data-visible="1">
+							<span id="flecheDroite" class="nav-switch-icon glyphicon glyphicon-arrow-right"></span>
+							<span id="flecheGauche" class="nav-switch-icon glyphicon glyphicon-arrow-left"></span>
 
-						<div class="panel-success" hidden="hidden" id="configContenue">
-						 	<div class="panel-heading text-center">	
-								Configuration
+							<div class="panel-success" hidden="hidden" id="configContenue">
+							 	<div class="panel-heading text-center">	
+									Configuration
+								</div>
+								 <div class="panel-body">
+								 	 <div id="configFrame">
+	                                 
+	                                 </div>
+								</div>
 							</div>
-							 <div class="panel-body">
-							 	 <div id="configFrame">
-                                 
-                                 </div>
-							</div>
-						</div>
-						 <div class="panel-info" hidden="hidden" id="messageHelpContenue">
-						 	<div class="panel-heading text-center">	
-								Documentation
-							</div>
-							<div class="panel-body">
-								<div id="messageHelpFrame">
-                                 
-                                 </div>				
-								
-							</div>
+							 <div class="panel-info" hidden="hidden" id="messageHelpContenue">
+							 	<div class="panel-heading text-center">	
+									Documentation
+								</div>
+								<div class="panel-body">
+									<div id="messageHelpFrame">
+	                                 
+	                                 </div>				
+									
+								</div>
 
-						 </div>
-						<div class="row" >
-							<p id="graphTitre">Title Groupe</p>
-						</div>
-						
-						<div class="row">						
-						    <ul id="sortable1" class="connectedSortable " >
-							</ul>
-							<ul id="sortable2" class="connectedSortable ">
-							</ul>
+							 </div>
+							<div class="row" >
+								<p id="graphTitre">Title Groupe</p>
+							</div>
+							
+							<div class="row">						
+							    <ul id="sortable1" class="connectedSortable " >
+								</ul>
+								<ul id="sortable2" class="connectedSortable ">
+								</ul>
+							</div>
 						</div>
 					</div>	
 				</div>

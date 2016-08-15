@@ -71,7 +71,7 @@ footer {
 .nav-switch {
   border-left		: 20px red solid;
   border-image		: linear-gradient(to right,  #3b679e 0%,#2b88d9 50%,#207cca 51%,#7db9e8 100%) 1 100%; 
-}
+  }
 
 .nav-switch-pointer {
   border: 0px dotted yellow;
@@ -87,4 +87,23 @@ footer {
 
 .nav-col  {
 	padding-right 	: 1px;
+	overflow:hidden;
+}
+
+#flecheDroite {
+ position:absolute;
+  top:15px;
+  left:4px;
+  width:30px;
+  height:30px;
+}
+
+
+#flecheGauche {
+ position:absolute;
+  top:2px;
+  left:3px;
+  width:30px;
+  height:30px;
+
 }

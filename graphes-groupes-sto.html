@@ -8,13 +8,13 @@
 		
   		<script src="my-js/jquery.min.js"></script>
   		<script src="my-js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="my-js/conf.js" id="scriptConfJS"></script>
+		<script type="text/javascript" src="my-js/conf-sto.js" id="scriptConfJS"></script>
 		<script type="text/javascript" src="my-js/code.js"></script>
 		<script src="js/jquery-ui.js"></script>
 		
 		<link rel="stylesheet" href="css/bootstrap.min.css"> 
 		<link rel="stylesheet" type="text/css" href="css/common.css" >
-
+		
 		<title>Graphique Groupés</title>
 
 		<script>
@@ -37,7 +37,6 @@
 				else if (conf.groups[i].groupeType == "WithSubMenu") {
 					outputTitle += buildWithSubMenu(i);
 					conf.NoSubMenu[nbSubMenu++]=i;
-					console.log("HTML:["+conf.NoSubMenu+"]");
 				}
 				else {
 
@@ -77,9 +76,8 @@
 			//
 			// gestion du déplacement de la zone de selection et graphe
 			//
-			$(".nav-switch").on("click", function() {
-				  console.log("CLIVK...... barre")
-				  var $t = $(this),
+			$(".nav-switch-icon").on("click", function() {
+				  var $t = $(".nav-switch"),
 				    v = !!$t.data("visible");
 				  $t.data("visible", !v);
 				  $("ul.nav-col").toggleClass("hidden");
@@ -145,38 +143,41 @@
 					
 					<div  class="col-md-10 main-col">
 						<div class="row fl-rt nav-switch" data-visible="1">
+							<span id="flecheDroite" class="nav-switch-icon glyphicon glyphicon-arrow-right"></span>
+							<span id="flecheGauche" class="nav-switch-icon glyphicon glyphicon-arrow-left"></span>
 
-						<div class="panel-success" hidden="hidden" id="configContenue">
-						 	<div class="panel-heading text-center">	
-								Configuration
+							<div class="panel-success" hidden="hidden" id="configContenue">
+							 	<div class="panel-heading text-center">	
+									Configuration
+								</div>
+								 <div class="panel-body">
+								 	 <div id="configFrame">
+	                                 
+	                                 </div>
+								</div>
 							</div>
-							 <div class="panel-body">
-							 	 <div id="configFrame">
-                                 
-                                 </div>
-							</div>
-						</div>
-						 <div class="panel-info" hidden="hidden" id="messageHelpContenue">
-						 	<div class="panel-heading text-center">	
-								Documentation
-							</div>
-							<div class="panel-body">
-								<div id="messageHelpFrame">
-                                 
-                                 </div>				
-								
-							</div>
+							 <div class="panel-info" hidden="hidden" id="messageHelpContenue">
+							 	<div class="panel-heading text-center">	
+									Documentation
+								</div>
+								<div class="panel-body">
+									<div id="messageHelpFrame">
+	                                 
+	                                 </div>				
+									
+								</div>
 
-						 </div>
-						<div class="row" >
-							<p id="graphTitre">Title Groupe</p>
-						</div>
-						
-						<div class="row">						
-						    <ul id="sortable1" class="connectedSortable " >
-							</ul>
-							<ul id="sortable2" class="connectedSortable ">
-							</ul>
+							 </div>
+							<div class="row" >
+								<p id="graphTitre">Title Groupe</p>
+							</div>
+							
+							<div class="row">						
+							    <ul id="sortable1" class="connectedSortable " >
+								</ul>
+								<ul id="sortable2" class="connectedSortable ">
+								</ul>
+							</div>
 						</div>
 					</div>	
 				</div>

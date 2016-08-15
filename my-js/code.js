@@ -57,7 +57,7 @@ function affiche()
 		outputGraph += '   <div data-toggle="tooltip" data-placement="top" title="'+description+'" class="panel-heading text-center">';
 		outputGraph += '      <ul class="nav-tabs list-group list-unstyled"  style="border-bottom: 0px" 	>';
 		outputGraph += '          <li class="text-center">'+nomTitre+'</li>';
-		outputGraph += '          <li class="pull-right"> <a href="'+str1+'" target="_blank"><span class="glyphicon glyphicon-cog"></span></a></li>';
+		outputGraph += '          <li class="pull-right"> <a href="'+str1+'" target="_blank"><span class="glyphicon glyphicon-paperclip"></span></a></li>';
 		outputGraph += '      </ul></div>';
 		outputGraph += '      <div class="panel-body" style="padding:0;">';
 		
@@ -357,7 +357,7 @@ function buildWithSubMenu(noGroupe) {
 
 
 function buildWithSubMenuEvent(val){
-	console.log("Sub MENU EVENT [" +conf.NoSubMenu+"]" );
+	//console.log("Sub MENU EVENT [" +conf.NoSubMenu+"]" );
   	console.log("chg_groupe ="+val);
 	Groupe= val;
 
