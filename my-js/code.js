@@ -144,6 +144,7 @@ function chg_echelle(val)
 	$('#btnEchelle'+val).addClass("active");
 		
 	affiche();
+	buildWithSubMenuAffiche(Groupe);
 };
 
 
