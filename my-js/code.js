@@ -1,5 +1,6 @@
-var Echelle = 0;
-var Groupe= 0;
+var Echelle 			= 0;
+var Groupe 				= 0;
+var SubMenuActifItem 	= 0;
 
 
 // imageErrorMessage
@@ -144,7 +145,7 @@ function chg_echelle(val)
 	$('#btnEchelle'+val).addClass("active");
 		
 	affiche();
-	buildWithSubMenuAffiche(Groupe);
+	buildWithSubMenuAffiche(document.getElementById("buildWithSubMenu"+SubMenuActifItem).value);
 };
 
 
@@ -366,6 +367,9 @@ function buildWithSubMenuEvent(val){
 	resetSubMenu(val);	
 	// recuperation du nom de la variable
 	var variable = "host";
+	
+	// stock le item sous menu Actif pour le changement de date
+	SubMenuActifItem = val;
 
 	var x = document.getElementById("buildWithSubMenu"+val).value;
 	// modificaton du contenue de la variable contenue dans grouoeSubMenuVariable
@@ -418,7 +422,7 @@ function buildWithSubMenuAffiche(name)
 	outputGraph += '   <div data-toggle="tooltip" data-placement="top" title="'+description+'" class="panel-heading text-center">';
 	outputGraph += '      <ul class="nav-tabs list-group list-unstyled"  style="border-bottom: 0px" 	>';
 	outputGraph += '          <li class="text-center">'+nomTitre+'</li>';
-	outputGraph += '          <li class="pull-right"> <a href="'+str1+'" target="_blank"><span class="glyphicon glyphicon-cog"></span></a></li>';
+	outputGraph += '          <li class="pull-right"> <a href="'+str1+'" target="_blank"><span class="glyphicon glyphicon-paperclip"></span></a></li>';
 	outputGraph += '      </ul></div>';
 	outputGraph += '      <div class="panel-body" style="padding:0;">';
 	outputGraph += '   ';
