@@ -104,6 +104,19 @@ function affiche()
 	$("#sortable1").html(outputGraph1);
 	$("#sortable2").html(outputGraph2);
 
+	// change la taille du graphe  si il n'y en a qu'un de définie
+	console.log("GRAPH LENGTH "+conf.groups[Groupe].graph.length );
+	if (conf.groups[Groupe].graph.length == 1 || typeof(conf.groups[Groupe].groupeSubMenuUrl) != 'undefined') {
+		$("#sortable1").css({'width' :'98%'});
+		$("#sortable2").hide();
+	}
+	else {
+		$("#sortable1").css({'width' :'49%'});
+		$("#sortable2").css({'width' :'49%'});
+		$("#sortable2").show();
+
+	}
+
 	// Affiche le titre ud groupe
 	//
 	var groupeDescription ="";
