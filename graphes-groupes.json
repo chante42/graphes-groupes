@@ -1,0 +1,48 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "GraphGroupe ensemble",
+    "type": "array",
+    "items": {
+        "title" : "groupe",
+        "type" : "object",
+        "properties" : {
+            "groupeNom": {
+                "title" : "nom  du groupe de graphe",
+                "type": "string",
+                "description": "Nom du groupe qui apparait dans le menu sur la gauche",
+                "minLength": 4
+            },
+            "groupeTitre": {
+                "type": "string",
+                "description": "Titre du graphe",
+                "minLength": 0
+            },
+            "groupeDescription": {
+                "type": "string",
+                "description": "Description de ce que fait ce groupe de graphe",
+                "minLength": 0
+            },
+            "graph": {
+                "type": "array",
+                 "items": {
+                    "title" : "graph",
+                     "type": "string"
+                },
+                "minItems": 1
+            },
+            "groupeImageURL": {
+                "type": "string",
+                "description": "URL d'accès a l'image ou a la plage pour le groupe",
+                "minLength": 8
+            },
+            "groupeClickURL": {
+                "type": "string",
+                "description": "URL d'accès quand on click sur l'URL pour le groupe",
+                "minLength": 8
+            }
+
+          },
+      "required" : ["groupeNom", "graph"]
+      }
+  
+}

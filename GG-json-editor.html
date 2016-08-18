@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<!-- voir Exemple : http://json-schema.org/example1.html-->
+  <head>
+    <meta charset="utf-8" />
+    <title>GG json config editor</title>
+    <script src="js/jsoneditor.min.js"></script>
+
+    
+    <!-- Foundation CSS framework (Bootstrap and jQueryUI also supported) -->
+    <link rel='stylesheet' href='//cdn.jsdelivr.net/foundation/5.0.2/css/foundation.min.css'>
+    <!-- Font Awesome icons (Bootstrap, Foundation, and jQueryUI also supported) -->
+    <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css'>
+
+  </head>
+  <body>
+    <h1>GG json config editor</h1>
+    
+    <div id='editor_holder'></div>
+    <button id='submit'>Submit (console.log)</button>
+    
+    <script>
+      
+      // Set the default CSS theme and icon library globally
+      JSONEditor.defaults.theme = 'foundation5';
+      JSONEditor.defaults.iconlib = 'fontawesome4';
+    
+      // This is the starting value for the editor
+      // We will use this to seed the initial editor 
+      // and to provide a "Restore to Default" button.
+      var starting_value = {  
+        "groupeNom"         : "Ecran initial",     
+        "groupeTitre"     : "Ecran initial",
+        "groupeDescription" : "",
+        "groupeImageURL"  : "images/debug/1%%echelle%%%%var1%%.png",
+        "groupeClickURL"  : "http://www.google.fr",
+        "graph" : [    
+          {"nom" : "img 0"    , "var1" : "0", "clickURL" : "images/debug/100.png"},  
+          {"nom" : "img 1"    , "var1" : "1"},  
+        ]
+      } 
+
+      // Initialize the editor with a JSON schema
+      // Initialize the editor
+      var editor = new JSONEditor(document.getElementById('editor_holder'),{
+        // Enable fetching schemas via ajax
+        ajax: true,
+        
+        // The schema for the editor
+        schema: {
+          type: "array",
+          $ref: "graphes-groupes.json",
+          format: "tabs"
+        },
+        
+        // Seed the form with a starting value
+        startval: starting_value,
+
+        // Disable additional properties
+        no_additional_properties: true,
+        
+        // Require all properties by default
+        required_by_default: true       
+      });
+      
+      // Hook up the submit button to log to the console
+      document.getElementById('submit').addEventListener('click',function() {
+        // Get the value from the editor
+        console.log(editor.getValue());
+      });
+      
+      // Hook up the Restore to Default button
+      document.getElementById('restore').addEventListener('click',function() {
+        editor.setValue(starting_value);
+      });
+      
+      // Hook up the validation indicator to update its 
+      // status whenever the editor changes
+      editor.on('change',function() {
+        // Get an array of errors from the validator
+        var errors = editor.validate();
+        
+        var indicator = document.getElementById('valid_indicator');
+        
+        // Not valid
+        if(errors.length) {
+          indicator.className = 'label alert';
+          indicator.textContent = 'not valid';
+        }
+        // Valid
+        else {
+          indicator.className = 'label success';
+          indicator.textContent = 'valid';
+        }
+      });
+      
+      // Hook up the submit button to log to the console
+      document.getElementById('submit').addEventListener('click',function() {
+        // Get the value from the editor
+        console.log(editor.getValue());
+      });
+    </script>
+  </body>
+</html>
