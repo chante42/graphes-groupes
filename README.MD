@@ -3,7 +3,7 @@ OBJECTIF :
 ----------
    Ce script, permet de regrouper sur une même page HTML, les graphes venant d'outil différent et de changer d'échelle pour tous les graphes en même temps.
    
-   Caque graphe peut etre déplacé en cliquant dessus pour mettre les graphes les plus intéressent les uns à coté des autres de façon intéractif, mais sans sauvegarde
+   Chaque graphe peut etre déplacé en cliquant dessus pour mettre les graphes les plus intéressent les uns à coté des autres de façon intéractif, mais sans sauvegarde
 
    Le script ne gére pas l'authentification pour accéder aux image, il est nécéssaire de s'authentifier sur les différents outils avant de utiliser ce scripts.
 
@@ -51,7 +51,7 @@ DESCRIPTION DES MOTS CLEF :
 
 // clickURL             : [facultatif] URL appelé si on click  l'image
 
-//
+// groupeVariable       : [facultatif] Liste variable : valeur : La valeur npeux contenir une fonction parmis celle définie 
 
 //
 // Les variables :
@@ -61,6 +61,18 @@ DESCRIPTION DES MOTS CLEF :
 //      %%echelle%% : Permet de choisir le zoom actuel : telque définie par "cacti,pnp4nagios, ..."
 // 
 
+
+//
+// Les Fonctions :
+//
+// * annee()   : retour l'anné sous formme yyyy
+// * mois()    : retourne le no du mois sur 2 digits ( ex 01 ou 12)
+// * moisStr() : retourne le nom du mois en français sans accents: ("janvier, decembre")
+// * jour()    : retourne le jours du mois sur 2 digits (ex 01, 31)
+//
+//  exmple : {"varAnnee" : "annee()", "varMois" : "mois()", "varMoisStr" : "moisStr()", "varJour" : "jour()"},
+//
+//
 
 EXEMPLE DE FICHIER DE CONFIG
 ----------------------------
