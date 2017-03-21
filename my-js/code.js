@@ -163,7 +163,7 @@ function chg_echelle(val)
 
 function configButton_onclick()
 {
-	$('#configFrame').html('<iframe src="my-js/conf.js"  type="text/plain utf8"><iframe>');
+	$('#configFrame').html('<iframe src='+FichierConf+'  type="text/plain utf8"><iframe>');
 
 	$('#configContenue').toggle();
 }
