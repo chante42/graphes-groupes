@@ -176,6 +176,56 @@ function helpButton_onclick()
 }
 
 //
+// ReaceFonction
+//
+function replaceFonction(chaine){
+
+	//
+	var regex = /\w*\(\)/g;
+	var fctName = String(chaine).match(regex);
+	
+	if (eval(fctName) != undefined ) {
+		console.log("fct :"+fctName+"\n");
+		if ( fctName == "now()") {
+			var d = new Date();
+			var seconds = d.getTime() / 1000;
+			chaine = chaine.replace("now()", String(seconds));
+			//chaine = eval(chaine);
+			console.log("now() : "+ chaine);
+		} // now()
+		else if ( fctName == "jour()") {
+			var d = new Date();
+			var jour = d.getDate();
+			chaine = chaine.replace("jour()", String("0"+ jour).slice(-2));
+			console.log("jour() : "+ chaine);
+		} // Mois()
+		else if ( fctName == "mois()") {
+			var d = new Date();
+			var mois = d.getMonth()+1;
+			chaine = chaine.replace("mois()", String( "0" + mois).slice(-2));
+			console.log("mois() : "+ chaine);
+		} // Mois()
+		else if ( fctName == "moisStr()") {
+			var moisFrancais= ["", "janvier", "fevrier", "mars", "avril", "mai", "juin", "juillet", "aout", "septembre", "octobre", "novembre", "decembre"];
+			var d = new Date();
+			var mois = d.getMonth()+1;
+			var moisStr = moisFrancais[mois];
+			chaine = chaine.replace("moisStr()", String(moisStr));
+			console.log("moisStr() : "+ chaine);
+		} // Mois()
+		else if ( fctName == "annee()") {
+			var d = new Date();
+			var  annee= d.getFullYear();
+			chaine = chaine.replace("annee()", String(annee));
+			console.log("annee() : "+ chaine);
+		} // Annee()
+
+		
+	}
+	return(chaine);
+}
+
+//
 //    Replace Variable
 //
 // chaine : chaine a remplacer
@@ -208,22 +258,7 @@ function replaceVariable(chaine,j) {
 					echelleTmp = conf.groups[Groupe].graph[j].echelleParam[Echelle].echelle;
 				}
 
-				// test si une fonction dans la chaine echelleTmp
-				//
-				var regex = /\w*\(\)/g;
-				var fctName = String(echelleTmp).match(regex);
 				
-				if (eval(fctName) != undefined ) {
-					console.log("fct :"+fctName+"\n");
-					if ( fctName == "now()") {
-						var d = new Date();
-						var seconds = d.getTime() / 1000;
-						echelleTmp = echelleTmp.replace("now()", String(seconds));
-						echelleTmp = eval(echelleTmp);
-						console.log("now() : "+ echelleTmp);
-					}
-					
-				}
 				var str1 = chaine.replace("%%echelle%%",echelleTmp);
 				chaine = str1;
 			}
@@ -233,7 +268,7 @@ function replaceVariable(chaine,j) {
 				var varEval = eval("conf.groups[Groupe].graph[j]."+varPropre)
 
 				if (varEval == undefined){
-					console.log('WARning : la variable '+variable[i]+' n\'est pas definie dans les attributs de "'+conf.groups[Groupe].graph[j].nom+'".');
+					//console.log('WARning : la variable '+variable[i]+' n\'est pas definie dans les attributs de "'+conf.groups[Groupe].graph[j].nom+'".');
 				}
 				else {
 					var str = chaine.replace(variable[i], varEval);
@@ -251,6 +286,8 @@ function replaceVariable(chaine,j) {
 			 	echelleTmp = conf.groups[Groupe].graph[j].echelleParam[Echelle];
 			}
 
+			echelleTmp = replaceFonction(echelleTmp);
+
 			//console.log("echelleTmp:"+JSON.stringify(echelleTmp, null, 4));
 			var varEvalEchelle;
 			if (eval("echelleTmp") != undefined) { 	
@@ -259,7 +296,7 @@ function replaceVariable(chaine,j) {
 			}
 			 
 			if (varEvalEchelle == undefined){
-			 	console.log('ERROR : la variable '+variable[i]+' n\'est pas definie dans les attributs de "'+conf.groups[Groupe].groupeNom+'".echelleParam .');
+			 	//console.log('ERROR : la variable '+variable[i]+' n\'est pas definie dans les attributs de "'+conf.groups[Groupe].groupeNom+'".echelleParam .');
 			}
 			else {
 				var str = chaine.replace(variable[i], varEvalEchelle);
@@ -267,14 +304,34 @@ function replaceVariable(chaine,j) {
 			}
 
 			//
-			// traitement de la variable contenu grouoeSubMenuVariable
-			var varStr = "conf.groups[Groupe].grouoeSubMenuVariable";
+			// traitement de la variable contenu groupeSubMenuVariable
+			//
+			var varStr = "conf.groups[Groupe].groupeSubMenuVariable";
 
 			if ( eval(varStr) == undefined || eval(varStr+"."+varPropre) == undefined){
-				console.log('WARning : la variable '+variable[i]+' n\'est pas definie dans les attributs de "'+conf.groups[Groupe].groupeNom+'.grouoeSubMenuVariable".');
+				//console.log('WARning : la variable '+variable[i]+' n\'est pas definie dans les attributs de "'+conf.groups[Groupe].groupeNom+'.groupeSubMenuVariable".');
 			}
 			else {
-				var str = chaine.replace(variable[i], eval(varStr+"."+varPropre));
+				varStr = eval(varStr+"."+varPropre);
+				varStr =  replaceFonction(varStr);
+				var str = chaine.replace(variable[i], varStr);
+				chaine = str;
+			}
+			//
+			// traitement de la variable contenu groupeVariable
+			//
+			var varStr = "conf.groups[Groupe].groupeVariable";
+
+			if ( eval(varStr) == undefined || eval(varStr+"."+varPropre) == undefined){
+				console.log('WARning : la variable '+variable[i]+' n\'est pas definie dans les attributs de "'+conf.groups[Groupe].groupeNom+'.groupeVariable".');
+			}
+			else {
+				varStr = eval(varStr+"."+varPropre);
+				varStr =  replaceFonction(varStr);
+				console.log('-=- varStr = '+varStr+'-=-');
+
+				var str = chaine.replace(variable[i], varStr);
+				console.log('-=- '+varStr+'='+JSON.stringify(varStr, null, 4)+'-=-');
 				chaine = str;
 			}
 		}
@@ -385,7 +442,7 @@ function buildWithSubMenuEvent(val){
 
 	var x = document.getElementById("buildWithSubMenu"+val).value;
 	// modificaton du contenue de la variable contenue dans grouoeSubMenuVariable
-	conf.groups[Groupe].grouoeSubMenuVariable.host=x;
+	conf.groups[Groupe].groupeSubMenuVariable.host=x;
 	//var pt = eval("conf.groups[Groupe].grouoeSubMenuVariable."+variable);
 	//pt = x;
 	//console.log("submenu SetVariable |"+eval(pt)+"| val=|"+pt+"|\n");
