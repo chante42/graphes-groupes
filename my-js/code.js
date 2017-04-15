@@ -133,6 +133,10 @@ function affiche()
 	outputTitre += "</h1>";
 	$("#graphTitre").html(outputTitre);
 
+	// Met a jour l'URL pour pouvoir l'appeler après
+	window.history.pushState({state:1}, "State 1", "?graph="+conf.groups[Groupe].groupeNom+"&echelle="+Echelle); // logs {state:1}, "State 1", "?state=1"
+
+
 }
 function chg_groupe(val)
 {
@@ -155,9 +159,15 @@ function chg_echelle(val)
 	$('#btnEchelle4').removeClass("active");
 
 	$('#btnEchelle'+val).addClass("active");
-		
+
+	
 	affiche();
-	buildWithSubMenuAffiche(document.getElementById("buildWithSubMenu"+SubMenuActifItem).value);
+	if (document.getElementById("buildWithSubMenu"+SubMenuActifItem) != null) {
+		if (typeof(document.getElementById("buildWithSubMenu"+SubMenuActifItem).value) != 'undefined') {
+			buildWithSubMenuAffiche(document.getElementById("buildWithSubMenu"+SubMenuActifItem).value);
+		}
+	}
+	
 };
 
 
@@ -548,5 +558,77 @@ function buildWithSubMenuAffiche(name)
 
 }
 
+//
+//  getRequest()
+//
+//http://stackoverflow.com/questions/831030/how-to-get-get-request-parameters-in-javascript
+//
+//var QueryString = getRequests();
+//if url === "index.html?test1=t1&test2=t2&test3=t3"
+//console.log(QueryString["test1"]); //logs t1
+//console.log(QueryString["test2"]); //logs t2
+//console.log(QueryString["test3"]); //logs t3
+function getRequests() {
+    var s1 = location.search.substring(1, location.search.length).split('&'),
+        r = {}, s2, i;
+    for (i = 0; i < s1.length; i += 1) {
+        s2 = s1[i].split('=');
+        r[decodeURIComponent(s2[0]).toLowerCase()] = decodeURIComponent(s2[1]);
+    }
+    return r;
+};
 
+
+// -=- OCH impossible de faire fonctionner history.js !!!!!!! WHY
+(function(window,undefined){
+
+	//console.log("history init OCH");
+	// Prepare
+	var History = window.History; // Note: We are using a capital H instead of a lower h
+	if ( !History.enabled ) {
+		 // History.js is disabled for this browser.
+		 // This is because we can optionally choose to support HTML4 browsers or not.
+		 console.log("history dont WORK OCH");
+		return false;
+	}
+
+	// Bind to StateChange Event
+	History.Adapter.bind(window,'statechange',function(){ // Note: We are using statechange instead of popstate
+		var State = History.getState(); // Note: We are using History.getState() instead of event.state
+		History.log(State.data, State.title, State.url);
+	});
+
+	History.getState() ;
+	// Change our States
+	//History.pushState({state:1}, "State 1", "?state=1"); // logs {state:1}, "State 1", "?state=1"
+	//History.pushState({state:2}, "State 2", "?state=2"); // logs {state:2}, "State 2", "?state=2"
+	//History.replaceState({state:3}, "State 3", "?state=3"); // logs {state:3}, "State 3", "?state=3"
+	//History.pushState(null, null, "?state=4"); // logs {}, '', "?state=4"
+	//History.back(); // logs {state:3}, "State 3", "?state=3"
+	//History.back(); // logs {state:1}, "State 1", "?state=1"
+	//History.back(); // logs {}, "Home Page", "?"
+	//History.go(2); // logs {state:3}, "State 3", "?state=3"
+
+})(window);
+
+
+// Parse l'URL pour connaitr le graphe a afficher au 1er chargement de la page
+function initaliseGroupeUrl() {
+	// -=- OCH 
+	var QueryString = getRequests();
+	console.log("************* getURL parameter = "+QueryString["graph"]); //logs t1	
+
+	if (typeof(QueryString["echelle"]) != "undefined") {
+		chg_echelle(parseInt(QueryString["echelle"]));
+		
+	}
+	for (var j in conf.groups) {
+		var nomTitre= conf.groups[j].groupeNom;
+        
+        if (nomTitre == QueryString["graph"]) {
+        	Groupe= j
+        }
+
+	} // fin for j	
+}
 // -->

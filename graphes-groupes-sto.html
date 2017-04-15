@@ -5,20 +5,25 @@
   		
 		<link rel="icon"  type="image/jpg" href="images/GG-Bleu.jpg" />
 		
-		<script> 
+		
+  		<script type="text/javascript" src="my-js/jquery.min.js"></script>
+  		<script type="text/javascript" src="my-js/bootstrap.min.js"></script>
+  		<script> 
 			var FichierConf ="my-js/conf-sto.js"
 			document.write("<script type='text/javascript' src='"+ FichierConf + "' id='scriptConfJS'><\/script>");
 		</script>
-  		<script src="my-js/jquery.min.js"></script>
-  		<script src="my-js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/jquery-ui.js"></script>
+
+		<! -- gestion des URL pour etre appeler par l'extérieur -- !>
+		<script type="text/javascript" src="js/history.js"></script>
+		<script type="text/javascript" src="js/history.adapter.jquery.js"></script>
 		
 		<script type="text/javascript" src="my-js/code.js"></script>
-		<script src="js/jquery-ui.js"></script>
-		
+
 		<link rel="stylesheet" href="css/bootstrap.min.css"> 
 		<link rel="stylesheet" type="text/css" href="css/common.css" >
 		
-		<title>Graphique Groupés</title>
+		<title>Graphique Groupés Stockage</title>
 
 		<script>
 		
@@ -74,6 +79,9 @@
             	} // FIN function anonymous
         	); // FIN évènement KEYUP
     
+		    // initialise la gestion des parametre des url
+			initaliseGroupeUrl()
+
 			affiche();
 
 			//
