@@ -1,0 +1,84 @@
+Version 0.1.0
+ - 	modified:   ../graphes-groupes-sto.html 	modified:   ../graphes-groupes.html 	new file:   history.adapter.dojo.js 	new file:   history.adapter.jquery.js 	new file:   history.adapter.native.js 	new file:   history.html4.js 	new file:   history.js 	modified:   ../my-js/code.js
+ - 	modified:   graphes-groupes-sto.html 	modified:   graphes-groupes.html 	modified:   my-js/code.js
+ - 	modified:   README.MD
+ - 	modified:   my-js/code.js
+ - 	modified:   my-js/code.js 	Correction du problème de gestion de l'affichage d'une seul graph full largeur
+ - 	modified:   my-js/code.js 	effacement du log qui faisant planté si non définie
+ - 	modified:   my-js/code.js
+ - 	new file:   GG-json-editor.html 	new file:   graphes-groupes.json 	new file:   js/jsoneditor.min.js
+ - 	modified:   css/common.css 	modified:   graphes-groupes-sto.html 	modified:   graphes-groupes.html
+ - 	modified:   my-js/code.js 	correction de l'affichage du nom du graph quand subme,nu et changement d'echelle         icone representant le lien
+ - 	modified:   code.js 	Correction pas d'affichage du graphe si type graphe liste et changement d'echelle
+ - 	modified:   css/common.css 	modified:   graphes-groupes-sto.html 	modified:   graphes-groupes.html 	modified:   images/GG-Bleu.jpg 	modified:   my-js/code.js
+ - 	modified:   ../css/common.css 	modified:   ../graphes-groupes-sto.html 	modified:   ../graphes-groupes.html
+ - 	modified:   ../css/common.css 	modified:   ../graphes-groupes-sto.html 	modified:   ../graphes-groupes.html 	modified:   code.js
+ - 	new file:   ../js/bootstrap.min.js 	new file:   ../js/jquery-ui.js
+ - 	modified:   ../graphes-groupes-sto.html 	modified:   ../graphes-groupes.html 	new file:   ../images/GG-Bleu.jpg 	new file:   ../images/GG-Rouge.jpg
+ - 	modified:   ../graphes-groupes-sto.html 	modified:   ../graphes-groupes.html 	modified:   code.js
+ - 	modified:   ../graphes-groupes-sto.html 	modified:   ../graphes-groupes.html 	modified:   code.js 	Gestion correcte des différente selection multiple, quand on en 	selectionne un les autres sont déselectionné
+ - 	modified:   code.js 	2eme passage pour remplacemenet de echelle par Echelle et de 	groupe par Groupe
+ - 	modified:   my-js/code.js 	Passage de la premiere lettre en majuscule pour les variable 	Globale Echelle et Groupe
+ - rend le code non dépendant d'un object sur internet'
+ - recuperation du bug du revert
+ - Revert "	modified:   graphes-groupes-sto.html"
+ - Merge branch 'master' of https://github.com/chante42/graphes-groupes
+ - 	modified:   graphes-groupes-sto.html
+ - 	modified:   my-js/code.js Ajout de la gestion des boutons echelle pour faire apparaitre celui qui est selectionne
+ - 	modified:   my-js/code.js correction du pb de '"' dans le nom du host dans buildWithSubMenu
+ - 	modified:   css/common.css 	modified:   graphes-groupes-sto.html 	modified:   my-js/code.js
+ - 	modified:   css/common.css 	modified:   graphes-groupes-sto.html 	modified:   my-js/code.js
+ - Mise en place de la gestion de variable dans EchelleParam et EchelleParamGroup
+ - ajout d'un gliph configuration qui permet d'ouvrir une page sur l'URL généré pur le graphe/iframe
+ - supression du bullet dans la lisgne du haut avec les echelles help et config
+ - Gestion de la focntion now() qui retour EPOCH dans la variable  %%Echelle%%
+ - rm du repo seuelement de conf.js et conf-sto.js
+ - 	new file:   graphes-groupes-sto.html 	new file:   my-js/conf-sto.js Instanciation pour le stockage pour les baies 3PAR
+ - Update README.MD
+ - Update README.MD
+ - Delete conf-test.js
+ - Delete conf.js
+ - ajout de la gestion d'une interface pour gérer le fichier de config. syntaxe d'ecrite dans conf.js,
+ -  simplification du code du menu en Haut, reste a afficher un border autour de 5 button jours, semaine.....
+ - ajout d'une majuscule pour les variable globale Echelle et Groupe
+ - gestion des virgule correcte pour info bulle dans la liste des graphes, et aémlioration de la lisibilité du titre de l'info bulle
+ - inclusion du nom des groupe graphé dans la bulle d'aide
+ - modification de la bulle d'aide. création d'une vrais bulle avec la fleche qui point vers la zone a commenter
+ - petite modif
+ - proprification du code, et mise en place de coin arrondis et changement couleur de fond
+ - efface les code de debug dans console
+ - correction de la gestion du déplacement des graphe qui avait été supprimé par erreur
+ - 	modified:   my-js/code.js 	Fin de la resolution de conflit
+ - 	modified:   css/common.css 	Modififcation de la taille de l'infobulle
+ - merge master fixed conflict
+ - tentative d'avoir utf8 dans iframe, mais ne fonctionne pas
+ - remplacement de panel-succes par panel-info dans infoBulle
+ - 	modified:   README.MD 	modified:   css/common.css 	modified:   graphes-groupes.html 	modified:   my-js/code.js 	modified:   my-js/conf.js
+ - 	modified:   my-js/conf.js    Mis a jours temps reel sur les liens DC
+ - creation de la fonction replaceVariable pour qu'elle s'applique sur url ClickURL
+ - Modification des label affiché pour les echelles
+ - gestion de l'echelle dans le fichier de config a partir des parametres groupeEchelleParam echelleParam
+ - 	modified:   README.MD 	Ajout d'information
+ - correction Pb d'affichage aide et gestion de l'ecran initial
+ - essais de mise en place d'un meilleur message d'erreur quand une image ne peux etre chargée, mais ne fonctionne pas
+ - ajout des attribut groupClickURL et clickURL qui permet d'ouvrir une autre fenetre lorsque l'on click sur une image
+ - ajout de la conf des ping filer
+ - iframe pour config et frame
+ - ajout de la gestion du curseur poour montrer que l'on peux deplacer le graph
+ - drag and drop ok sur 2 colonnes en n'utilisant plus bootstrap  reste le Pb de changement d'echelle qui redpeplace les graphe a la position initiale
+ - Mise en place d'administration qui recupère le fichier en http mais pas en file
+ - test drag and drop
+ - mise en place d'un hover simple au dessus de 'nom'
+ - mise en place de la gestion des iframe pour afficher des URL a la place d'images
+ - test authen suite
+ - test authen suite
+ - correction d'un oublie de guillement sur id des images
+ - Test de plein de moyen de faire de l'autenthification qui ne marche pas : Pb avec Origin a null, peux etre herberger la page sur un serveur règlerai le probleme
+ -  Ajout des boiton Aide et Configuration, et des infos associés
+ - Mise  jours doc"
+ - 	new file:   README 	new file:   README.MD
+ - Mise a jours de la description du fichier de config
+ - 	modified:   css/common.css 	modified:   graphes-groupes.html
+ - 	modified:   graphes-groupes.html 	ajout du menu info: mais mal positionné
+ -  Please enter the commit message for your changes. Lines starting  with '' will be ignored, and an empty message aborts the commit.  On branch master
+
