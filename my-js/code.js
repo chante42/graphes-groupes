@@ -231,6 +231,17 @@ function replaceFonction(chaine){
 		} // Annee()
 
 		
+		var regex = /[-()\d/*+.]{1,}/g;
+		var operation = String(chaine).match(regex);
+		
+		if (operation !=  undefined) {
+
+			result = math.eval(operation);
+			
+			chaine = chaine.replace(operation, String(result));
+
+		}
+		
 	}
 	return(chaine);
 }
@@ -277,6 +288,7 @@ function replaceVariable(chaine,j) {
 			if (j>= 0) {
 				var varEval = eval("conf.groups[Groupe].graph[j]."+varPropre)
 
+				varEval = replaceFonction(varEval);
 				if (varEval == undefined){
 					//console.log('WARning : la variable '+variable[i]+' n\'est pas definie dans les attributs de "'+conf.groups[Groupe].graph[j].nom+'".');
 				}
@@ -296,13 +308,16 @@ function replaceVariable(chaine,j) {
 			 	echelleTmp = conf.groups[Groupe].graph[j].echelleParam[Echelle];
 			}
 
-			echelleTmp = replaceFonction(echelleTmp);
+			//console.log("***** echelleTmp AV replace fct : "+echelleTmp+"chaine :"+chaine);
+			//echelleTmp = replaceFonction(echelleTmp);
+			//console.log("***** echelleTmp AP replace fct : "+echelleTmp+"chaine :"+chaine);
 
 			//console.log("echelleTmp:"+JSON.stringify(echelleTmp, null, 4));
 			var varEvalEchelle;
 			if (eval("echelleTmp") != undefined) { 	
 				
 			 	varEvalEchelle = eval("echelleTmp."+varPropre);
+			 	varEvalEchelle = replaceFonction(varEvalEchelle);
 			}
 			 
 			if (varEvalEchelle == undefined){
@@ -631,4 +646,5 @@ function initaliseGroupeUrl() {
 
 	} // fin for j	
 }
+
 // -->

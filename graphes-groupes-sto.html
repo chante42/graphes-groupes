@@ -2,7 +2,12 @@
 	<head>
 		<meta charset="utf-8">
   		<meta nom="viewport" content="width=device-width, initial-scale=1">
-  		
+
+
+		<! --  		 A LIRE ............. https://developers.google.com/web/fundamentals/security/csp/
+		<meta http-equiv="Content-Security-Policy" content="script-src 'unsafe-eval';script-src 'self'"> -- !> 
+
+		
 		<link rel="icon"  type="image/jpg" href="images/GG-Bleu.jpg" />
 		
 		
@@ -15,6 +20,7 @@
 		<script type="text/javascript" src="js/jquery-ui.js"></script>
 
 		<! -- gestion des URL pour etre appeler par l'extérieur -- !>
+		<script type="text/javascript" src="js/math.min.js"></script>
 		<script type="text/javascript" src="js/history.js"></script>
 		<script type="text/javascript" src="js/history.adapter.jquery.js"></script>
 		
