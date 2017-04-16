@@ -31,7 +31,7 @@ if [ -f VERSION ]; then
     echo $INPUT_STRING > VERSION
 
     echo "Version $INPUT_STRING:" > tmpfile
-    git log --pretty=format:" - %s" "v$BASE_STRING"...HEAD >> tmpfile
+    git log --pretty=format:" -- %s" "$BASE_STRING"...HEAD >> tmpfile
     echo "" >> tmpfile
     echo "" >> tmpfile
     cat CHANGES >> tmpfile
