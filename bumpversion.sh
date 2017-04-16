@@ -36,9 +36,8 @@ if [ -f VERSION ]; then
     echo "" >> tmpfile
     cat CHANGES >> tmpfile
     mv tmpfile CHANGES
-    sed -i -e 's/<div ><@@><p>O Chanteloup 2017 '$BASE_STRING' (16\/04\/17)<p><@@><\/div>/<div ><@@><p>O Chanteloup 2017 '$INPUT_STRING' (16\/04\/17)<p><@@><\/div>/g' graphes-groupes*.html
-    echo sed -i -e 's/<div ><@@><p>O Chanteloup 2017 '$BASE_STRING' (16\/04\/17)<p><@@><\/div>/<div ><@@><p>O Chanteloup 2017 '$INPUT_STRING' (16\/04\/17)<p><@@><\/div>/g' graphes-groupes*.html
-
+    sed -i -e 's/<div><p>O Chanteloup 2017 '$BASE_STRING' (16\/04\/17)<p><\/div>/<div><p>O Chanteloup 2017 '$INPUT_STRING' (16\/04\/17)<p><\/div>/g' graphes-groupes*.html
+    
     git commit -m "Version bump to $INPUT_STRING"
     git tag -a -m "Tagging version $INPUT_STRING" "v$INPUT_STRING"
     echo "git push origin --tags ne FONCTIONNE PAS  a faire par le bureau"

@@ -257,7 +257,7 @@ function replaceFonction(chaine){
 			var d = new Date();
 			var  annee= d.getFullYear();
 			chaine = chaine.replace("annee()", String(annee));
-			//console.log("annee() : "+ chaine);
+			console.log("annee() : "+ chaine);
 		} // Annee()
 
 		
@@ -267,6 +267,11 @@ function replaceFonction(chaine){
 		if (operation !=  undefined) {
 
 			result = math.eval(operation);
+
+			//rajoute un zero devant si fct jours ou mois 
+			if (fctName == "mois()" || fctName == "jour()") {
+				result = String("0"+ result).slice(-2);
+			}
 			
 			chaine = chaine.replace(operation, String(result));
 
