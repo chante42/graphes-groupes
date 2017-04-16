@@ -29,16 +29,18 @@ if [ -f VERSION ]; then
     fi
     echo "Will set new version to be $INPUT_STRING"
     echo $INPUT_STRING > VERSION
+
     echo "Version $INPUT_STRING:" > tmpfile
     git log --pretty=format:" - %s" "v$BASE_STRING"...HEAD >> tmpfile
     echo "" >> tmpfile
     echo "" >> tmpfile
     cat CHANGES >> tmpfile
     mv tmpfile CHANGES
-    git add CHANGES VERSION
-    git commit -m "Version bump to $INPUT_STRING"
-    git tag -a -m "Tagging version $INPUT_STRING" "v$INPUT_STRING"
-    git push origin --tags
+    sed -i -e 's/<div ><@@><p>O Chanteloup 2017 '$BASE_STRING' (16\/04\/17)<p><@@><\/div>/<div ><@@><p>O Chanteloup 2017 '$INPUT_STRING' (16\/04\/17)<p><@@><\/div>/g' graphes-groupes*.html
+
+    #git commit -m "Version bump to $INPUT_STRING"
+    #git tag -a -m "Tagging version $INPUT_STRING" "v$INPUT_STRING"
+    echo "git push origin --tags ne FONCTIONNE PAS  a faire par le bureau"
 else
     echo "Could not find a VERSION file"
     read -p "Do you want to create a version file and start from scratch? [y]" RESPONSE
