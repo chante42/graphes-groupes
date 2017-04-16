@@ -6,7 +6,7 @@ var SubMenuActifItem 	= 0;
 // imageErrorMessage
 //  Message d'erreur qui apparait quand il est impossible de charger une image
 function imageErrorMessage(url) {
-	$(this).parent().append("<h1>TOTOTOOTOTO "+url+" </h1>");
+	$(this).parent().append("<h1>"+url+" </h1>");
 	console.log("onloadError : "+url);
 }
 //
@@ -145,6 +145,7 @@ function chg_groupe(val)
 	resetSubMenu(val);
 
 	affiche();
+	chg_echelle(Echelle);
 }
 
 function chg_echelle(val)
@@ -160,6 +161,36 @@ function chg_echelle(val)
 
 	$('#btnEchelle'+val).addClass("active");
 
+	n1 = "heure";
+	n2 = "jour";
+	n3 = "semaine";
+	n4 = "mois";
+	n5 = "année";
+
+	if (typeof(conf.groups[Groupe].groupeEchelleParam) != 'undefined'  ){
+		console.log("changement label ");
+		if (typeof(conf.groups[Groupe].groupeEchelleParam[0].echelleNom) != 'undefined'  ){
+			n1 = conf.groups[Groupe].groupeEchelleParam[0].echelleNom;
+		}
+		if (typeof(conf.groups[Groupe].groupeEchelleParam[1].echelleNom) != 'undefined'  ){
+			n2 = conf.groups[Groupe].groupeEchelleParam[1].echelleNom;
+		}
+		if (typeof(conf.groups[Groupe].groupeEchelleParam[2].echelleNom) != 'undefined'  ){
+			n3 = conf.groups[Groupe].groupeEchelleParam[2].echelleNom;
+		}
+		if (typeof(conf.groups[Groupe].groupeEchelleParam[3].echelleNom) != 'undefined'  ){
+			n4 = conf.groups[Groupe].groupeEchelleParam[3].echelleNom;
+		}
+		if (typeof(conf.groups[Groupe].groupeEchelleParam[4].echelleNom) != 'undefined'  ){
+			n5 = conf.groups[Groupe].groupeEchelleParam[4].echelleNom;
+		}
+	}
+
+	$("#btnEchelle0").html(n1);
+	$("#btnEchelle1").html(n2);
+	$("#btnEchelle2").html(n3);
+	$("#btnEchelle3").html(n4);
+	$("#btnEchelle4").html(n5);
 	
 	affiche();
 	if (document.getElementById("buildWithSubMenu"+SubMenuActifItem) != null) {
@@ -195,25 +226,24 @@ function replaceFonction(chaine){
 	var fctName = String(chaine).match(regex);
 	
 	if (eval(fctName) != undefined ) {
-		console.log("fct :"+fctName+"\n");
+		//console.log("fct :"+fctName+"\n");
 		if ( fctName == "now()") {
 			var d = new Date();
 			var seconds = d.getTime() / 1000;
 			chaine = chaine.replace("now()", String(seconds));
-			//chaine = eval(chaine);
-			console.log("now() : "+ chaine);
+			//console.log("now() : "+ chaine);
 		} // now()
 		else if ( fctName == "jour()") {
 			var d = new Date();
 			var jour = d.getDate();
 			chaine = chaine.replace("jour()", String("0"+ jour).slice(-2));
-			console.log("jour() : "+ chaine);
+			//console.log("jour() : "+ chaine);
 		} // Mois()
 		else if ( fctName == "mois()") {
 			var d = new Date();
 			var mois = d.getMonth()+1;
 			chaine = chaine.replace("mois()", String( "0" + mois).slice(-2));
-			console.log("mois() : "+ chaine);
+			//console.log("mois() : "+ chaine);
 		} // Mois()
 		else if ( fctName == "moisStr()") {
 			var moisFrancais= ["", "janvier", "fevrier", "mars", "avril", "mai", "juin", "juillet", "aout", "septembre", "octobre", "novembre", "decembre"];
@@ -221,13 +251,13 @@ function replaceFonction(chaine){
 			var mois = d.getMonth()+1;
 			var moisStr = moisFrancais[mois];
 			chaine = chaine.replace("moisStr()", String(moisStr));
-			console.log("moisStr() : "+ chaine);
+			//console.log("moisStr() : "+ chaine);
 		} // Mois()
 		else if ( fctName == "annee()") {
 			var d = new Date();
 			var  annee= d.getFullYear();
 			chaine = chaine.replace("annee()", String(annee));
-			console.log("annee() : "+ chaine);
+			//console.log("annee() : "+ chaine);
 		} // Annee()
 
 		
@@ -353,10 +383,8 @@ function replaceVariable(chaine,j) {
 			else {
 				varStr = eval(varStr+"."+varPropre);
 				varStr =  replaceFonction(varStr);
-				console.log('-=- varStr = '+varStr+'-=-');
 
 				var str = chaine.replace(variable[i], varStr);
-				console.log('-=- '+varStr+'='+JSON.stringify(varStr, null, 4)+'-=-');
 				chaine = str;
 			}
 		}
